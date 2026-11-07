@@ -1,7 +1,7 @@
-﻿country,FCI 2025 (trung vị các khu),FCI phần có rừng 2025 (gộp),ΔFCI 2017→2025 (trung vị các khu),"ΔFCI so với FCI 2017 (trung vị, %)",% khu có ΔFCI âm,"Thay đổi ròng rừng tự nhiên (gộp, %)",Điểm trạng thái,Điểm xu hướng,Điểm chung,Hạng chung,GROUP
-Việt Nam,1.0,3.0,1.0,1.0,1.0,1.0,2.0,1.0,1.5,1,large
-Mỹ,2.0,1.0,2.0,2.0,2.0,2.0,1.5,2.0,1.75,2,large
-Úc,3.0,2.0,3.0,3.0,3.0,3.0,2.5,3.0,2.75,3,large
-Việt Nam,1.0,2.0,3.0,1.0,1.0,2.0,1.5,1.75,1.625,1,medium
-Mỹ,3.0,1.0,1.0,3.0,2.0,1.0,2.0,1.75,1.875,2,medium
-Úc,2.0,3.0,2.0,2.0,3.0,3.0,2.5,2.5,2.5,3,medium
+﻿country,FCI 2025 (trung vị các khu),FCI phần có rừng 2025 (gộp),ΔFCI 2017→2025 (trung vị các khu),"ΔFCI so với FCI 2017 (trung vị, %)",% khu có ΔFCI âm,"Thay đổi ròng rừng tự nhiên (gộp, %)",Điểm trạng thái,Hạng trạng thái,Điểm xu hướng,Điểm chung,Hạng chung,GROUP
+Việt Nam,1.0,3.0,1.0,1.0,1.0,1.0,85.3206708908258,1.0,1.0,1.0,1,large
+Mỹ,2.0,1.0,2.0,2.0,2.0,2.0,60.80419754047914,2.0,2.0,2.0,2,large
+Úc,3.0,2.0,3.0,3.0,3.0,3.0,46.93817009257222,3.0,3.0,3.0,3,large
+Việt Nam,1.0,2.0,3.0,1.0,1.0,2.0,81.8463135521601,1.0,1.75,1.375,1,medium
+Mỹ,3.0,1.0,1.0,3.0,2.0,1.0,58.43980589708923,2.0,1.75,1.875,2,medium
+Úc,2.0,3.0,2.0,2.0,3.0,3.0,51.95796257466681,3.0,2.5,2.75,3,medium

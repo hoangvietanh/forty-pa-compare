@@ -312,12 +312,12 @@ def overview_figure(country, png, extent, pas, out_path):
         x = R * math.radians(pa.LON)
         y = R * math.log(math.tan(math.pi / 4 + math.radians(pa.LAT) / 2))
         px, py = (v * 72 for v in to_pt.transform((x, y)))
-        dx, dy, w, h = 5, 5, 8 + 6 * len(str(pa.RANK)), 13
+        dx, dy, w, h = 5, 5, 8 + 6 * len(str(pa.NO)), 13
         while any(abs(px + dx - qx) < (w + qw) / 2 + 1 and abs(py + dy - qy) < h + 1 for qx, qy, qw in placed):
             dy -= h + 1
         placed.append((px + dx, py + dy, w))
         medium = getattr(pa, "GROUP", "large") == "medium"
-        ax.annotate(str(pa.RANK), (x, y), xytext=(dx, dy), textcoords="offset points", fontsize=8.5,
+        ax.annotate(str(pa.NO), (x, y), xytext=(dx, dy), textcoords="offset points", fontsize=8.5,
                     fontweight="normal" if medium else "bold", fontstyle="italic" if medium else "normal",
                     color=INK, arrowprops=dict(arrowstyle="-", color="#6B6B6B", lw=0.6) if dy < -5 else None,
                     bbox=dict(boxstyle="round,pad=0.15", fc="#E6E6E3" if medium else "white", ec="#9A9A9A", lw=0.6,
@@ -327,7 +327,7 @@ def overview_figure(country, png, extent, pas, out_path):
                title_fontsize=9)
     n_med = int((pas.GROUP == "medium").sum()) if "GROUP" in pas else 0
     note = f" (nhãn nghiêng, nền xám = {n_med} khu cỡ vừa)" if n_med else ""
-    fig.suptitle(f"{country}: {len(pas)} khu bảo tồn tô màu theo ΔFCI · số = thứ hạng diện tích{note}", fontsize=12,
+    fig.suptitle(f"{country}: {len(pas)} khu bảo tồn tô màu theo ΔFCI · số = số thứ tự khu{note}", fontsize=12,
                  x=0.01, y=1 - 0.12 / H, ha="left", va="top")
     fig.savefig(out_path, dpi=110, facecolor="white")
     plt.close(fig)

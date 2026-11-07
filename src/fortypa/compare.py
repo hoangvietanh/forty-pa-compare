@@ -31,12 +31,15 @@ def select_groups(df, top_n=20, n_mid=10, n_groups=4):
     - "large": the top_n largest;
     - "medium": split the list into n_groups groups of equal count by area, counted from the largest, and take the
       n_mid largest PAs of the second group, skipping any already in "large".
-    Adds GROUP and N_ELIGIBLE (number of eligible PAs in the country)."""
+    Adds GROUP, N_ELIGIBLE (number of eligible PAs in the country) and NO, the display number 1…top_n+n_mid within
+    the country (large first, then medium, each by area)."""
     n = len(df)
     lo, hi = math.ceil(n / n_groups), math.ceil(2 * n / n_groups)  # second group = RANK lo+1 … hi
     large = df[df.RANK <= top_n].assign(GROUP="large")
     medium = df[(df.RANK > max(lo, top_n)) & (df.RANK <= hi)].head(n_mid).assign(GROUP="medium")
-    return pd.concat([large, medium]).assign(N_ELIGIBLE=n, Q2_FROM=lo + 1, Q2_TO=hi)
+    out = pd.concat([large, medium]).assign(N_ELIGIBLE=n, Q2_FROM=lo + 1, Q2_TO=hi)
+    out.insert(1, "NO", range(1, len(out) + 1))
+    return out
 
 
 def group_label(key, n):
@@ -67,7 +70,7 @@ def pa_indicators(pas, areas, fci, transitions, years):
     changed class."""
     y0, y1 = years[0], years[-1]
     f = _fci(_class_areas(areas, [y0, y1])).unstack("year")
-    cols = [c for c in ("ISO3", "GROUP", "RANK", "SITE_ID", "NAME", "DESIG_ENG", "LAND_KM2") if c in pas]
+    cols = [c for c in ("ISO3", "GROUP", "NO", "RANK", "SITE_ID", "NAME", "DESIG_ENG", "LAND_KM2") if c in pas]
     out = pas[cols].merge(
         fci[["SITE_ID", f"fci_{y0}", f"fci_{y1}", "dfci", "trend", "mk_p", "verdict"]], on="SITE_ID")
     out = out.set_index("SITE_ID")
@@ -176,8 +179,12 @@ CRITERIA = [
 
 
 def ranking(table, years):
-    """Rank of each country on every criterion (1 = best), the mean rank per group (state, trend) and overall
-    (mean of the two group scores, so the four trend criteria do not outweigh the two state criteria)."""
+    """Rank of each country on every criterion (1 = best), then:
+    - state score: mean of the two state FCI values (0–100, higher = better), so the size of a gap counts, not only
+      its order; ranked 1–3 into the state rank;
+    - trend score: mean rank of the four trend criteria (lower = better);
+    - overall score: mean of the state rank and the trend score (lower = better), so the four trend criteria do not
+      outweigh the state."""
     y0, y1 = years[0], years[-1]
     t = table.set_index("country")
     out = pd.DataFrame(index=t.index)
@@ -186,8 +193,10 @@ def ranking(table, years):
         col, label = col.format(y0=y0, y1=y1), label.format(y0=y0, y1=y1)
         out[label] = t[col].rank(ascending=not higher, method="min")
         groups.setdefault(group, []).append(label)
-    for g, cols in groups.items():
-        out[f"Điểm {g.lower()}"] = out[cols].mean(axis=1)
-    out["Điểm chung"] = out[[f"Điểm {g.lower()}" for g in groups]].mean(axis=1)
+    state_cols = [c.format(y0=y0, y1=y1) for c, _, _, g in CRITERIA if g == "Trạng thái"]
+    out["Điểm trạng thái"] = t[state_cols].mean(axis=1)
+    out["Hạng trạng thái"] = out["Điểm trạng thái"].rank(ascending=False, method="min")
+    out["Điểm xu hướng"] = out[groups["Xu hướng"]].mean(axis=1)
+    out["Điểm chung"] = out[["Hạng trạng thái", "Điểm xu hướng"]].mean(axis=1)
     out["Hạng chung"] = out["Điểm chung"].rank(method="min").astype(int)
     return out.sort_values("Điểm chung"), groups

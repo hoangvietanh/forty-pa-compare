@@ -1,0 +1,8 @@
+earthengine-api
+pandas
+matplotlib
+requests
+pillow
+ipykernel
+nbclient
+nbformat

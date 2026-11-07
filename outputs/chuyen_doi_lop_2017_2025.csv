@@ -1,0 +1,792 @@
+﻿SITE_ID,from,to,area_ha,scale_m,change,tu_lop,sang_lop,loai_thay_doi,ISO3,NAME
+10345,1,1,114546.66866666662,10,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,VNM,Phong Nha-Kẻ Bàng
+10345,1,2,17.0,10,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Phong Nha-Kẻ Bàng
+10345,1,6,7.2,10,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Phong Nha-Kẻ Bàng
+10345,1,7,50.68,10,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Phong Nha-Kẻ Bàng
+10345,2,2,6498.2065882352945,10,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,VNM,Phong Nha-Kẻ Bàng
+10345,2,4,0.4837254901960785,10,4,Rừng tái sinh tự nhiên,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Phong Nha-Kẻ Bàng
+10345,2,5,0.1304313725490196,10,4,Rừng tái sinh tự nhiên,Cây công nghiệp và nông lâm kết hợp,Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Phong Nha-Kẻ Bàng
+10345,2,6,52.7650980392157,10,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Phong Nha-Kẻ Bàng
+10345,4,2,0.4645098039215686,10,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Phong Nha-Kẻ Bàng
+10345,4,4,2.443921568627451,10,0,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Không đổi lớp,VNM,Phong Nha-Kẻ Bàng
+10345,4,6,1.2661176470588233,10,3,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Phong Nha-Kẻ Bàng
+10345,5,5,46.29411764705884,10,0,Cây công nghiệp và nông lâm kết hợp,Cây công nghiệp và nông lâm kết hợp,Không đổi lớp,VNM,Phong Nha-Kẻ Bàng
+10345,5,6,0.11172549019607843,10,3,Cây công nghiệp và nông lâm kết hợp,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Phong Nha-Kẻ Bàng
+10345,6,2,26.482352941176476,10,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Phong Nha-Kẻ Bàng
+10345,6,4,7.340901960784315,10,2,Đất khác (không phải rừng),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Phong Nha-Kẻ Bàng
+10345,6,5,1.1797254901960783,10,2,Đất khác (không phải rừng),Cây công nghiệp và nông lâm kết hợp,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Phong Nha-Kẻ Bàng
+10345,6,6,294.6230196078431,10,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,VNM,Phong Nha-Kẻ Bàng
+18033,1,1,6715.300745098039,10,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,VNM,Yok Don
+18033,2,2,91215.92952941176,10,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,VNM,Yok Don
+18033,2,5,0.19,10,4,Rừng tái sinh tự nhiên,Cây công nghiệp và nông lâm kết hợp,Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Yok Don
+18033,2,6,89.75176470588234,10,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Yok Don
+18033,4,5,0.07,10,1,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Cây công nghiệp và nông lâm kết hợp,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Yok Don
+18033,4,6,6.805490196078431,10,3,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Yok Don
+18033,5,2,0.01,10,2,Cây công nghiệp và nông lâm kết hợp,Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Yok Don
+18033,5,5,613.6812156862745,10,0,Cây công nghiệp và nông lâm kết hợp,Cây công nghiệp và nông lâm kết hợp,Không đổi lớp,VNM,Yok Don
+18033,5,6,64.45184313725488,10,3,Cây công nghiệp và nông lâm kết hợp,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Yok Don
+18033,6,2,5.45,10,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Yok Don
+18033,6,5,33.12494117647059,10,2,Đất khác (không phải rừng),Cây công nghiệp và nông lâm kết hợp,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Yok Don
+18033,6,6,7773.765843137256,10,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,VNM,Yok Don
+61595,1,1,94983.72564705882,10,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,VNM,Pù Mát
+61595,1,2,0.08,10,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Pù Mát
+61595,1,6,3.39,10,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Pù Mát
+61595,1,7,3.04,10,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Pù Mát
+61595,2,2,1622.3715686274506,10,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,VNM,Pù Mát
+61595,2,4,0.04,10,4,Rừng tái sinh tự nhiên,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Pù Mát
+61595,2,6,11.78,10,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Pù Mát
+61595,5,5,0.26,10,0,Cây công nghiệp và nông lâm kết hợp,Cây công nghiệp và nông lâm kết hợp,Không đổi lớp,VNM,Pù Mát
+61595,6,2,2.16,10,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Pù Mát
+61595,6,4,7.62,10,2,Đất khác (không phải rừng),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Pù Mát
+61595,6,6,391.59439215686274,10,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,VNM,Pù Mát
+61595,7,7,2.53,10,0,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – đang phục hồi,Không đổi lớp,VNM,Pù Mát
+303066,1,1,74107.12274509808,10,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,VNM,Sông Thanh
+303066,1,2,68.43133333333334,10,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Sông Thanh
+303066,1,6,60.12749019607843,10,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Sông Thanh
+303066,1,7,23.004313725490196,10,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Sông Thanh
+303066,2,2,12359.05505882353,10,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,VNM,Sông Thanh
+303066,2,4,12.22250980392157,10,4,Rừng tái sinh tự nhiên,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Sông Thanh
+303066,2,5,0.06,10,4,Rừng tái sinh tự nhiên,Cây công nghiệp và nông lâm kết hợp,Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Sông Thanh
+303066,2,6,422.0773333333334,10,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Sông Thanh
+303066,4,2,3.8693333333333335,10,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Sông Thanh
+303066,4,4,32.77803921568627,10,0,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Không đổi lớp,VNM,Sông Thanh
+303066,4,6,24.387764705882354,10,3,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Sông Thanh
+303066,5,2,0.05972549019607843,10,2,Cây công nghiệp và nông lâm kết hợp,Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Sông Thanh
+303066,5,5,29.076705882352947,10,0,Cây công nghiệp và nông lâm kết hợp,Cây công nghiệp và nông lâm kết hợp,Không đổi lớp,VNM,Sông Thanh
+303066,5,6,0.56,10,3,Cây công nghiệp và nông lâm kết hợp,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Sông Thanh
+303066,6,2,220.82819607843132,10,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Sông Thanh
+303066,6,4,43.22741176470588,10,2,Đất khác (không phải rừng),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Sông Thanh
+303066,6,5,0.34,10,2,Đất khác (không phải rừng),Cây công nghiệp và nông lâm kết hợp,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Sông Thanh
+303066,6,6,1242.7578431372553,10,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,VNM,Sông Thanh
+303072,1,1,41217.671568627455,10,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,VNM,Cát Tiên
+303072,1,2,8.35,10,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Cát Tiên
+303072,1,6,2.07,10,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Cát Tiên
+303072,1,7,0.04,10,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Cát Tiên
+303072,2,2,22218.833764705887,10,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,VNM,Cát Tiên
+303072,2,5,3.014039215686275,10,4,Rừng tái sinh tự nhiên,Cây công nghiệp và nông lâm kết hợp,Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Cát Tiên
+303072,2,6,6.05956862745098,10,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Cát Tiên
+303072,4,4,3.477960784313726,10,0,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Không đổi lớp,VNM,Cát Tiên
+303072,4,5,3.2806274509803917,10,1,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Cây công nghiệp và nông lâm kết hợp,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Cát Tiên
+303072,4,6,5.737254901960784,10,3,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Cát Tiên
+303072,5,5,3636.0202745098045,10,0,Cây công nghiệp và nông lâm kết hợp,Cây công nghiệp và nông lâm kết hợp,Không đổi lớp,VNM,Cát Tiên
+303072,5,6,44.684901960784316,10,3,Cây công nghiệp và nông lâm kết hợp,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Cát Tiên
+303072,6,2,4.9,10,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Cát Tiên
+303072,6,5,8.475803921568627,10,2,Đất khác (không phải rừng),Cây công nghiệp và nông lâm kết hợp,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Cát Tiên
+303072,6,6,2757.760862745098,10,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,VNM,Cát Tiên
+10380,1,1,40458.0085882353,10,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,VNM,Chư Yang Sin
+10380,1,2,15.34,10,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Chư Yang Sin
+10380,1,6,0.87,10,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Chư Yang Sin
+10380,1,7,8.05921568627451,10,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Chư Yang Sin
+10380,2,2,11243.832941176473,10,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,VNM,Chư Yang Sin
+10380,2,4,0.01,10,4,Rừng tái sinh tự nhiên,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Chư Yang Sin
+10380,2,5,0.04,10,4,Rừng tái sinh tự nhiên,Cây công nghiệp và nông lâm kết hợp,Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Chư Yang Sin
+10380,2,6,31.17,10,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Chư Yang Sin
+10380,4,2,0.7396470588235294,10,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Chư Yang Sin
+10380,4,4,7806.524862745099,10,0,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Không đổi lớp,VNM,Chư Yang Sin
+10380,4,6,7.126313725490196,10,3,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Chư Yang Sin
+10380,5,5,29.31360784313726,10,0,Cây công nghiệp và nông lâm kết hợp,Cây công nghiệp và nông lâm kết hợp,Không đổi lớp,VNM,Chư Yang Sin
+10380,5,6,0.16,10,3,Cây công nghiệp và nông lâm kết hợp,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Chư Yang Sin
+10380,6,2,5.575882352941176,10,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Chư Yang Sin
+10380,6,4,1.636156862745098,10,2,Đất khác (không phải rừng),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Chư Yang Sin
+10380,6,5,0.5132941176470588,10,2,Đất khác (không phải rừng),Cây công nghiệp và nông lâm kết hợp,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Chư Yang Sin
+10380,6,6,752.1764705882352,10,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,VNM,Chư Yang Sin
+10380,7,7,0.19,10,0,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – đang phục hồi,Không đổi lớp,VNM,Chư Yang Sin
+555594129,1,1,38484.20250980392,10,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,VNM,Văn hóa Đồng Nai
+555594129,1,2,19.69,10,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Văn hóa Đồng Nai
+555594129,1,4,2.78,10,4,Rừng nguyên sinh – trưởng thành,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Văn hóa Đồng Nai
+555594129,1,5,0.01,10,4,Rừng nguyên sinh – trưởng thành,Cây công nghiệp và nông lâm kết hợp,Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Văn hóa Đồng Nai
+555594129,1,6,4.22,10,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Văn hóa Đồng Nai
+555594129,2,2,14701.31682352941,10,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,VNM,Văn hóa Đồng Nai
+555594129,2,4,4.77,10,4,Rừng tái sinh tự nhiên,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Văn hóa Đồng Nai
+555594129,2,5,12.27941176470588,10,4,Rừng tái sinh tự nhiên,Cây công nghiệp và nông lâm kết hợp,Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Văn hóa Đồng Nai
+555594129,2,6,37.181098039215684,10,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Văn hóa Đồng Nai
+555594129,4,2,61.81223529411765,10,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Văn hóa Đồng Nai
+555594129,4,4,951.3093725490194,10,0,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Không đổi lớp,VNM,Văn hóa Đồng Nai
+555594129,4,5,46.873960784313724,10,1,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Cây công nghiệp và nông lâm kết hợp,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Văn hóa Đồng Nai
+555594129,4,6,94.86333333333333,10,3,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Văn hóa Đồng Nai
+555594129,5,2,0.66,10,2,Cây công nghiệp và nông lâm kết hợp,Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Văn hóa Đồng Nai
+555594129,5,4,2.950156862745098,10,1,Cây công nghiệp và nông lâm kết hợp,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Văn hóa Đồng Nai
+555594129,5,5,2927.059764705882,10,0,Cây công nghiệp và nông lâm kết hợp,Cây công nghiệp và nông lâm kết hợp,Không đổi lớp,VNM,Văn hóa Đồng Nai
+555594129,5,6,90.56807843137254,10,3,Cây công nghiệp và nông lâm kết hợp,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Văn hóa Đồng Nai
+555594129,6,2,32.343372549019605,10,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Văn hóa Đồng Nai
+555594129,6,4,81.54086274509802,10,2,Đất khác (không phải rừng),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Văn hóa Đồng Nai
+555594129,6,5,43.566,10,2,Đất khác (không phải rừng),Cây công nghiệp và nông lâm kết hợp,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Văn hóa Đồng Nai
+555594129,6,6,1511.818666666667,10,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,VNM,Văn hóa Đồng Nai
+10375,1,1,52351.626352941195,10,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,VNM,Vũ Quang
+10375,1,2,15.87,10,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Vũ Quang
+10375,1,6,51.02,10,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Vũ Quang
+10375,1,7,0.52,10,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Vũ Quang
+10375,2,2,3850.321333333334,10,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,VNM,Vũ Quang
+10375,2,4,11.003098039215688,10,4,Rừng tái sinh tự nhiên,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Vũ Quang
+10375,2,5,0.03,10,4,Rừng tái sinh tự nhiên,Cây công nghiệp và nông lâm kết hợp,Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Vũ Quang
+10375,2,6,369.44203921568624,10,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Vũ Quang
+10375,4,2,1.626313725490196,10,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Vũ Quang
+10375,4,4,298.5667450980391,10,0,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Không đổi lớp,VNM,Vũ Quang
+10375,4,5,0.46,10,1,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Cây công nghiệp và nông lâm kết hợp,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Vũ Quang
+10375,4,6,59.42701960784314,10,3,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Vũ Quang
+10375,5,2,0.01,10,2,Cây công nghiệp và nông lâm kết hợp,Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Vũ Quang
+10375,5,5,141.51360784313727,10,0,Cây công nghiệp và nông lâm kết hợp,Cây công nghiệp và nông lâm kết hợp,Không đổi lớp,VNM,Vũ Quang
+10375,5,6,0.79,10,3,Cây công nghiệp và nông lâm kết hợp,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Vũ Quang
+10375,6,2,13.299882352941177,10,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Vũ Quang
+10375,6,4,232.51525490196082,10,2,Đất khác (không phải rừng),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Vũ Quang
+10375,6,5,0.3507450980392157,10,2,Đất khác (không phải rừng),Cây công nghiệp và nông lâm kết hợp,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Vũ Quang
+10375,6,6,1404.6865490196078,10,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,VNM,Vũ Quang
+12171,1,1,35018.520039215684,10,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,VNM,Chư Mom Ray
+12171,1,2,1.28,10,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Chư Mom Ray
+12171,2,2,16033.81192156863,10,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,VNM,Chư Mom Ray
+12171,2,5,0.3498039215686275,10,4,Rừng tái sinh tự nhiên,Cây công nghiệp và nông lâm kết hợp,Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Chư Mom Ray
+12171,2,6,13.692156862745096,10,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Chư Mom Ray
+12171,5,5,200.07305882352935,10,0,Cây công nghiệp và nông lâm kết hợp,Cây công nghiệp và nông lâm kết hợp,Không đổi lớp,VNM,Chư Mom Ray
+12171,5,6,16.574313725490196,10,3,Cây công nghiệp và nông lâm kết hợp,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Chư Mom Ray
+12171,6,2,44.25803921568627,10,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Chư Mom Ray
+12171,6,4,0.006470588235294118,10,2,Đất khác (không phải rừng),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Chư Mom Ray
+12171,6,5,2.255921568627451,10,2,Đất khác (không phải rừng),Cây công nghiệp và nông lâm kết hợp,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Chư Mom Ray
+12171,6,6,1379.8259215686273,10,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,VNM,Chư Mom Ray
+303067,1,1,34749.05725490195,10,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,VNM,Bidoup-Núi Bà
+303067,1,2,0.76,10,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Bidoup-Núi Bà
+303067,1,6,1.9876470588235293,10,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Bidoup-Núi Bà
+303067,1,7,14.47,10,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Bidoup-Núi Bà
+303067,2,2,4857.782117647059,10,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,VNM,Bidoup-Núi Bà
+303067,2,4,0.48,10,4,Rừng tái sinh tự nhiên,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Bidoup-Núi Bà
+303067,2,5,0.04,10,4,Rừng tái sinh tự nhiên,Cây công nghiệp và nông lâm kết hợp,Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Bidoup-Núi Bà
+303067,2,6,4.858745098039216,10,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Bidoup-Núi Bà
+303067,4,2,0.55,10,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Bidoup-Núi Bà
+303067,4,4,11650.537215686276,10,0,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Không đổi lớp,VNM,Bidoup-Núi Bà
+303067,4,6,9.456941176470588,10,3,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Bidoup-Núi Bà
+303067,5,5,20.289019607843137,10,0,Cây công nghiệp và nông lâm kết hợp,Cây công nghiệp và nông lâm kết hợp,Không đổi lớp,VNM,Bidoup-Núi Bà
+303067,5,6,0.12,10,3,Cây công nghiệp và nông lâm kết hợp,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Bidoup-Núi Bà
+303067,6,2,12.768078431372547,10,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Bidoup-Núi Bà
+303067,6,4,126.19992156862745,10,2,Đất khác (không phải rừng),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Bidoup-Núi Bà
+303067,6,5,0.32,10,2,Đất khác (không phải rừng),Cây công nghiệp và nông lâm kết hợp,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Bidoup-Núi Bà
+303067,6,6,873.9889803921566,10,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,VNM,Bidoup-Núi Bà
+303090,1,1,5532.0516078431365,10,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,VNM,Rung Thong Da Lat; Lam Bien
+303090,1,6,0.05,10,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Rung Thong Da Lat; Lam Bien
+303090,2,2,3582.8841568627454,10,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,VNM,Rung Thong Da Lat; Lam Bien
+303090,2,4,0.32,10,4,Rừng tái sinh tự nhiên,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Rung Thong Da Lat; Lam Bien
+303090,2,5,1.5698039215686277,10,4,Rừng tái sinh tự nhiên,Cây công nghiệp và nông lâm kết hợp,Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Rung Thong Da Lat; Lam Bien
+303090,2,6,19.47156862745098,10,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Rung Thong Da Lat; Lam Bien
+303090,4,2,0.59,10,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Rung Thong Da Lat; Lam Bien
+303090,4,4,21581.104588235296,10,0,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Không đổi lớp,VNM,Rung Thong Da Lat; Lam Bien
+303090,4,5,4.08,10,1,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Cây công nghiệp và nông lâm kết hợp,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Rung Thong Da Lat; Lam Bien
+303090,4,6,233.253137254902,10,3,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Rung Thong Da Lat; Lam Bien
+303090,5,2,0.12,10,2,Cây công nghiệp và nông lâm kết hợp,Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Rung Thong Da Lat; Lam Bien
+303090,5,4,0.34,10,1,Cây công nghiệp và nông lâm kết hợp,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Rung Thong Da Lat; Lam Bien
+303090,5,5,2232.9898431372544,10,0,Cây công nghiệp và nông lâm kết hợp,Cây công nghiệp và nông lâm kết hợp,Không đổi lớp,VNM,Rung Thong Da Lat; Lam Bien
+303090,5,6,102.75035294117649,10,3,Cây công nghiệp và nông lâm kết hợp,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Rung Thong Da Lat; Lam Bien
+303090,6,2,20.897529411764705,10,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Rung Thong Da Lat; Lam Bien
+303090,6,4,165.41898039215684,10,2,Đất khác (không phải rừng),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Rung Thong Da Lat; Lam Bien
+303090,6,5,3.494078431372549,10,2,Đất khác (không phải rừng),Cây công nghiệp và nông lâm kết hợp,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Rung Thong Da Lat; Lam Bien
+303090,6,6,17862.7554509804,10,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,VNM,Rung Thong Da Lat; Lam Bien
+303065,1,1,35393.37811764705,10,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,VNM,Ngọc Linh (Kon Tum)
+303065,1,2,66.88772549019609,10,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Ngọc Linh (Kon Tum)
+303065,1,6,9.074784313725491,10,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Ngọc Linh (Kon Tum)
+303065,1,7,3.319098039215686,10,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Ngọc Linh (Kon Tum)
+303065,2,2,9552.449333333332,10,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,VNM,Ngọc Linh (Kon Tum)
+303065,2,5,10.834196078431374,10,4,Rừng tái sinh tự nhiên,Cây công nghiệp và nông lâm kết hợp,Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Ngọc Linh (Kon Tum)
+303065,2,6,311.6389019607843,10,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Ngọc Linh (Kon Tum)
+303065,4,2,1.22,10,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Ngọc Linh (Kon Tum)
+303065,4,4,167.04352941176467,10,0,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Không đổi lớp,VNM,Ngọc Linh (Kon Tum)
+303065,4,5,0.1,10,1,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Cây công nghiệp và nông lâm kết hợp,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Ngọc Linh (Kon Tum)
+303065,4,6,16.18,10,3,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Ngọc Linh (Kon Tum)
+303065,5,2,0.27,10,2,Cây công nghiệp và nông lâm kết hợp,Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Ngọc Linh (Kon Tum)
+303065,5,5,379.1392549019607,10,0,Cây công nghiệp và nông lâm kết hợp,Cây công nghiệp và nông lâm kết hợp,Không đổi lớp,VNM,Ngọc Linh (Kon Tum)
+303065,5,6,33.49682352941176,10,3,Cây công nghiệp và nông lâm kết hợp,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Ngọc Linh (Kon Tum)
+303065,6,2,104.01513725490193,10,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Ngọc Linh (Kon Tum)
+303065,6,4,9.714078431372549,10,2,Đất khác (không phải rừng),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Ngọc Linh (Kon Tum)
+303065,6,5,8.684823529411766,10,2,Đất khác (không phải rừng),Cây công nghiệp và nông lâm kết hợp,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Ngọc Linh (Kon Tum)
+303065,6,6,4739.4731764705875,10,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,VNM,Ngọc Linh (Kon Tum)
+303065,7,7,0.01,10,0,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – đang phục hồi,Không đổi lớp,VNM,Ngọc Linh (Kon Tum)
+10362,1,1,26431.978823529415,10,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,VNM,Mường Nhé
+10362,1,2,2.92,10,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Mường Nhé
+10362,1,6,5.54,10,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Mường Nhé
+10362,1,7,1.56,10,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Mường Nhé
+10362,2,2,13563.762666666671,10,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,VNM,Mường Nhé
+10362,2,5,0.01,10,4,Rừng tái sinh tự nhiên,Cây công nghiệp và nông lâm kết hợp,Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Mường Nhé
+10362,2,6,24.193882352941177,10,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Mường Nhé
+10362,5,5,8.070588235294117,10,0,Cây công nghiệp và nông lâm kết hợp,Cây công nghiệp và nông lâm kết hợp,Không đổi lớp,VNM,Mường Nhé
+10362,5,6,0.39,10,3,Cây công nghiệp và nông lâm kết hợp,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Mường Nhé
+10362,6,2,34.7644705882353,10,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Mường Nhé
+10362,6,4,0.44952941176470596,10,2,Đất khác (không phải rừng),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Mường Nhé
+10362,6,5,0.3,10,2,Đất khác (không phải rừng),Cây công nghiệp và nông lâm kết hợp,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Mường Nhé
+10362,6,6,7741.628745098041,10,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,VNM,Mường Nhé
+10385,1,1,7656.258470588237,10,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,VNM,Kalon Song Mao
+10385,1,2,3.34,10,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Kalon Song Mao
+10385,1,7,0.9,10,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Kalon Song Mao
+10385,2,2,24254.65733333333,10,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,VNM,Kalon Song Mao
+10385,2,4,1.21,10,4,Rừng tái sinh tự nhiên,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Kalon Song Mao
+10385,2,5,2.39,10,4,Rừng tái sinh tự nhiên,Cây công nghiệp và nông lâm kết hợp,Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Kalon Song Mao
+10385,2,6,69.54258823529412,10,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Kalon Song Mao
+10385,4,2,0.07,10,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Kalon Song Mao
+10385,4,4,2237.7239607843144,10,0,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Không đổi lớp,VNM,Kalon Song Mao
+10385,4,5,1.0232549019607842,10,1,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Cây công nghiệp và nông lâm kết hợp,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Kalon Song Mao
+10385,4,6,21.44811764705882,10,3,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Kalon Song Mao
+10385,5,2,0.51,10,2,Cây công nghiệp và nông lâm kết hợp,Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Kalon Song Mao
+10385,5,4,5.14,10,1,Cây công nghiệp và nông lâm kết hợp,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Kalon Song Mao
+10385,5,5,4203.66494117647,10,0,Cây công nghiệp và nông lâm kết hợp,Cây công nghiệp và nông lâm kết hợp,Không đổi lớp,VNM,Kalon Song Mao
+10385,5,6,73.48847058823529,10,3,Cây công nghiệp và nông lâm kết hợp,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Kalon Song Mao
+10385,6,2,46.59807843137255,10,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Kalon Song Mao
+10385,6,4,111.47254901960783,10,2,Đất khác (không phải rừng),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Kalon Song Mao
+10385,6,5,4.045254901960784,10,2,Đất khác (không phải rừng),Cây công nghiệp và nông lâm kết hợp,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Kalon Song Mao
+10385,6,6,4114.4050588235295,10,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,VNM,Kalon Song Mao
+10378,1,1,31444.079568627447,10,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,VNM,Kon Ka Kinh
+10378,1,2,0.97,10,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Kon Ka Kinh
+10378,1,6,0.36,10,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Kon Ka Kinh
+10378,1,7,2.37,10,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Kon Ka Kinh
+10378,2,2,8875.929098039218,10,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,VNM,Kon Ka Kinh
+10378,2,4,0.03,10,4,Rừng tái sinh tự nhiên,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Kon Ka Kinh
+10378,2,5,0.12505882352941175,10,4,Rừng tái sinh tự nhiên,Cây công nghiệp và nông lâm kết hợp,Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Kon Ka Kinh
+10378,2,6,124.71670588235291,10,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Kon Ka Kinh
+10378,4,4,119.06176470588234,10,0,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Không đổi lớp,VNM,Kon Ka Kinh
+10378,4,6,2.5796470588235296,10,3,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Kon Ka Kinh
+10378,5,5,97.73576470588233,10,0,Cây công nghiệp và nông lâm kết hợp,Cây công nghiệp và nông lâm kết hợp,Không đổi lớp,VNM,Kon Ka Kinh
+10378,5,6,2.47,10,3,Cây công nghiệp và nông lâm kết hợp,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Kon Ka Kinh
+10378,6,2,40.25658823529412,10,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Kon Ka Kinh
+10378,6,4,1.2912941176470587,10,2,Đất khác (không phải rừng),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Kon Ka Kinh
+10378,6,5,0.39023529411764707,10,2,Đất khác (không phải rừng),Cây công nghiệp và nông lâm kết hợp,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Kon Ka Kinh
+10378,6,6,1348.1276862745096,10,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,VNM,Kon Ka Kinh
+303024,1,1,30108.692235294122,10,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,VNM,Pù Huống
+303024,1,2,5.81,10,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Pù Huống
+303024,1,6,0.08,10,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Pù Huống
+303024,2,2,11348.721529411765,10,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,VNM,Pù Huống
+303024,2,4,1.95,10,4,Rừng tái sinh tự nhiên,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Pù Huống
+303024,2,6,18.1458431372549,10,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Pù Huống
+303024,4,4,0.6,10,0,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Không đổi lớp,VNM,Pù Huống
+303024,4,6,0.03015686274509804,10,3,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Pù Huống
+303024,5,5,0.01,10,0,Cây công nghiệp và nông lâm kết hợp,Cây công nghiệp và nông lâm kết hợp,Không đổi lớp,VNM,Pù Huống
+303024,6,2,60.31023529411765,10,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Pù Huống
+303024,6,4,1.14,10,2,Đất khác (không phải rừng),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Pù Huống
+303024,6,6,425.4163137254902,10,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,VNM,Pù Huống
+303039,1,1,30959.965254901963,10,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,VNM,Phong Điền
+303039,1,2,0.49,10,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Phong Điền
+303039,1,6,3.4,10,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Phong Điền
+303039,1,7,0.83,10,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Phong Điền
+303039,2,2,8524.301529411767,10,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,VNM,Phong Điền
+303039,2,4,0.07,10,4,Rừng tái sinh tự nhiên,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Phong Điền
+303039,2,5,0.46,10,4,Rừng tái sinh tự nhiên,Cây công nghiệp và nông lâm kết hợp,Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Phong Điền
+303039,2,6,70.15545098039216,10,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Phong Điền
+303039,4,2,18.688313725490193,10,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Phong Điền
+303039,4,4,523.1536862745097,10,0,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Không đổi lớp,VNM,Phong Điền
+303039,4,5,0.7835686274509804,10,1,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Cây công nghiệp và nông lâm kết hợp,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Phong Điền
+303039,4,6,70.67235294117647,10,3,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Phong Điền
+303039,5,5,24.728823529411766,10,0,Cây công nghiệp và nông lâm kết hợp,Cây công nghiệp và nông lâm kết hợp,Không đổi lớp,VNM,Phong Điền
+303039,5,6,0.34,10,3,Cây công nghiệp và nông lâm kết hợp,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Phong Điền
+303039,6,2,88.956431372549,10,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Phong Điền
+303039,6,4,15.070784313725488,10,2,Đất khác (không phải rừng),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Phong Điền
+303039,6,5,0.31,10,2,Đất khác (không phải rừng),Cây công nghiệp và nông lâm kết hợp,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Phong Điền
+303039,6,6,267.2261568627451,10,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,VNM,Phong Điền
+10384,1,1,26645.134313725484,10,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,VNM,Đăkrông
+10384,1,2,3.28,10,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Đăkrông
+10384,1,6,2.03,10,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Đăkrông
+10384,1,7,3.08,10,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Đăkrông
+10384,2,2,10260.005019607845,10,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,VNM,Đăkrông
+10384,2,4,7.186392156862746,10,4,Rừng tái sinh tự nhiên,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Đăkrông
+10384,2,6,210.02584313725495,10,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Đăkrông
+10384,4,2,21.97964705882353,10,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Đăkrông
+10384,4,4,311.0659215686275,10,0,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Không đổi lớp,VNM,Đăkrông
+10384,4,6,61.27721568627451,10,3,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Đăkrông
+10384,5,5,2.2309411764705893,10,0,Cây công nghiệp và nông lâm kết hợp,Cây công nghiệp và nông lâm kết hợp,Không đổi lớp,VNM,Đăkrông
+10384,6,2,221.02188235294116,10,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Đăkrông
+10384,6,4,117.1983137254902,10,2,Đất khác (không phải rừng),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Đăkrông
+10384,6,5,0.06117647058823529,10,2,Đất khác (không phải rừng),Cây công nghiệp và nông lâm kết hợp,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Đăkrông
+10384,6,6,654.1215294117648,10,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,VNM,Đăkrông
+303100,1,1,30777.178666666674,10,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,VNM,Khu Bảo tồn loài Sao La Thừa Thiên Huế
+303100,1,2,2.61,10,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Khu Bảo tồn loài Sao La Thừa Thiên Huế
+303100,1,6,2.12,10,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Khu Bảo tồn loài Sao La Thừa Thiên Huế
+303100,1,7,1.17,10,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Khu Bảo tồn loài Sao La Thừa Thiên Huế
+303100,2,2,5359.583568627451,10,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,VNM,Khu Bảo tồn loài Sao La Thừa Thiên Huế
+303100,2,4,13.730784313725488,10,4,Rừng tái sinh tự nhiên,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Khu Bảo tồn loài Sao La Thừa Thiên Huế
+303100,2,6,142.47450980392156,10,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Khu Bảo tồn loài Sao La Thừa Thiên Huế
+303100,4,2,12.706666666666667,10,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Khu Bảo tồn loài Sao La Thừa Thiên Huế
+303100,4,4,277.50666666666666,10,0,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Không đổi lớp,VNM,Khu Bảo tồn loài Sao La Thừa Thiên Huế
+303100,4,6,121.29913725490195,10,3,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Khu Bảo tồn loài Sao La Thừa Thiên Huế
+303100,5,2,0.02,10,2,Cây công nghiệp và nông lâm kết hợp,Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Khu Bảo tồn loài Sao La Thừa Thiên Huế
+303100,5,5,14.913098039215681,10,0,Cây công nghiệp và nông lâm kết hợp,Cây công nghiệp và nông lâm kết hợp,Không đổi lớp,VNM,Khu Bảo tồn loài Sao La Thừa Thiên Huế
+303100,5,6,0.08,10,3,Cây công nghiệp và nông lâm kết hợp,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Khu Bảo tồn loài Sao La Thừa Thiên Huế
+303100,6,2,120.71152941176472,10,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Khu Bảo tồn loài Sao La Thừa Thiên Huế
+303100,6,4,120.49545098039216,10,2,Đất khác (không phải rừng),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Khu Bảo tồn loài Sao La Thừa Thiên Huế
+303100,6,5,0.03,10,2,Đất khác (không phải rừng),Cây công nghiệp và nông lâm kết hợp,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Khu Bảo tồn loài Sao La Thừa Thiên Huế
+303100,6,6,646.0032941176471,10,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,VNM,Khu Bảo tồn loài Sao La Thừa Thiên Huế
+10110,1,1,29506.01890196079,10,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,VNM,Bạch Mã
+10110,1,2,0.12,10,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Bạch Mã
+10110,1,6,9.35,10,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Bạch Mã
+10110,1,7,2.04,10,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",VNM,Bạch Mã
+10110,2,2,7186.488666666665,10,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,VNM,Bạch Mã
+10110,2,4,0.018588235294117645,10,4,Rừng tái sinh tự nhiên,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,VNM,Bạch Mã
+10110,2,6,25.179254901960785,10,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Bạch Mã
+10110,4,2,4.2712941176470585,10,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Bạch Mã
+10110,4,4,7.740431372549021,10,0,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Không đổi lớp,VNM,Bạch Mã
+10110,4,6,7.657294117647058,10,3,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Bạch Mã
+10110,5,2,0.03,10,2,Cây công nghiệp và nông lâm kết hợp,Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Bạch Mã
+10110,5,5,9.920666666666664,10,0,Cây công nghiệp và nông lâm kết hợp,Cây công nghiệp và nông lâm kết hợp,Không đổi lớp,VNM,Bạch Mã
+10110,5,6,0.4533333333333334,10,3,Cây công nghiệp và nông lâm kết hợp,Đất khác (không phải rừng),Rừng / cây → đất khác,VNM,Bạch Mã
+10110,6,2,38.387647058823525,10,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Bạch Mã
+10110,6,4,17.61078431372549,10,2,Đất khác (không phải rừng),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Bạch Mã
+10110,6,5,0.1694117647058824,10,2,Đất khác (không phải rừng),Cây công nghiệp và nông lâm kết hợp,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",VNM,Bạch Mã
+10110,6,6,574.3719607843136,10,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,VNM,Bạch Mã
+22490,1,1,301560.8541176471,60,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,USA,Wrangell-St. Elias
+22490,1,6,2568.3303529411764,60,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Wrangell-St. Elias
+22490,1,7,74.52,60,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Wrangell-St. Elias
+22490,6,1,1212.432,60,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Wrangell-St. Elias
+22490,6,6,2901395.5750588244,60,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,USA,Wrangell-St. Elias
+22490,6,7,107.94211764705884,60,2,Đất khác (không phải rừng),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Wrangell-St. Elias
+22490,7,1,39.96,60,1,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Wrangell-St. Elias
+22490,7,6,62.28,60,3,Rừng nguyên sinh – đang phục hồi,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Wrangell-St. Elias
+22490,7,7,8397.619764705882,60,0,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – đang phục hồi,Không đổi lớp,USA,Wrangell-St. Elias
+555679194,1,1,358896.8371764705,60,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,USA,Denali
+555679194,1,6,3226.355294117646,60,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Denali
+555679194,1,7,17349.595764705882,60,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Denali
+555679194,6,1,3085.2197647058824,60,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Denali
+555679194,6,6,1499886.4249411763,60,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,USA,Denali
+555679194,6,7,1491.7482352941179,60,2,Đất khác (không phải rừng),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Denali
+555679194,7,1,121.98635294117648,60,1,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Denali
+555679194,7,6,272.50729411764706,60,3,Rừng nguyên sinh – đang phục hồi,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Denali
+555679194,7,7,9046.400470588234,60,0,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – đang phục hồi,Không đổi lớp,USA,Denali
+1009,1,1,257697.1965882353,30,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,USA,Katmai Bay
+1009,1,2,0.81,30,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Katmai Bay
+1009,1,6,2503.0856470588237,30,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Katmai Bay
+1009,1,7,597.42,30,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Katmai Bay
+1009,2,1,0.54,30,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Katmai Bay
+1009,2,2,16.252588235294116,30,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,USA,Katmai Bay
+1009,2,6,0.09,30,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Katmai Bay
+1009,6,1,2547.3917647058825,30,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Katmai Bay
+1009,6,2,0.54,30,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Katmai Bay
+1009,6,6,1201028.6576470595,30,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,USA,Katmai Bay
+1009,6,7,38.61,30,2,Đất khác (không phải rừng),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Katmai Bay
+1009,7,1,0.45,30,1,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Katmai Bay
+1009,7,7,6.84,30,0,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – đang phục hồi,Không đổi lớp,USA,Katmai Bay
+367731,1,1,11767.899529411767,30,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,USA,Death Valley
+367731,1,2,3.69,30,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Death Valley
+367731,1,6,281.46,30,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Death Valley
+367731,1,7,0.18,30,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Death Valley
+367731,2,1,4.723411764705882,30,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Death Valley
+367731,2,2,995.4116470588235,30,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,USA,Death Valley
+367731,2,6,2.7,30,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Death Valley
+367731,5,5,0.27,30,0,Cây công nghiệp và nông lâm kết hợp,Cây công nghiệp và nông lâm kết hợp,Không đổi lớp,USA,Death Valley
+367731,5,6,0.09,30,3,Cây công nghiệp và nông lâm kết hợp,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Death Valley
+367731,6,1,63.54105882352941,30,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Death Valley
+367731,6,2,12.96,30,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Death Valley
+367731,6,6,1354049.0470588233,30,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,USA,Death Valley
+555655853,1,1,318236.51788235304,30,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,USA,Glacier Bay
+555655853,1,2,0.09,30,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Glacier Bay
+555655853,1,6,1682.798823529412,30,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Glacier Bay
+555655853,1,7,105.03,30,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Glacier Bay
+555655853,2,1,0.09,30,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Glacier Bay
+555655853,2,2,9.09,30,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,USA,Glacier Bay
+555655853,6,1,914.4271764705883,30,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Glacier Bay
+555655853,6,2,0.09,30,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Glacier Bay
+555655853,6,6,980735.8694117642,30,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,USA,Glacier Bay
+555655853,6,7,1.35,30,2,Đất khác (không phải rừng),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Glacier Bay
+555655853,7,1,7.92,30,1,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Glacier Bay
+555655853,7,7,55.44,30,0,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – đang phục hồi,Không đổi lớp,USA,Glacier Bay
+377207,1,1,531189.9518823529,30,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,USA,Yellowstone
+377207,1,2,43.24729411764705,30,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Yellowstone
+377207,1,6,527.0389411764708,30,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Yellowstone
+377207,1,7,2334.8449411764705,30,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Yellowstone
+377207,2,1,81.564,30,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Yellowstone
+377207,2,2,6868.150235294119,30,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,USA,Yellowstone
+377207,2,3,0.54,30,4,Rừng tái sinh tự nhiên,Rừng trồng (luân kỳ > 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,USA,Yellowstone
+377207,2,6,65.88,30,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Yellowstone
+377207,2,7,2.25,30,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Yellowstone
+377207,3,1,1.98,30,2,Rừng trồng (luân kỳ > 40 năm),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Yellowstone
+377207,3,2,3.87,30,2,Rừng trồng (luân kỳ > 40 năm),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Yellowstone
+377207,3,3,96.12,30,0,Rừng trồng (luân kỳ > 40 năm),Rừng trồng (luân kỳ > 40 năm),Không đổi lớp,USA,Yellowstone
+377207,3,7,0.27,30,2,Rừng trồng (luân kỳ > 40 năm),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Yellowstone
+377207,6,1,2437.013647058823,30,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Yellowstone
+377207,6,2,100.02847058823531,30,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Yellowstone
+377207,6,3,4.5,30,2,Đất khác (không phải rừng),Rừng trồng (luân kỳ > 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Yellowstone
+377207,6,6,315481.1548235295,30,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,USA,Yellowstone
+377207,6,7,268.571294117647,30,2,Đất khác (không phải rừng),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Yellowstone
+377207,7,1,395.39329411764703,30,1,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Yellowstone
+377207,7,2,1.98,30,1,Rừng nguyên sinh – đang phục hồi,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Yellowstone
+377207,7,6,488.35729411764703,30,3,Rừng nguyên sinh – đang phục hồi,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Yellowstone
+377207,7,7,27420.38364705883,30,0,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – đang phục hồi,Không đổi lớp,USA,Yellowstone
+1015,1,1,238896.60313725492,20,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,USA,Kobuk Valley
+1015,1,6,1401.2155294117647,20,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Kobuk Valley
+1015,1,7,1243.84,20,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Kobuk Valley
+1015,6,1,779.9105882352942,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Kobuk Valley
+1015,6,6,449208.65207843133,20,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,USA,Kobuk Valley
+1015,6,7,46.48,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Kobuk Valley
+1015,7,1,4.48,20,1,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Kobuk Valley
+1015,7,6,15.8,20,3,Rừng nguyên sinh – đang phục hồi,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Kobuk Valley
+1015,7,7,2187.16,20,0,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – đang phục hồi,Không đổi lớp,USA,Kobuk Valley
+972,1,1,38300.54525490196,20,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,USA,Grand Canyon
+972,1,2,110.72266666666667,20,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Grand Canyon
+972,1,6,736.4036078431371,20,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Grand Canyon
+972,1,7,7687.889725490198,20,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Grand Canyon
+972,2,1,117.94431372549022,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Grand Canyon
+972,2,2,35288.53301960785,20,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,USA,Grand Canyon
+972,2,6,710.366274509804,20,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Grand Canyon
+972,2,7,338.4534901960784,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Grand Canyon
+972,6,1,114.1901176470588,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Grand Canyon
+972,6,2,100.62776470588236,20,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Grand Canyon
+972,6,6,390232.2015686275,20,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,USA,Grand Canyon
+972,6,7,25.68,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Grand Canyon
+972,7,1,3.950117647058824,20,1,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Grand Canyon
+972,7,2,0.32,20,1,Rừng nguyên sinh – đang phục hồi,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Grand Canyon
+972,7,6,42.35560784313726,20,3,Rừng nguyên sinh – đang phục hồi,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Grand Canyon
+972,7,7,2771.724392156863,20,0,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – đang phục hồi,Không đổi lớp,USA,Grand Canyon
+555655851,1,1,72351.30321568625,20,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,USA,Everglades
+555655851,1,2,10.6,20,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Everglades
+555655851,1,6,892.0884705882354,20,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Everglades
+555655851,1,7,2024.2153725490198,20,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Everglades
+555655851,2,1,11.6,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Everglades
+555655851,2,2,1859.326745098039,20,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,USA,Everglades
+555655851,2,6,110.93113725490197,20,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Everglades
+555655851,2,7,1.96,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Everglades
+555655851,4,1,0.08,20,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Everglades
+555655851,4,2,3.8,20,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Everglades
+555655851,4,4,0.92,20,0,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Không đổi lớp,USA,Everglades
+555655851,4,6,6.32,20,3,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Everglades
+555655851,6,1,891.35168627451,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Everglades
+555655851,6,2,171.57584313725488,20,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Everglades
+555655851,6,6,496923.8112941177,20,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,USA,Everglades
+555655851,6,7,177.72,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Everglades
+555655851,7,1,258.7098039215686,20,1,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Everglades
+555655851,7,2,7.8,20,1,Rừng nguyên sinh – đang phục hồi,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Everglades
+555655851,7,6,48.84,20,3,Rừng nguyên sinh – đang phục hồi,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Everglades
+555655851,7,7,21101.74509803922,20,0,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – đang phục hồi,Không đổi lớp,USA,Everglades
+11111516,1,1,152999.14149019602,20,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,USA,Glacier
+11111516,1,2,21.452862745098034,20,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Glacier
+11111516,1,3,2.96,20,4,Rừng nguyên sinh – trưởng thành,Rừng trồng (luân kỳ > 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,USA,Glacier
+11111516,1,6,195.01819607843134,20,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Glacier
+11111516,1,7,3890.646431372549,20,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Glacier
+11111516,2,1,177.32439215686276,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Glacier
+11111516,2,2,44490.883921568646,20,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,USA,Glacier
+11111516,2,3,173.6,20,4,Rừng tái sinh tự nhiên,Rừng trồng (luân kỳ > 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,USA,Glacier
+11111516,2,6,452.04925490196075,20,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Glacier
+11111516,2,7,26.224,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Glacier
+11111516,3,1,8.24,20,2,Rừng trồng (luân kỳ > 40 năm),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Glacier
+11111516,3,2,37.32,20,2,Rừng trồng (luân kỳ > 40 năm),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Glacier
+11111516,3,3,5211.616,20,0,Rừng trồng (luân kỳ > 40 năm),Rừng trồng (luân kỳ > 40 năm),Không đổi lớp,USA,Glacier
+11111516,3,6,0.32,20,3,Rừng trồng (luân kỳ > 40 năm),Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Glacier
+11111516,3,7,0.24,20,2,Rừng trồng (luân kỳ > 40 năm),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Glacier
+11111516,6,1,563.2698039215687,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Glacier
+11111516,6,2,388.00486274509797,20,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Glacier
+11111516,6,3,1798.4,20,2,Đất khác (không phải rừng),Rừng trồng (luân kỳ > 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Glacier
+11111516,6,6,178067.37584313724,20,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,USA,Glacier
+11111516,6,7,169.7761568627451,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Glacier
+11111516,7,1,96.88,20,1,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Glacier
+11111516,7,2,75.05380392156863,20,1,Rừng nguyên sinh – đang phục hồi,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Glacier
+11111516,7,3,2.52,20,4,Rừng nguyên sinh – đang phục hồi,Rừng trồng (luân kỳ > 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,USA,Glacier
+11111516,7,6,93.08,20,3,Rừng nguyên sinh – đang phục hồi,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Glacier
+11111516,7,7,19020.179294117643,20,0,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – đang phục hồi,Không đổi lớp,USA,Glacier
+555655855,1,1,301052.10886274517,20,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,USA,Olympic
+555655855,1,2,36.38149019607843,20,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Olympic
+555655855,1,3,17.937254901960785,20,4,Rừng nguyên sinh – trưởng thành,Rừng trồng (luân kỳ > 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,USA,Olympic
+555655855,1,6,357.0534901960784,20,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Olympic
+555655855,1,7,1997.8564705882352,20,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Olympic
+555655855,2,1,106.65380392156861,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Olympic
+555655855,2,2,10086.970980392161,20,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,USA,Olympic
+555655855,2,3,25.443764705882355,20,4,Rừng tái sinh tự nhiên,Rừng trồng (luân kỳ > 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,USA,Olympic
+555655855,2,6,127.17678431372549,20,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Olympic
+555655855,2,7,0.88,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Olympic
+555655855,3,1,19.89207843137255,20,2,Rừng trồng (luân kỳ > 40 năm),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Olympic
+555655855,3,2,30.394039215686266,20,2,Rừng trồng (luân kỳ > 40 năm),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Olympic
+555655855,3,3,3402.845960784314,20,0,Rừng trồng (luân kỳ > 40 năm),Rừng trồng (luân kỳ > 40 năm),Không đổi lớp,USA,Olympic
+555655855,3,6,130.19105882352943,20,3,Rừng trồng (luân kỳ > 40 năm),Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Olympic
+555655855,3,7,0.48,20,2,Rừng trồng (luân kỳ > 40 năm),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Olympic
+555655855,6,1,188.16721568627452,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Olympic
+555655855,6,2,194.32517647058827,20,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Olympic
+555655855,6,3,1.263372549019608,20,2,Đất khác (không phải rừng),Rừng trồng (luân kỳ > 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Olympic
+555655855,6,6,48725.82462745099,20,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,USA,Olympic
+555655855,6,7,23.4,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Olympic
+555655855,7,1,33.72,20,1,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Olympic
+555655855,7,2,28.12,20,1,Rừng nguyên sinh – đang phục hồi,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Olympic
+555655855,7,6,8.36,20,3,Rừng nguyên sinh – đang phục hồi,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Olympic
+555655855,7,7,1510.0884705882354,20,0,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – đang phục hồi,Không đổi lớp,USA,Olympic
+976,1,1,1720.08,20,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,USA,Big Bend
+976,1,2,0.6,20,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Big Bend
+976,1,6,77.24,20,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Big Bend
+976,1,7,24.6,20,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Big Bend
+976,2,2,44.44,20,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,USA,Big Bend
+976,2,6,86.84,20,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Big Bend
+976,6,1,2.84,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Big Bend
+976,6,2,0.48,20,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Big Bend
+976,6,6,315739.1509019608,20,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,USA,Big Bend
+370321,6,6,317260.9036862746,20,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,USA,Joshua Tree
+975,1,1,130520.80721568632,20,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,USA,Yosemite
+975,1,2,33.539137254901966,20,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Yosemite
+975,1,6,1252.987294117647,20,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Yosemite
+975,1,7,5762.174588235293,20,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Yosemite
+975,2,1,80.07780392156863,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Yosemite
+975,2,2,11806.163921568626,20,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,USA,Yosemite
+975,2,6,539.8668235294117,20,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Yosemite
+975,2,7,170.02196078431373,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Yosemite
+975,6,1,104.33866666666667,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Yosemite
+975,6,2,21.965960784313726,20,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Yosemite
+975,6,6,132448.07654901964,20,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,USA,Yosemite
+975,6,7,24.084549019607845,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Yosemite
+975,7,1,48.87780392156863,20,1,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Yosemite
+975,7,2,9.754039215686275,20,1,Rừng nguyên sinh – đang phục hồi,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Yosemite
+975,7,6,318.1463529411765,20,3,Rừng nguyên sinh – đang phục hồi,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Yosemite
+975,7,7,16902.634352941175,20,0,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – đang phục hồi,Không đổi lớp,USA,Yosemite
+1016,1,1,31066.80611764706,20,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,USA,Kenai Fjords
+1016,1,6,155.1269019607843,20,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Kenai Fjords
+1016,1,7,0.76,20,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Kenai Fjords
+1016,6,1,182.94525490196077,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Kenai Fjords
+1016,6,6,211760.89866666668,20,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,USA,Kenai Fjords
+369223,1,1,189035.84752941178,20,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,USA,Great Smoky Mountains
+369223,1,2,56.05474509803923,20,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Great Smoky Mountains
+369223,1,3,0.16,20,4,Rừng nguyên sinh – trưởng thành,Rừng trồng (luân kỳ > 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,USA,Great Smoky Mountains
+369223,1,6,0.52,20,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Great Smoky Mountains
+369223,1,7,0.24,20,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Great Smoky Mountains
+369223,2,1,111.21662745098038,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Great Smoky Mountains
+369223,2,2,17981.355764705884,20,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,USA,Great Smoky Mountains
+369223,2,3,1.52,20,4,Rừng tái sinh tự nhiên,Rừng trồng (luân kỳ > 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,USA,Great Smoky Mountains
+369223,2,4,0.4078431372549019,20,4,Rừng tái sinh tự nhiên,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,USA,Great Smoky Mountains
+369223,2,6,18.332392156862745,20,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Great Smoky Mountains
+369223,3,1,0.12,20,2,Rừng trồng (luân kỳ > 40 năm),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Great Smoky Mountains
+369223,3,2,0.04,20,2,Rừng trồng (luân kỳ > 40 năm),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Great Smoky Mountains
+369223,3,3,16.03278431372549,20,0,Rừng trồng (luân kỳ > 40 năm),Rừng trồng (luân kỳ > 40 năm),Không đổi lớp,USA,Great Smoky Mountains
+369223,4,2,2.0476862745098043,20,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Great Smoky Mountains
+369223,4,4,42.99247058823529,20,0,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Không đổi lớp,USA,Great Smoky Mountains
+369223,6,1,5.76,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Great Smoky Mountains
+369223,6,2,936.987137254902,20,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Great Smoky Mountains
+369223,6,3,9.35749019607843,20,2,Đất khác (không phải rừng),Rừng trồng (luân kỳ > 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Great Smoky Mountains
+369223,6,4,180.89913725490197,20,2,Đất khác (không phải rừng),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Great Smoky Mountains
+369223,6,6,2407.547921568627,20,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,USA,Great Smoky Mountains
+369223,6,7,0.16,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Great Smoky Mountains
+369223,7,1,1.4,20,1,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Great Smoky Mountains
+369223,7,2,0.6,20,1,Rừng nguyên sinh – đang phục hồi,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Great Smoky Mountains
+369223,7,7,0.64,20,0,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – đang phục hồi,Không đổi lớp,USA,Great Smoky Mountains
+555655854,1,1,17215.227450980386,20,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,USA,Isle Royale
+555655854,1,2,63.71717647058824,20,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Isle Royale
+555655854,1,6,18.41772549019608,20,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Isle Royale
+555655854,1,7,141.96972549019608,20,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Isle Royale
+555655854,2,1,95.03639215686275,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Isle Royale
+555655854,2,2,33851.85145098039,20,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,USA,Isle Royale
+555655854,2,6,102.87341176470589,20,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Isle Royale
+555655854,2,7,0.08,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Isle Royale
+555655854,6,1,9.988235294117649,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Isle Royale
+555655854,6,2,21.451450980392156,20,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,Isle Royale
+555655854,6,6,98246.08486274508,20,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,USA,Isle Royale
+555655854,7,2,0.08,20,1,Rừng nguyên sinh – đang phục hồi,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Isle Royale
+979,1,1,110708.81396078433,20,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,USA,North Cascades
+979,1,2,3.2578823529411762,20,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,North Cascades
+979,1,3,2.2,20,4,Rừng nguyên sinh – trưởng thành,Rừng trồng (luân kỳ > 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,USA,North Cascades
+979,1,6,323.012705882353,20,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,North Cascades
+979,1,7,6665.077803921569,20,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,North Cascades
+979,2,1,8.534431372549019,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,North Cascades
+979,2,2,306.49396078431374,20,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,USA,North Cascades
+979,2,3,0.4,20,4,Rừng tái sinh tự nhiên,Rừng trồng (luân kỳ > 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,USA,North Cascades
+979,2,6,1.56,20,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,North Cascades
+979,2,7,0.16,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,North Cascades
+979,3,1,2.92,20,2,Rừng trồng (luân kỳ > 40 năm),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,North Cascades
+979,3,2,2.172235294117647,20,2,Rừng trồng (luân kỳ > 40 năm),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,North Cascades
+979,3,3,142.95043137254905,20,0,Rừng trồng (luân kỳ > 40 năm),Rừng trồng (luân kỳ > 40 năm),Không đổi lớp,USA,North Cascades
+979,3,6,0.027764705882352938,20,3,Rừng trồng (luân kỳ > 40 năm),Đất khác (không phải rừng),Rừng / cây → đất khác,USA,North Cascades
+979,3,7,0.7130980392156863,20,2,Rừng trồng (luân kỳ > 40 năm),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,North Cascades
+979,6,1,268.22572549019606,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,North Cascades
+979,6,2,3.56,20,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,North Cascades
+979,6,6,83746.16925490198,20,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,USA,North Cascades
+979,6,7,12.417098039215686,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",USA,North Cascades
+979,7,1,11.68,20,1,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,North Cascades
+979,7,2,0.27027450980392154,20,1,Rừng nguyên sinh – đang phục hồi,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,North Cascades
+979,7,6,4.04,20,3,Rừng nguyên sinh – đang phục hồi,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,North Cascades
+979,7,7,557.8250980392156,20,0,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – đang phục hồi,Không đổi lớp,USA,North Cascades
+11115335,1,1,54929.60305882354,10,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,USA,Kings Canyon
+11115335,1,6,44.35,10,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Kings Canyon
+11115335,1,7,2330.586588235295,10,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Kings Canyon
+11115335,2,2,1909.7765098039217,10,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,USA,Kings Canyon
+11115335,2,6,424.46078431372547,10,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Kings Canyon
+11115335,6,6,124613.2143921569,10,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,USA,Kings Canyon
+11115335,7,6,0.97,10,3,Rừng nguyên sinh – đang phục hồi,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Kings Canyon
+11115335,7,7,1529.3257647058824,10,0,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – đang phục hồi,Không đổi lớp,USA,Kings Canyon
+555655857,1,1,57793.12149019607,10,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,USA,Sequoia
+555655857,1,6,277.4237647058824,10,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Sequoia
+555655857,1,7,8300.041764705882,10,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",USA,Sequoia
+555655857,2,2,16702.61403921569,10,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,USA,Sequoia
+555655857,2,6,3698.9662352941186,10,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Sequoia
+555655857,6,6,77307.48254901965,10,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,USA,Sequoia
+555655857,7,6,5.18,10,3,Rừng nguyên sinh – đang phục hồi,Đất khác (không phải rừng),Rừng / cây → đất khác,USA,Sequoia
+555655857,7,7,435.14007843137256,10,0,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – đang phục hồi,Không đổi lớp,USA,Sequoia
+555759267,6,6,3608149.37082353,60,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,AUS,Munga-Thirri—Simpson Desert
+126355,1,1,36.36,60,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,AUS,Great Victoria Desert
+126355,1,6,364.19576470588237,60,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Great Victoria Desert
+126355,1,7,0.72,60,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Great Victoria Desert
+126355,2,2,3.6,60,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,AUS,Great Victoria Desert
+126355,2,6,0.36,60,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Great Victoria Desert
+126355,6,1,0.36,60,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Great Victoria Desert
+126355,6,2,0.36,60,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Great Victoria Desert
+126355,6,6,2415358.074352941,60,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,AUS,Great Victoria Desert
+126321,1,1,1262.52,60,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,AUS,Gibson Desert
+126321,1,6,1512.288,60,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Gibson Desert
+126321,6,1,24.84,60,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Gibson Desert
+126321,6,6,1840767.8781176473,60,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,AUS,Gibson Desert
+24372,6,6,1351719.8565882344,30,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,AUS,Kati Thanda-Lake Eyre
+313836,1,1,119222.09082352936,30,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,AUS,Judbarra / Gregory
+313836,1,6,6985.057411764705,30,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Judbarra / Gregory
+313836,1,7,0.54,30,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Judbarra / Gregory
+313836,6,1,1012.7191764705882,30,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Judbarra / Gregory
+313836,6,6,1173134.8270588242,30,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,AUS,Judbarra / Gregory
+555548680,1,1,1454.58,30,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,AUS,Karlamilyi
+555548680,1,6,506.63258823529407,30,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Karlamilyi
+555548680,6,1,5.49,30,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Karlamilyi
+555548680,6,6,1280862.483529412,30,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,AUS,Karlamilyi
+555577214,6,6,1015596.0176470588,30,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,AUS,Munga-Thirri
+313839,1,1,300679.75764705887,30,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,AUS,Limmen
+313839,1,6,19095.525176470586,30,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Limmen
+313839,1,7,0.528,30,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Limmen
+313839,6,1,639.4778823529412,30,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Limmen
+313839,6,6,636984.9815294119,30,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,AUS,Limmen
+126263,1,1,253096.1861960785,20,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,AUS,Dundas
+126263,1,2,8.88,20,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Dundas
+126263,1,6,2103.500549019608,20,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Dundas
+126263,1,7,196443.05835294124,20,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Dundas
+126263,2,1,52.52533333333333,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Dundas
+126263,2,2,2538.5546666666673,20,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,AUS,Dundas
+126263,2,6,51.178823529411765,20,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Dundas
+126263,2,7,0.24,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Dundas
+126263,6,1,243.56847058823527,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Dundas
+126263,6,2,29.13992156862745,20,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Dundas
+126263,6,6,148372.1912156863,20,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,AUS,Dundas
+126263,6,7,2337.874196078432,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Dundas
+126263,7,1,922.3176470588235,20,1,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Dundas
+126263,7,2,0.88,20,1,Rừng nguyên sinh – đang phục hồi,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Dundas
+126263,7,6,2004.6313725490197,20,3,Rừng nguyên sinh – đang phục hồi,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Dundas
+126263,7,7,176406.31435294118,20,0,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – đang phục hồi,Không đổi lớp,AUS,Dundas
+24496,1,1,886.7849411764705,20,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,AUS,Witjira
+24496,1,2,0.04,20,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Witjira
+24496,1,6,153.88,20,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Witjira
+24496,1,7,1.8,20,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Witjira
+24496,2,2,8.44,20,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,AUS,Witjira
+24496,2,6,2.24,20,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Witjira
+24496,5,5,0.04,20,0,Cây công nghiệp và nông lâm kết hợp,Cây công nghiệp và nông lâm kết hợp,Không đổi lớp,AUS,Witjira
+24496,5,6,0.44,20,3,Cây công nghiệp và nông lâm kết hợp,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Witjira
+24496,6,1,2.64,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Witjira
+24496,6,6,766591.8763921566,20,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,AUS,Witjira
+126713,1,1,24.88,20,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,AUS,Neale Junction
+126713,1,6,662.9350588235294,20,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Neale Junction
+126713,6,1,0.16,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Neale Junction
+126713,6,6,724783.1132549018,20,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,AUS,Neale Junction
+310108,1,1,311665.4354509803,20,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,AUS,Kosciuszko
+310108,1,2,582.147294117647,20,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Kosciuszko
+310108,1,4,1.76,20,4,Rừng nguyên sinh – trưởng thành,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,AUS,Kosciuszko
+310108,1,6,1039.766745098039,20,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Kosciuszko
+310108,1,7,121369.94290196073,20,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Kosciuszko
+310108,2,1,680.4000000000002,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Kosciuszko
+310108,2,2,126075.33913725486,20,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,AUS,Kosciuszko
+310108,2,4,14.96,20,4,Rừng tái sinh tự nhiên,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,AUS,Kosciuszko
+310108,2,6,12950.070588235289,20,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Kosciuszko
+310108,2,7,1042.5794509803918,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Kosciuszko
+310108,4,1,48.0,20,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Kosciuszko
+310108,4,2,216.9510588235294,20,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Kosciuszko
+310108,4,4,2059.0795294117647,20,0,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Không đổi lớp,AUS,Kosciuszko
+310108,4,6,301.63858823529415,20,3,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Kosciuszko
+310108,4,7,49.72,20,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Kosciuszko
+310108,6,1,138.74164705882353,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Kosciuszko
+310108,6,2,406.9548235294117,20,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Kosciuszko
+310108,6,4,28.26494117647059,20,2,Đất khác (không phải rừng),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Kosciuszko
+310108,6,6,106893.93396078427,20,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,AUS,Kosciuszko
+310108,6,7,122.76,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Kosciuszko
+310108,7,1,36.8,20,1,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Kosciuszko
+310108,7,2,2.28,20,1,Rừng nguyên sinh – đang phục hồi,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Kosciuszko
+310108,7,6,3.36,20,3,Rừng nguyên sinh – đang phục hồi,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Kosciuszko
+310108,7,7,2946.659921568628,20,0,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – đang phục hồi,Không đổi lớp,AUS,Kosciuszko
+63165,1,1,271678.3647058824,20,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,AUS,Murray - Sunset
+63165,1,2,184.04643137254902,20,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Murray - Sunset
+63165,1,6,4878.975058823529,20,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Murray - Sunset
+63165,1,7,992.12,20,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Murray - Sunset
+63165,2,1,176.68,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Murray - Sunset
+63165,2,2,64204.249254902,20,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,AUS,Murray - Sunset
+63165,2,6,2311.986352941177,20,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Murray - Sunset
+63165,5,5,1.4037647058823526,20,0,Cây công nghiệp và nông lâm kết hợp,Cây công nghiệp và nông lâm kết hợp,Không đổi lớp,AUS,Murray - Sunset
+63165,5,6,0.6542745098039215,20,3,Cây công nghiệp và nông lâm kết hợp,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Murray - Sunset
+63165,6,1,666.1695686274511,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Murray - Sunset
+63165,6,2,205.6040784313725,20,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Murray - Sunset
+63165,6,5,0.004078431372549019,20,2,Đất khác (không phải rừng),Cây công nghiệp và nông lâm kết hợp,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Murray - Sunset
+63165,6,6,315023.31074509805,20,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,AUS,Murray - Sunset
+63165,6,7,81.56,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Murray - Sunset
+63165,7,1,236.89380392156863,20,1,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Murray - Sunset
+63165,7,2,4.92,20,1,Rừng nguyên sinh – đang phục hồi,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Murray - Sunset
+63165,7,6,32.32,20,3,Rừng nguyên sinh – đang phục hồi,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Murray - Sunset
+63165,7,7,4680.420392156862,20,0,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – đang phục hồi,Không đổi lớp,AUS,Murray - Sunset
+62941,1,1,445935.2218039215,20,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,AUS,Alpine
+62941,1,2,290.1573333333333,20,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Alpine
+62941,1,4,0.12,20,4,Rừng nguyên sinh – trưởng thành,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,AUS,Alpine
+62941,1,6,221.6650980392157,20,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Alpine
+62941,1,7,116523.26807843141,20,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Alpine
+62941,2,1,517.2089411764705,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Alpine
+62941,2,2,60473.054274509785,20,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,AUS,Alpine
+62941,2,4,1.6,20,4,Rừng tái sinh tự nhiên,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,AUS,Alpine
+62941,2,6,821.4660392156861,20,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Alpine
+62941,2,7,274.0752941176471,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Alpine
+62941,4,1,51.85019607843136,20,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Alpine
+62941,4,2,121.99498039215686,20,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Alpine
+62941,4,4,1294.3808627450983,20,0,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Không đổi lớp,AUS,Alpine
+62941,4,6,57.91764705882354,20,3,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Alpine
+62941,4,7,16.32564705882353,20,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Alpine
+62941,6,1,83.29850980392156,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Alpine
+62941,6,2,188.96549019607843,20,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Alpine
+62941,6,4,1.8301176470588234,20,2,Đất khác (không phải rừng),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Alpine
+62941,6,6,22773.057882352947,20,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,AUS,Alpine
+62941,6,7,232.07670588235297,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Alpine
+62941,7,1,233.70760784313725,20,1,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Alpine
+62941,7,2,13.12,20,1,Rừng nguyên sinh – đang phục hồi,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Alpine
+62941,7,4,0.12,20,4,Rừng nguyên sinh – đang phục hồi,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,AUS,Alpine
+62941,7,6,0.8,20,3,Rừng nguyên sinh – đang phục hồi,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Alpine
+62941,7,7,11840.358274509803,20,0,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – đang phục hồi,Không đổi lớp,AUS,Alpine
+64113,1,1,8338.85756862745,20,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,AUS,Karijini
+64113,1,6,2121.378823529412,20,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Karijini
+64113,6,1,47.370039215686276,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Karijini
+64113,6,6,613689.6923921566,20,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,AUS,Karijini
+126987,1,1,383327.96768627455,20,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,AUS,Southwest
+126987,1,2,44.69098039215686,20,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Southwest
+126987,1,4,2.1311372549019607,20,4,Rừng nguyên sinh – trưởng thành,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,AUS,Southwest
+126987,1,6,1191.0928627450983,20,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Southwest
+126987,1,7,20462.775372549015,20,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Southwest
+126987,2,1,50.99701960784315,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Southwest
+126987,2,2,4280.383999999999,20,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,AUS,Southwest
+126987,2,4,2.5019607843137255,20,4,Rừng tái sinh tự nhiên,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,AUS,Southwest
+126987,2,6,29.652078431372548,20,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Southwest
+126987,2,7,18.114039215686272,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Southwest
+126987,4,1,29.131450980392152,20,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Southwest
+126987,4,2,27.68752941176471,20,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Southwest
+126987,4,4,1147.5869803921566,20,0,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Không đổi lớp,AUS,Southwest
+126987,4,6,78.67466666666668,20,3,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Southwest
+126987,4,7,7.755137254901961,20,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Southwest
+126987,6,1,491.68737254901964,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Southwest
+126987,6,2,27.288784313725493,20,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Southwest
+126987,6,4,30.13301960784313,20,2,Đất khác (không phải rừng),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Southwest
+126987,6,6,221252.71027450985,20,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,AUS,Southwest
+126987,6,7,1184.475450980392,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Southwest
+126987,7,1,252.08611764705878,20,1,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Southwest
+126987,7,2,0.38431372549019605,20,1,Rừng nguyên sinh – đang phục hồi,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Southwest
+126987,7,6,37.87576470588235,20,3,Rừng nguyên sinh – đang phục hồi,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Southwest
+126987,7,7,7249.177411764708,20,0,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – đang phục hồi,Không đổi lớp,AUS,Southwest
+555790391,1,1,2041.4294901960782,20,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,AUS,Matuwa Kurrara Kurrara
+555790391,1,6,4377.588862745098,20,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Matuwa Kurrara Kurrara
+555790391,2,6,3.0,20,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Matuwa Kurrara Kurrara
+555790391,6,1,3.36,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Matuwa Kurrara Kurrara
+555790391,6,6,602719.6721568627,20,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,AUS,Matuwa Kurrara Kurrara
+126757,1,1,149829.83152941178,20,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,AUS,Nuytsland
+126757,1,2,23.46227450980392,20,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Nuytsland
+126757,1,4,0.04,20,4,Rừng nguyên sinh – trưởng thành,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng tự nhiên → rừng trồng / cây công nghiệp,AUS,Nuytsland
+126757,1,6,27538.08439215687,20,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Nuytsland
+126757,1,7,19893.769882352943,20,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Nuytsland
+126757,2,1,6.8,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Nuytsland
+126757,2,2,4512.261490196079,20,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,AUS,Nuytsland
+126757,2,6,412.17913725490195,20,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Nuytsland
+126757,2,7,6.478588235294118,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Nuytsland
+126757,4,1,0.16,20,2,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Nuytsland
+126757,4,4,8.16,20,0,Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),Không đổi lớp,AUS,Nuytsland
+126757,6,1,56.82243137254901,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Nuytsland
+126757,6,2,74.32501960784313,20,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Nuytsland
+126757,6,4,2.28,20,2,Đất khác (không phải rừng),Rừng trồng thâm canh (luân kỳ ≤ 40 năm),"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Nuytsland
+126757,6,6,344114.7399215689,20,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,AUS,Nuytsland
+126757,6,7,774.084705882353,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – đang phục hồi,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Nuytsland
+126757,7,1,483.7394509803922,20,1,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Nuytsland
+126757,7,2,8.76,20,1,Rừng nguyên sinh – đang phục hồi,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Nuytsland
+126757,7,6,1638.2531764705886,20,3,Rừng nguyên sinh – đang phục hồi,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Nuytsland
+126757,7,7,58334.824156862735,20,0,Rừng nguyên sinh – đang phục hồi,Rừng nguyên sinh – đang phục hồi,Không đổi lớp,AUS,Nuytsland
+314898,1,1,438184.7312941175,20,0,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – trưởng thành,Không đổi lớp,AUS,Prince Regent
+314898,1,2,7.12,20,1,Rừng nguyên sinh – trưởng thành,Rừng tái sinh tự nhiên,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Prince Regent
+314898,1,6,3306.8627450980393,20,3,Rừng nguyên sinh – trưởng thành,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Prince Regent
+314898,1,7,0.96,20,1,Rừng nguyên sinh – trưởng thành,Rừng nguyên sinh – đang phục hồi,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Prince Regent
+314898,2,1,1.16,20,1,Rừng tái sinh tự nhiên,Rừng nguyên sinh – trưởng thành,"Đổi lớp trong cùng nhóm (tự nhiên ↔ tự nhiên, trồng ↔ trồng)",AUS,Prince Regent
+314898,2,2,275.76,20,0,Rừng tái sinh tự nhiên,Rừng tái sinh tự nhiên,Không đổi lớp,AUS,Prince Regent
+314898,2,6,0.4,20,3,Rừng tái sinh tự nhiên,Đất khác (không phải rừng),Rừng / cây → đất khác,AUS,Prince Regent
+314898,6,1,1448.273411764706,20,2,Đất khác (không phải rừng),Rừng nguyên sinh – trưởng thành,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Prince Regent
+314898,6,2,1.44,20,2,Đất khác (không phải rừng),Rừng tái sinh tự nhiên,"Tăng rừng / phục hồi (đất khác → rừng, rừng trồng → tự nhiên)",AUS,Prince Regent
+314898,6,6,142062.39890196075,20,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,AUS,Prince Regent
+64360,6,6,569275.4254117651,20,0,Đất khác (không phải rừng),Đất khác (không phải rừng),Không đổi lớp,AUS,Lake Torrens

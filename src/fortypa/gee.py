@@ -15,15 +15,16 @@ FORTY = "projects/nature-trace/assets/forest_typology/v2_beta"
 WDPA = "WCMC/WDPA/current/polygons"
 
 # Class value = argmax band index + 1 (B0 -> 1 … B6 -> 7). Rows run from natural to planted classes, the order used in
-# legends and tables. Forest colors pass the dataviz palette validator (light surface, adjacent pairs in this order).
+# legends and tables. Colors from ColorBrewer by origin: natural forest in Greens, planted in Blues, tree crops in
+# Oranges, other land light gray.
 CLASSES = pd.DataFrame([
-    (1, "B0", "Rừng nguyên sinh – trưởng thành", "Primary forest: mature", "#16733A"),
-    (7, "B6", "Rừng nguyên sinh – đang phục hồi", "Primary forest: regrowing", "#33A17F"),
-    (2, "B1", "Rừng tái sinh tự nhiên", "Naturally regenerating forest", "#A0B82B"),
-    (3, "B2", "Rừng trồng (luân kỳ > 40 năm)", "Planted forest", "#2C7FB8"),
-    (4, "B3", "Rừng trồng thâm canh (luân kỳ ≤ 40 năm)", "Plantation forest", "#C2408F"),
-    (5, "B4", "Cây công nghiệp và nông lâm kết hợp", "Tree crops and agroforestry", "#D08C00"),
-    (6, "B5", "Đất khác (không phải rừng)", "Other land (non-forest)", "#E4E4DF"),
+    (1, "B0", "Rừng nguyên sinh – trưởng thành", "Primary forest: mature", "#006D2C"),
+    (7, "B6", "Rừng nguyên sinh – đang phục hồi", "Primary forest: regrowing", "#31A354"),
+    (2, "B1", "Rừng tái sinh tự nhiên", "Naturally regenerating forest", "#A1D99B"),
+    (3, "B2", "Rừng trồng (luân kỳ > 40 năm)", "Planted forest", "#08519C"),
+    (4, "B3", "Rừng trồng thâm canh (luân kỳ ≤ 40 năm)", "Plantation forest", "#6BAED6"),
+    (5, "B4", "Cây công nghiệp và nông lâm kết hợp", "Tree crops and agroforestry", "#FD8D3C"),
+    (6, "B5", "Đất khác (không phải rừng)", "Other land (non-forest)", "#E5E5E5"),
 ], columns=["value", "band", "label", "label_en", "color"])
 FOREST = CLASSES[CLASSES.value != 6].reset_index(drop=True)
 NATURAL = (1, 7, 2)  # mature primary, regrowing primary, naturally regenerating
@@ -76,23 +77,19 @@ def class_image(year, region=None):
     return raw.toArray().arrayArgmax().arrayGet([0]).add(1).toByte().rename(f"y{year}")
 
 
-def change_image(y0, y1, region=None):
-    """Change category (CHANGES.code, 0–4) per pixel from y0 to y1; masked where either year has no data.
+def dfci_image(y0, y1, region=None):
+    """Per-pixel ΔFCI from y0 to y1 as band d = 100 × (weight of the y1 class − weight of the y0 class), from −100
+    (mature primary forest → other land) to +100, and band f = 1 where the class changed; masked where either year has
+    no data. Averaged over an area, d is that area's ΔFCI."""
+    from .index import WEIGHTS
+    vals = list(WEIGHTS)
 
-    Same rules as change_code(), written as image algebra.
-    """
+    def w(c):
+        return c.remap(vals, [100 * WEIGHTS[v] for v in vals]).toFloat()
+
     c0, c1 = class_image(y0, region), class_image(y1, region)
-
-    def group(c):  # 0 natural, 1 planted / tree crops, 2 other land
-        return c.remap([1, 7, 2, 3, 4, 5, 6], [0, 0, 0, 1, 1, 1, 2])
-
-    g0, g1 = group(c0), group(c1)
-    code = (ee.Image(0)
-            .where(c0.neq(c1).And(g0.eq(g1)), 1)
-            .where(g0.eq(2).And(g1.neq(2)).Or(g0.eq(1).And(g1.eq(0))), 2)
-            .where(g0.neq(2).And(g1.eq(2)), 3)
-            .where(g0.eq(0).And(g1.eq(1)), 4))
-    return code.updateMask(c0.mask().And(c1.mask())).toByte().rename("change")
+    return (w(c1).subtract(w(c0)).rename("d").addBands(c0.neq(c1).toFloat().rename("f"))
+            .updateMask(c0.mask().And(c1.mask())))
 
 
 def select_pas(iso3="VNM", desig_eng=None, status=("Designated", "Inscribed"), desig_types=None,
@@ -293,36 +290,44 @@ def _class_layer(year):
     return lambda geom: class_image(year, geom).visualize(min=1, max=7, palette=palette)
 
 
-OUTSIDE, OUTLINE = 255, 254  # codes in the change map array besides CHANGES.code
+OUTSIDE, OUTLINE = -999.0, -998.0  # values in the ΔFCI map array besides real ΔFCI (−100 … 100)
+
+# Per-pixel ΔFCI classes (points): ColorBrewer RdYlBu 11, red = loss, blue = gain. Map pixels where no pixel changed
+# class are drawn in UNCHANGED gray instead of the middle class, so stable land does not look yellow.
+DFCI_PIXEL_BINS = pd.DataFrame([
+    (-1e9, -50, "#A50026", "≤ −50"), (-50, -25, "#D73027", "−50 đến −25"), (-25, -10, "#F46D43", "−25 đến −10"),
+    (-10, -5, "#FDAE61", "−10 đến −5"), (-5, -1, "#FEE090", "−5 đến −1"), (-1, 1, "#FFFFBF", "−1 đến +1"),
+    (1, 5, "#E0F3F8", "+1 đến +5"), (5, 10, "#ABD9E9", "+5 đến +10"), (10, 25, "#74ADD1", "+10 đến +25"),
+    (25, 50, "#4575B4", "+25 đến +50"), (50, 1e9, "#313695", "≥ +50"),
+], columns=["lo", "hi", "color", "label"])
+UNCHANGED = "#E5E5E5"
 
 
-def _change_codes(geom, f, y0, y1, utm, scale, pixel_m):
-    """Change map at `scale` m shrunk to map pixels of pixel_m, as two bands:
-    c = most common change code among the changed pixels under the map pixel (0 if none changed), OUTSIDE, OUTLINE;
-    f = share of pixels under it that changed, 0–250.
-    Shrinking goes in 4×4 steps (10 → 40 → 160 m …): one step from 10 m to a 200 m map pixel exceeds Earth Engine's
+def _dfci_bands(geom, f, y0, y1, utm, scale, pixel_m):
+    """Per-pixel ΔFCI at `scale` m averaged into map pixels of pixel_m, as two bands:
+    d = mean ΔFCI under the map pixel, OUTSIDE or OUTLINE; f = share of pixels under it that changed class, 0–250.
+    Averaging goes in 4×4 steps (10 → 40 → 160 m …): one step from 10 m to a 200 m map pixel exceeds Earth Engine's
     memory limit on large PAs."""
-    chg = change_image(y0, y1, geom).reproject(utm.atScale(scale))
-    code, frac, s = chg.updateMask(chg.gt(0)), chg.gt(0).toFloat(), scale
+    img = dfci_image(y0, y1, geom).reproject(utm.atScale(scale))
+    s = scale
 
-    def shrink(code, frac):
-        return (code.reduceResolution(ee.Reducer.mode(), maxPixels=64),
-                frac.reduceResolution(ee.Reducer.mean(), maxPixels=64))
+    def shrink(i):
+        return i.reduceResolution(ee.Reducer.mean(), maxPixels=64)
 
     while s * 4 <= pixel_m:
         s *= 4
-        code, frac = (b.reproject(utm.atScale(s)) for b in shrink(code, frac))
+        img = shrink(img).reproject(utm.atScale(s))
     if s < pixel_m:  # last, partial step into the requested grid
-        code, frac = shrink(code, frac)
+        img = shrink(img)
     outline = ee.Image(0).paint(ee.FeatureCollection([f]), 1, 1).eq(1)
-    code = code.unmask(0).clip(geom).unmask(OUTSIDE, False).where(outline, OUTLINE).toByte().rename("c")
-    frac = frac.multiply(250).round().unmask(0, False).toByte().rename("f")
-    return code.addBands(frac)
+    d = img.select("d").unmask(0).clip(geom).unmask(OUTSIDE, False).where(outline, OUTLINE).toFloat().rename("d")
+    frac = img.select("f").multiply(250).round().unmask(0, False).toByte().rename("f")
+    return d.addBands(frac)
 
 
-def change_array(fc, pa, years, dims=900, scale=10, tile_km2=250, workers=8):
-    """Change map first -> last year of one PA in EPSG:3857 as two uint8 arrays (see _change_codes):
-    code (CHANGES.code, OUTSIDE, OUTLINE) and share of changed 10 m pixels (0–250).
+def dfci_array(fc, pa, years, dims=900, scale=10, tile_km2=250, workers=8):
+    """Per-pixel ΔFCI map first -> last year of one PA in EPSG:3857 as two arrays (see _dfci_bands): mean ΔFCI
+    (float32, with OUTSIDE / OUTLINE) and share of changed pixels (uint8, 0–250).
 
     A single request for a large PA at 10 m exceeds Earth Engine's memory limit, so the map is fetched with
     ee.data.computePixels in tiles of about tile_km2 on a fixed grid and stitched here.
@@ -341,10 +346,10 @@ def change_array(fc, pa, years, dims=900, scale=10, tile_km2=250, workers=8):
     px = max(x1 - x0, y1 - y0) / dims  # mercator metres per map pixel
     ground = px * math.cos(math.radians((lat0 + lat1) / 2))
     W, H = math.ceil((x1 - x0) / px), math.ceil((y1 - y0) / px)
-    img = _change_codes(geom, f, years[0], years[-1], ee.Projection(f"EPSG:{utm_epsg(pa.LON, pa.LAT)}"),
-                        scale, ground)
+    img = _dfci_bands(geom, f, years[0], years[-1], ee.Projection(f"EPSG:{utm_epsg(pa.LON, pa.LAT)}"),
+                      scale, ground)
     t = max(16, int(math.sqrt(tile_km2) * 1000 / ground))  # tile side in map pixels
-    out = np.full((H, W), OUTSIDE, dtype=np.uint8)
+    out = np.full((H, W), OUTSIDE, dtype=np.float32)
     share = np.zeros((H, W), dtype=np.uint8)
 
     def _tile(i, j):
@@ -356,7 +361,7 @@ def change_array(fc, pa, years, dims=900, scale=10, tile_km2=250, workers=8):
         for attempt in range(3):
             try:
                 a = ee.data.computePixels(req)
-                out[i:i + h, j:j + w], share[i:i + h, j:j + w] = a["c"], a["f"]
+                out[i:i + h, j:j + w], share[i:i + h, j:j + w] = a["d"], a["f"]
                 return
             except Exception:
                 if attempt == 2:
@@ -368,22 +373,20 @@ def change_array(fc, pa, years, dims=900, scale=10, tile_km2=250, workers=8):
     return out, share
 
 
-def render_change(code, share):
-    """RGB array: unchanged pixels light gray, changed ones in their CHANGES color blended over the gray with opacity
-    sqrt(share), so a map pixel where a few 10 m pixels changed is faint and one where all changed is full color."""
-    rgb = {c.code: np.array([int(c.color[k:k + 2], 16) for k in (1, 3, 5)], float) for c in CHANGES.itertuples()}
-    out = np.full(code.shape + (3,), 255, dtype=float)
-    base = rgb[0]
-    inside = code <= CHANGES.code.max()
-    out[inside] = base
-    alpha = np.sqrt(share.astype(float) / 250)[..., None]
-    for k, col in rgb.items():
-        if k == 0:
-            continue
-        m = code == k
-        out[m] = base + alpha[m] * (col - base)
-    out[code == OUTLINE] = (0x33, 0x33, 0x33)
-    return out.round().astype(np.uint8)
+def _rgb(hex_color):
+    return np.array([int(hex_color[k:k + 2], 16) for k in (1, 3, 5)], dtype=np.uint8)
+
+
+def render_dfci(d, share):
+    """RGB array: outside white, PA outline dark gray, map pixels where nothing changed light gray, the rest in their
+    DFCI_PIXEL_BINS color."""
+    out = np.full(d.shape + (3,), 255, dtype=np.uint8)
+    inside = d > OUTLINE
+    for b in DFCI_PIXEL_BINS.itertuples():
+        out[inside & (d >= b.lo) & (d < b.hi)] = _rgb(b.color)
+    out[inside & (share == 0)] = _rgb(UNCHANGED)
+    out[d == OUTLINE] = (0x33, 0x33, 0x33)
+    return out
 
 
 def _download(jobs, log, what, workers=6, retries=3):
@@ -463,26 +466,31 @@ def overview_thumb(fc, colors, out_path, dims=1100, pad=0.06):
 
 
 def download_change_maps(fc, pas, years, out_dir, dims=900, scale=10, big_km2=None, big_scale=30, log=print):
-    """Change map first -> last year for each PA as a colored PNG (see change_array); cached on disk.
+    """Per-pixel ΔFCI map first -> last year for each PA (see dfci_array). The arrays are cached as .npz and the PNG is
+    drawn from them, so changing the colors only needs a redraw, not new Earth Engine requests.
 
     PAs larger than big_km2 are mapped from big_scale m pixels instead of `scale` (tiles grow accordingly): at 10 m a
-    30,000 km² park needs hundreds of tile requests. Returns {SITE_ID: Path}.
+    30,000 km² park needs hundreds of tile requests. Returns {SITE_ID: Path of the PNG}.
     """
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     done, t0 = {}, time.time()
     todo = [pa for pa in pas.itertuples()]
     for i, pa in enumerate(todo, 1):
-        path = out_dir / f"{pa.SITE_ID}_change_{years[0]}_{years[-1]}.png"
-        if not path.exists():
+        stem = out_dir / f"{pa.SITE_ID}_dfci_{years[0]}_{years[-1]}"
+        npz = stem.with_suffix(".npz")
+        if not npz.exists():
             s = big_scale if big_km2 and pa.GIS_AREA > big_km2 else scale
             try:
-                arr = change_array(fc, pa, years, dims, s, tile_km2=250 * (s / 10) ** 2)
-                Image.fromarray(render_change(*arr)).save(path, optimize=True)
+                d, share = dfci_array(fc, pa, years, dims, s, tile_km2=250 * (s / 10) ** 2)
+                np.savez_compressed(npz, d=d, share=share, scale=s)
                 log(f"  [{i}/{len(todo)}] {pa.SITE_ID} {pa.NAME_ENG} – {time.time() - t0:.0f}s")
             except Exception as e:
                 log(f"  [{i}/{len(todo)}] LỖI {pa.SITE_ID} {pa.NAME_ENG}: {type(e).__name__}: {str(e)[:200]}")
                 continue
-        done[pa.SITE_ID] = path
-    log(f"Bản đồ thay đổi: {len(done)}/{len(todo)}")
+        a = np.load(npz)
+        png = stem.with_suffix(".png")
+        Image.fromarray(render_dfci(a["d"], a["share"])).save(png, optimize=True)
+        done[pa.SITE_ID] = png
+    log(f"Bản đồ ΔFCI từng điểm ảnh: {len(done)}/{len(todo)}")
     return done

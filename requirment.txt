@@ -1,0 +1,11 @@
+dùng dữ liệu và pipeline đã ghi trong file claude.md
+
+Viết Python Notebook để xây dựng báo cáo index.html để
+- so sánh chỉ số mất (FCI 2017 → 2025, ΔFCI) rừng ở ở các khu bảo tồn GDPA các nước trong nghiên cứu
+- các nước gồm Việt Nam, Mỹ, Úc
+- Ở từng nước chỉ lọc lấy các khu thỏa mã điều kiện sau DESIG_ENG in ["Nature Reserve", "National Park", "Cultural and Historical Site"]
+- Trên GEE fc = fc.filter(ee.Filter.inList("DESIG_ENG", ["Nature Reserve", "National Park", "Cultural and Historical Site"]))
+- Sau khi lọc, mỗi nước lọc 20 khu có diện tích lớn nhất và làm việc trên 20 khu này
+- tạo bản đồ so sánh giống dự án đã có và bổ sung thêm chỉ số FCI 2017 → 2025, ΔFCI, dự án cũ đặt tại C:\Users\gfd\Documents\Claude\Projects\2026.10.25 nature forest alphaearth map
+
+Mục đích chính là để so sánh các nước trong nghiên cứu xem nước nào có chỉ số FCI tốt nhất, bạn có thể tự tạo ra cách so sánh phù hợp

@@ -58,31 +58,35 @@ def map_figure(pa, thumbs, years, out_path, fci=None):
 
 
 def change_figure(pa, change_png, trans_pa, years, out_path, map_scale=10):
-    """Change map with a legend giving each change category's area (ha, % of the analysed area) at 10 m."""
-    from .gee import CHANGES
+    """Per-pixel ΔFCI map (gee.download_change_maps) with its 11-class legend, and the areas that lost and gained FCI
+    from the transitions table."""
+    from .gee import DFCI_PIXEL_BINS, UNCHANGED
+    from .index import WEIGHTS
     img = plt.imread(change_png)
     aspect = img.shape[0] / img.shape[1]
-    map_w = 6.5
-    fig = plt.figure(figsize=(map_w + 5.2, max(map_w * aspect, 4.2) + 0.8))
-    ax = fig.add_axes((0.005, 0.02, map_w / (map_w + 5.2), 0.84))
+    map_w, side = 6.5, 4.6
+    fig = plt.figure(figsize=(map_w + side, max(map_w * aspect, 4.6) + 0.8))
+    x_leg = map_w / (map_w + side)
+    ax = fig.add_axes((0.005, 0.02, x_leg, 0.84))
     ax.imshow(img)
     ax.set_axis_off()
-    by = trans_pa.groupby("change").area_ha.sum().reindex(CHANGES.code, fill_value=0)
-    total = by.sum()
-    handles = [Patch(facecolor=c.color, edgecolor="#BDBDBD",
-                     label=f"{c.label}\n{fmt_ha(by[c.code])} ha ({fmt_ha(100 * by[c.code] / total, 1)}%)")
-               for c in CHANGES.itertuples()][::-1]  # most consequential change first
-    fig.legend(handles=handles, loc="upper left", bbox_to_anchor=(map_w / (map_w + 5.2) + 0.01, 0.86),
-               frameon=False, fontsize=9, labelspacing=0.9, handleheight=1.6)
-    changed = total - by[0]
+    handles = [Patch(facecolor=b.color, edgecolor="#BDBDBD", label=b.label)
+               for b in DFCI_PIXEL_BINS.itertuples()][::-1]  # gains on top, losses at the bottom
+    handles.append(Patch(facecolor=UNCHANGED, edgecolor="#BDBDBD", label="Không có pixel nào đổi lớp"))
+    fig.legend(handles=handles, loc="upper left", bbox_to_anchor=(x_leg + 0.01, 0.88), frameon=False, fontsize=9,
+               title="ΔFCI tại chỗ (điểm)", title_fontsize=9, alignment="left", labelspacing=0.35)
+    dw = trans_pa["to"].map(WEIGHTS) - trans_pa["from"].map(WEIGHTS)
+    total = trans_pa.area_ha.sum()
+    loss, gain = trans_pa.area_ha[dw < 0].sum(), trans_pa.area_ha[dw > 0].sum()
     s = int(trans_pa.scale_m.max()) if len(trans_pa) else 10
     m = int(map_scale or 10)
-    fig.text(map_w / (map_w + 5.2) + 0.015, 0.04,
-             f"Đổi lớp: {fmt_ha(changed)} ha ({fmt_ha(100 * changed / total, 1)}% diện tích phân tích).\n"
-             f"Diện tích tính ở {s} m. Trên bản đồ, mỗi điểm ảnh gộp nhiều\n"
-             f"pixel {m} m: màu = loại thay đổi chiếm ưu thế, độ đậm =\n"
-             f"tỷ lệ pixel {m} m đổi lớp.", fontsize=8.5, color=MUTED, va="bottom")
-    fig.suptitle(f"Thay đổi loại rừng {years[0]} → {years[-1]} · {_title(pa)}", fontsize=12, x=0.01, ha="left")
+    pct = (lambda v: fmt_ha(100 * v / total, 1)) if total else (lambda v: "0")
+    fig.text(x_leg + 0.015, 0.04,
+             f"Giảm FCI: {fmt_ha(loss)} ha ({pct(loss)}%) · tăng FCI: {fmt_ha(gain)} ha ({pct(gain)}%)\n"
+             f"(tính ở {s} m). Mỗi điểm ảnh trên bản đồ là trung bình\n"
+             f"100 × (trọng số lớp {years[-1]} − trọng số lớp {years[0]}) của các\n"
+             f"pixel {m} m bên dưới, tức ΔFCI tại chỗ.", fontsize=8.5, color=MUTED, va="bottom")
+    fig.suptitle(f"ΔFCI {years[0]} → {years[-1]} từng điểm ảnh · {_title(pa)}", fontsize=12, x=0.01, ha="left")
     fig.savefig(out_path, dpi=110, facecolor="white")
     plt.close(fig)
     return out_path
@@ -145,11 +149,11 @@ def area_chart(pa, areas_pa, years, out_path):
 # ---------------------------------------------------------------------------------------------------------------------
 # Country comparison
 
-# ΔFCI classes for the overview maps: diverging red (loss) ↔ blue (gain) around a neutral gray; ±1 point is the
+# ΔFCI classes for the overview maps: ColorBrewer RdYlBu 5, red (loss) ↔ blue (gain); ±1 point is the
 # threshold of index.MIN_DELTA.
-DFCI_BINS = [(-1e9, -1.0, "#B2182B", "≤ −1 (giảm rõ)"), (-1.0, -0.25, "#EF8A62", "−1 đến −0,25"),
-             (-0.25, 0.25, "#A8A8A3", "−0,25 đến +0,25"), (0.25, 1.0, "#67A9CF", "+0,25 đến +1"),
-             (1.0, 1e9, "#2166AC", "≥ +1 (tăng rõ)")]
+DFCI_BINS = [(-1e9, -1.0, "#D7191C", "≤ −1 (giảm rõ)"), (-1.0, -0.25, "#FDAE61", "−1 đến −0,25"),
+             (-0.25, 0.25, "#FFFFBF", "−0,25 đến +0,25"), (0.25, 1.0, "#ABD9E9", "+0,25 đến +1"),
+             (1.0, 1e9, "#2C7BB6", "≥ +1 (tăng rõ)")]
 
 
 def dfci_color(v):
@@ -267,7 +271,7 @@ def composition_figure(areas, pas, years, out_path):
             ax.barh(yy, w, left=left, height=0.7, color=k.color, edgecolor="white", linewidth=1.5)
             if w >= 6:
                 ax.text(left + w / 2, yy, fmt_ha(w, 0) + "%", ha="center", va="center", fontsize=8,
-                        color="white" if k.value in (1, 7, 3, 4) else INK)
+                        color="white" if k.value in (1, 7, 3) else INK)
             left += w
         ax.text(-1, yy, f"{c.name} {y}", ha="right", va="center", fontsize=10, color=INK)
     ax.set_xlim(0, 100)

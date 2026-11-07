@@ -96,6 +96,19 @@ def _findings(table, rank, tests, years, ind):
     return "<ul>" + "".join(f"<li>{x}</li>" for x in lines) + "</ul>"
 
 
+def _fci_scale(years):
+    """One-line reading guide for FCI and ΔFCI, with the weights taken from index.WEIGHTS."""
+    y0, y1 = years[0], years[-1]
+    pts = lambda v: fmt_ha(100 * WEIGHTS[v], 0)
+    return (f"<p class='meta' style='font-size:14px;margin:0 0 4px'><b>FCI</b> (chỉ số tình trạng rừng) cho biết lớp phủ "
+            f"trong khu tự nhiên đến đâu, thang 0–100: 100 = toàn khu là rừng nguyên sinh trưởng thành; nguyên sinh đang "
+            f"phục hồi tính {pts(7)}, tái sinh tự nhiên {pts(2)}, rừng trồng {pts(3)}, rừng trồng thâm canh {pts(4)}, cây "
+            f"công nghiệp {pts(5)}, đất không có rừng 0. FCI của khu là trung bình các mức này theo diện tích. "
+            f"<b>ΔFCI</b> = FCI {y1} − FCI {y0} (điểm): âm là mất hoặc suy thoái rừng, dương là phục hồi; "
+            f"|ΔFCI| dưới {fmt_ha(MIN_DELTA, 0)} điểm coi như ổn định. Số lớn là FCI {y1} trung vị các khu, số trong "
+            f"ngoặc là ΔFCI trung vị.</p>")
+
+
 def _kpis(table, years):
     y1 = years[-1]
     cards = []
@@ -241,7 +254,12 @@ Các khu của Mỹ và Úc lớn gấp 5–30 lần khu của Việt Nam. Để
 {fmt_ha(cfg.get("MAX_PIXELS", 2e7) / 1e6, 0)} triệu pixel ở 10 m được tính ở độ phân giải thô hơn (20, 30 hoặc 60 m; cột
 “Độ phân giải” trong bảng từng nước); ở mức này tổng diện tích từng lớp gần như không đổi nhưng các mảng nhỏ hơn
 pixel có thể bị gộp vào lớp xung quanh. Bản đồ thay đổi của khu lớn hơn {fmt_ha(cfg.get("CHANGE_BIG_KM2", 3000), 0)} km²
-được tính từ pixel 30 m. Chỉ số tình trạng rừng (FCI) gán mỗi lớp một trọng số theo
+được tính từ pixel 30 m.</p>
+<p><b>Bản đồ ΔFCI từng điểm ảnh.</b> Mỗi pixel có ΔFCI = 100 × (trọng số lớp {y1} − trọng số lớp {y0}), từ −100 (rừng
+nguyên sinh trưởng thành thành đất khác) đến +100. Mỗi điểm ảnh trên bản đồ là trung bình của các pixel bên dưới, nên
+trung bình của cả khu chính là ΔFCI của khu. Màu theo ColorBrewer RdYlBu (đỏ giảm, xanh tăng); điểm ảnh không có pixel
+nào đổi lớp tô xám. Bản đồ loại rừng dùng ColorBrewer: rừng tự nhiên màu lục, rừng trồng màu lam, cây công nghiệp màu
+cam. Chỉ số tình trạng rừng (FCI) gán mỗi lớp một trọng số theo
 mức độ tự nhiên:</p>
 <p style='text-align:center'>FCI<sub>t</sub> = 100 × Σ<sub>c</sub> w<sub>c</sub>·A<sub>c,t</sub> / Σ<sub>c</sub>
 A<sub>c,t</sub> &nbsp;&nbsp;&nbsp; ΔFCI = FCI<sub>{y1}</sub> − FCI<sub>{y0}</sub></p>
@@ -303,8 +321,8 @@ def build_report(out_path, cfg, pas, areas, years, ind, table, rank, groups, tes
          f"<p class='sub'>ForTy V2 Beta {y0}–{y1} · WDPA · {len(pas)} khu bảo tồn ({len(pas) // max(len(iso), 1)} khu lớn "
          f"nhất mỗi nước) · tạo ngày {pd.Timestamp.now():%d/%m/%Y %H:%M}</p><nav class='toc'>{toc}</nav>"]
 
-    p.append(f"<div class='card' id='ketluan'><h2 style='margin-top:0'>Kết luận chính</h2>{_kpis(table, years)}"
-             f"{_findings(table, rank, tests, years, ind)}</div>")
+    p.append(f"<div class='card' id='ketluan'><h2 style='margin-top:0'>Kết luận chính</h2>{_fci_scale(years)}"
+             f"{_kpis(table, years)}{_findings(table, rank, tests, years, ind)}</div>")
 
     p.append(f"<h2 id='sosanh'>So sánh giữa các nước</h2>"
              f"<p class='meta'>“Gộp” = coi 20 khu của một nước là một vùng (khu lớn nặng ký hơn). “Trung vị” = mỗi khu "

@@ -43,10 +43,38 @@ a{color:var(--accent)}
 """
 
 
+def _key_colors():
+    """Every color that carries meaning in the figures (classes, change and ΔFCI classes, countries)."""
+    from . import charts, compare, gee
+    hexes = (list(CLASSES.color) + list(CHANGES.color) + list(gee.DFCI_PIXEL_BINS.color) + [gee.UNCHANGED]
+             + [c for _, _, c, _ in charts.DFCI_BINS] + list(compare.COUNTRIES.color) + ["#FFFFFF", "#333333"])
+    return list(dict.fromkeys(h.upper() for h in hexes))
+
+
 def _png_256(path):
-    """PNG bytes reduced to a 256-color palette: the maps and charts are flat colors, so this is ~4x smaller."""
+    """PNG bytes reduced to a 256-color palette: the maps and charts are flat colors, so this is ~4x smaller.
+
+    The palette starts with the key colors, so a color that covers only a few pixels (a legend swatch, a rare class)
+    keeps its exact value; a plain median cut would merge it into a nearby, more common color."""
+    rgb = Image.open(path).convert("RGB")
+    keys = [int(h[k:k + 2], 16) for h in _key_colors() for k in (1, 3, 5)]
+    n_rest = 256 - len(keys) // 3
+    rest = rgb.quantize(n_rest, method=Image.Quantize.MEDIANCUT).getpalette()[:3 * n_rest]
+    palette = np.array(keys + rest, dtype=np.int32).reshape(-1, 3)
+    # nearest palette color for each distinct image color (PIL's own palette mapping is approximate and can still
+    # move a key color to a neighbour)
+    a = np.asarray(rgb, dtype=np.int32)
+    packed = (a[..., 0] << 16) | (a[..., 1] << 8) | a[..., 2]
+    uniq, inv = np.unique(packed, return_inverse=True)
+    u = np.stack([uniq >> 16, (uniq >> 8) & 255, uniq & 255], axis=1)
+    idx = np.empty(len(u), dtype=np.uint8)
+    for i in range(0, len(u), 4096):
+        d = ((u[i:i + 4096, None, :] - palette[None, :, :]) ** 2).sum(axis=2)
+        idx[i:i + 4096] = d.argmin(axis=1)
+    out = Image.fromarray(idx[inv].reshape(packed.shape), mode="P")
+    out.putpalette(palette.astype(np.uint8).ravel().tolist())
     buf = io.BytesIO()
-    Image.open(path).convert("RGB").quantize(256, method=Image.Quantize.MEDIANCUT).save(buf, "PNG", optimize=True)
+    out.save(buf, "PNG", optimize=True)
     return buf.getvalue()
 
 

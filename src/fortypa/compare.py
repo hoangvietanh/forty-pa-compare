@@ -7,7 +7,6 @@ Two questions are kept apart, because they are answered by different numbers:
 - trend: how the FCI moved between the first and last year (ΔFCI, its share of the starting FCI, the share of PAs
   that declined, the net change of natural forest). This is what protection can influence.
 """
-import math
 
 import numpy as np
 import pandas as pd
@@ -26,24 +25,14 @@ COUNTRIES = pd.DataFrame([
 ], columns=["ISO3", "name", "color"])
 
 
-def select_groups(df, top_n=20, n_mid=10, n_groups=4):
-    """Picks the PAs of one country from the full list of eligible PAs ranked by land area (RANK 1 = largest):
-    - "large": the top_n largest;
-    - "medium": split the list into n_groups groups of equal count by area, counted from the largest, and take the
-      n_mid largest PAs of the second group, skipping any already in "large".
-    Adds GROUP, N_ELIGIBLE (number of eligible PAs in the country) and NO, the display number 1…top_n+n_mid within
-    the country (large first, then medium, each by area)."""
-    n = len(df)
-    lo, hi = math.ceil(n / n_groups), math.ceil(2 * n / n_groups)  # second group = RANK lo+1 … hi
-    large = df[df.RANK <= top_n].assign(GROUP="large")
-    medium = df[(df.RANK > max(lo, top_n)) & (df.RANK <= hi)].head(n_mid).assign(GROUP="medium")
-    out = pd.concat([large, medium]).assign(N_ELIGIBLE=n, Q2_FROM=lo + 1, Q2_TO=hi)
-    out.insert(1, "NO", range(1, len(out) + 1))
-    return out
+def select_top(df, top_n=30):
+    """The top_n largest PAs of one country from the full list of eligible PAs ranked by land area (RANK 1 =
+    largest). Adds GROUP ("large"), N_ELIGIBLE (number of eligible PAs in the country) and NO (display number, = RANK)."""
+    return df[df.RANK <= top_n].assign(GROUP="large", N_ELIGIBLE=len(df), NO=lambda d: d.RANK)
 
 
-def group_label(key, n):
-    return f"{n} khu lớn nhất" if key == "large" else f"{n} khu cỡ vừa"
+def group_label(n):
+    return f"{n} khu lớn nhất"
 
 
 def _class_areas(areas, years):

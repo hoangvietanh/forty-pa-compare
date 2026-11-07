@@ -100,7 +100,7 @@ def select_pas(iso3="VNM", desig_eng=None, status=("Designated", "Inscribed"), d
     WDPA stores some sites as several parcels (same SITE_ID, SITE_PID <id>_1, <id>_2 …): their areas are summed and
     their polygons dissolved, so each site is counted once. LAND_KM2 = GIS_AREA − GIS_M_AREA (the non-marine part);
     RANK is the site's rank by LAND_KM2 among all eligible sites of the country (1 = largest). pick(df) -> subset
-    chooses the sites to keep from that full ranked list (e.g. compare.select_groups). LON/LAT is the centroid, used to
+    chooses the sites to keep from that full ranked list (e.g. compare.select_top). LON/LAT is the centroid, used to
     pick the UTM zone.
     """
     base = (ee.FeatureCollection(WDPA).filter(ee.Filter.eq("ISO3", iso3))

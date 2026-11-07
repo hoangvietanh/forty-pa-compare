@@ -116,6 +116,20 @@ def _overall(results, ind, sensitivity=None):
     return "<ul>" + "".join(f"<li>{x}</li>" for x in lines) + "</ul>"
 
 
+def _conclusion(text):
+    """The written conclusion (plain text, paragraphs separated by a blank line); a leading "Kết luận." is bolded."""
+    if not text:
+        return ""
+    paras = [" ".join(x.split()) for x in text.strip().split("\n\n") if x.strip()]
+    out = []
+    for i, x in enumerate(paras):
+        x = html.escape(x)
+        if i == 0 and x.startswith("Kết luận."):
+            x = "<b>Kết luận.</b>" + x[len("Kết luận."):]
+        out.append(f"<p style='font-size:16px;line-height:1.6;margin:0 0 10px'>{x}</p>")
+    return "".join(out)
+
+
 def _fci_scale(years):
     """Reading guide for FCI and ΔFCI; class names and scores come from gee.CLASSES and index.WEIGHTS."""
     y0, y1 = years[0], years[-1]
@@ -369,7 +383,7 @@ monitoring. <i>Sci Data</i> 13, 1434 (2026). <a href='https://doi.org/10.1038/s4
 
 
 def build_report(out_path, cfg, pas, areas, years, ind, results, figures, overview, transitions=None, fci=None,
-                 failed=None, embed=False, sensitivity=None):
+                 failed=None, embed=False, sensitivity=None, conclusion=None):
     """results: one dict per group of PAs, in display order, with keys key, label, n, table, rank, criteria, tests and
     figs ({"state_trend", "series", "composition": png}); figures: {SITE_ID: {"map", "change", "chart"}};
     overview: {ISO3: png}."""
@@ -391,7 +405,8 @@ def build_report(out_path, cfg, pas, areas, years, ind, results, figures, overvi
          f"<p class='sub'>Forest Typology (ForTy) V2 Beta {y0}–{y1} · WDPA · {len(pas)} khu bảo tồn ({groups_txt} mỗi "
          f"nước) · tạo ngày {pd.Timestamp.now():%d/%m/%Y %H:%M}</p><nav class='toc'>{toc}</nav>"]
 
-    p.append(f"<div class='card' id='ketluan'><h2 style='margin-top:0'>Kết luận chính</h2>{_fci_scale(years)}")
+    p.append(f"<div class='card' id='ketluan'><h2 style='margin-top:0'>Kết luận chính</h2>{_conclusion(conclusion)}"
+             f"{_fci_scale(years)}")
     for r in results:
         p.append(f"<h3 style='margin-top:16px'>{html.escape(r['label'].capitalize())} mỗi nước</h3>"
                  f"{_kpis(r['table'], years)}{_findings(r, years)}")

@@ -189,10 +189,10 @@ def _strip(ax, ind, col, countries, ci=None):
     for s in ("top", "right", "left"):
         ax.spines[s].set_visible(False)
     ax.tick_params(axis="y", length=0)
-    ax.xaxis.set_major_formatter(FuncFormatter(lambda v, _: fmt_ha(v, 0 if abs(v) >= 1 or v == 0 else 1)))
+    ax.xaxis.set_major_formatter(FuncFormatter(lambda v, _: fmt_ha(v, 0 if v == round(v) else 1 if v == round(v, 1) else 2)))
 
 
-def state_trend_figure(ind, ci, years, out_path, min_delta=1.0):
+def state_trend_figure(ind, ci, years, out_path, min_delta=1.0, label=None):
     """Left: FCI of the last year per PA (state). Right: ΔFCI per PA (trend), with the median, its bootstrap interval
     and the ±min_delta band inside which a change is not called a decline or recovery."""
     y0, y1 = years[0], years[-1]
@@ -205,9 +205,11 @@ def state_trend_figure(ind, ci, years, out_path, min_delta=1.0):
     a2.axvline(0, color=MUTED, linewidth=0.8, zorder=1)
     _strip(a2, ind, "dfci", countries, ci)
     a2.set_title(f"Xu hướng: ΔFCI {y0}→{y1} của từng khu (điểm)", fontsize=11, loc="left")
+    if label:
+        fig.suptitle(label, fontsize=12, x=0.01, ha="left")
     fig.text(0.01, 0.01, "Mỗi chấm là một khu bảo tồn. Vạch đứng = trung vị; vạch ngang dưới = khoảng tin cậy 95% "
              f"của trung vị (bootstrap). Dải xám: |ΔFCI| < {fmt_ha(min_delta, 0)} điểm.", fontsize=8.5, color=MUTED)
-    fig.tight_layout(rect=(0, 0.05, 1, 1))
+    fig.tight_layout(rect=(0, 0.05, 1, 0.95 if label else 1))
     fig.savefig(out_path, dpi=110, facecolor="white")
     plt.close(fig)
     return out_path
@@ -225,11 +227,11 @@ def _end_labels(ax, x, ys, labels, colors):
         ax.plot([x], [ys[i]], "o", color=colors[i], markersize=6, zorder=4)
 
 
-def series_figure(series, years, out_path):
+def series_figure(series, years, out_path, label="20 khu"):
     """Left: pooled FCI per country and year. Right: the same minus the first year, on a common zero."""
     countries = _countries(series)
     fig, (a1, a2) = plt.subplots(1, 2, figsize=(13, 4.6))
-    for ax, col, title, ylab in ((a1, "fci", "FCI gộp của 20 khu mỗi nước", "FCI"),
+    for ax, col, title, ylab in ((a1, "fci", f"FCI gộp ({label} mỗi nước)", "FCI"),
                                  (a2, "dfci_pooled", f"Thay đổi FCI gộp so với {years[0]}", "điểm FCI")):
         for c in countries.itertuples():
             s = series[series.ISO3 == c.ISO3].set_index("year")[col].reindex(years)
@@ -253,7 +255,7 @@ def series_figure(series, years, out_path):
     return out_path
 
 
-def composition_figure(areas, pas, years, out_path):
+def composition_figure(areas, pas, years, out_path, label="20 khu"):
     """Share of each ForTy class in the pooled area of each country's PAs, first and last year, as stacked bars."""
     countries = _countries(pas)
     t = (areas[areas.year.isin([years[0], years[-1]])].merge(pas[["SITE_ID", "ISO3"]], on="SITE_ID")
@@ -281,7 +283,7 @@ def composition_figure(areas, pas, years, out_path):
         ax.spines[s].set_visible(False)
     handles = [Patch(facecolor=k.color, edgecolor="#BDBDBD", label=k.label) for k in CLASSES.itertuples()]
     fig.legend(handles=handles, loc="lower center", ncol=4, frameon=False, fontsize=9)
-    ax.set_title("Cơ cấu loại rừng và sử dụng đất trong 20 khu của mỗi nước (% diện tích phân tích)", fontsize=11,
+    ax.set_title(f"Cơ cấu loại rừng và sử dụng đất, {label} mỗi nước (% diện tích phân tích)", fontsize=11,
                  loc="left")
     fig.subplots_adjust(left=0.12, right=0.97, top=0.9, bottom=0.27)
     fig.savefig(out_path, dpi=110, facecolor="white")
@@ -314,14 +316,18 @@ def overview_figure(country, png, extent, pas, out_path):
         while any(abs(px + dx - qx) < (w + qw) / 2 + 1 and abs(py + dy - qy) < h + 1 for qx, qy, qw in placed):
             dy -= h + 1
         placed.append((px + dx, py + dy, w))
+        medium = getattr(pa, "GROUP", "large") == "medium"
         ax.annotate(str(pa.RANK), (x, y), xytext=(dx, dy), textcoords="offset points", fontsize=8.5,
-                    fontweight="bold", color=INK, arrowprops=dict(arrowstyle="-", color="#6B6B6B", lw=0.6)
-                    if dy < -5 else None,
-                    bbox=dict(boxstyle="round,pad=0.15", fc="white", ec="#9A9A9A", lw=0.6, alpha=0.9))
+                    fontweight="normal" if medium else "bold", fontstyle="italic" if medium else "normal",
+                    color=INK, arrowprops=dict(arrowstyle="-", color="#6B6B6B", lw=0.6) if dy < -5 else None,
+                    bbox=dict(boxstyle="round,pad=0.15", fc="#E6E6E3" if medium else "white", ec="#9A9A9A", lw=0.6,
+                              alpha=0.9))
     handles = [Patch(facecolor=c, edgecolor="#333333", label=lab) for _, _, c, lab in DFCI_BINS]
     fig.legend(handles=handles, loc="lower center", ncol=5, frameon=False, fontsize=9, title="ΔFCI (điểm)",
                title_fontsize=9)
-    fig.suptitle(f"{country}: 20 khu bảo tồn lớn nhất tô màu theo ΔFCI · số = thứ hạng diện tích", fontsize=12,
+    n_med = int((pas.GROUP == "medium").sum()) if "GROUP" in pas else 0
+    note = f" (nhãn nghiêng, nền xám = {n_med} khu cỡ vừa)" if n_med else ""
+    fig.suptitle(f"{country}: {len(pas)} khu bảo tồn tô màu theo ΔFCI · số = thứ hạng diện tích{note}", fontsize=12,
                  x=0.01, y=1 - 0.12 / H, ha="left", va="top")
     fig.savefig(out_path, dpi=110, facecolor="white")
     plt.close(fig)

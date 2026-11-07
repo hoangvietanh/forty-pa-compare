@@ -93,13 +93,15 @@ def dfci_image(y0, y1, region=None):
 
 
 def select_pas(iso3="VNM", desig_eng=None, status=("Designated", "Inscribed"), desig_types=None,
-               exclude_realm=("Marine",), min_land_km2=1.0, top_n=None):
+               exclude_realm=("Marine",), min_land_km2=1.0, pick=None):
     """Protected areas of one country. Returns (ee.FeatureCollection with one feature per SITE_ID, DataFrame of
     attributes sorted by land area, largest first).
 
     WDPA stores some sites as several parcels (same SITE_ID, SITE_PID <id>_1, <id>_2 …): their areas are summed and
     their polygons dissolved, so each site is counted once. LAND_KM2 = GIS_AREA − GIS_M_AREA (the non-marine part);
-    top_n keeps the largest sites by LAND_KM2. LON/LAT is the centroid, used to pick the UTM zone.
+    RANK is the site's rank by LAND_KM2 among all eligible sites of the country (1 = largest). pick(df) -> subset
+    chooses the sites to keep from that full ranked list (e.g. compare.select_groups). LON/LAT is the centroid, used to
+    pick the UTM zone.
     """
     base = (ee.FeatureCollection(WDPA).filter(ee.Filter.eq("ISO3", iso3))
             .filter(ee.Filter.inList("STATUS", list(status))))
@@ -119,9 +121,11 @@ def select_pas(iso3="VNM", desig_eng=None, status=("Designated", "Inscribed"), d
          "GIS_AREA": "sum", "GIS_M_AREA": "sum"})
     df["PARCELS"] = df.SITE_ID.map(parcels.SITE_ID.value_counts())
     df["LAND_KM2"] = df.GIS_AREA - df.GIS_M_AREA
-    df = df[df.LAND_KM2 >= min_land_km2].sort_values("LAND_KM2", ascending=False)
-    if top_n:
-        df = df.head(top_n)
+    df = df[df.LAND_KM2 >= min_land_km2].sort_values("LAND_KM2", ascending=False).reset_index(drop=True)
+    df.insert(0, "ISO3", iso3)
+    df.insert(1, "RANK", range(1, len(df) + 1))
+    if pick is not None:
+        df = pick(df)
 
     single = df[df.PARCELS == 1].SITE_ID.tolist()
     fc = base.filter(ee.Filter.inList("SITE_ID", single)).select(["SITE_ID"])
@@ -136,9 +140,7 @@ def select_pas(iso3="VNM", desig_eng=None, status=("Designated", "Inscribed"), d
 
     cent = fc.map(_centroid).reduceColumns(ee.Reducer.toList(3), ["SITE_ID", "LON", "LAT"]).get("list").getInfo()
     cent = pd.DataFrame(cent, columns=["SITE_ID", "LON", "LAT"]).astype({"SITE_ID": int})
-    df = df.merge(cent, on="SITE_ID").sort_values("LAND_KM2", ascending=False).reset_index(drop=True)
-    df.insert(0, "ISO3", iso3)
-    df.insert(1, "RANK", range(1, len(df) + 1))
+    df = df.merge(cent, on="SITE_ID").sort_values("RANK").reset_index(drop=True)
     return fc, df
 
 

@@ -7,6 +7,8 @@ Two questions are kept apart, because they are answered by different numbers:
 - trend: how the FCI moved between the first and last year (ΔFCI, its share of the starting FCI, the share of PAs
   that declined, the net change of natural forest). This is what protection can influence.
 """
+import math
+
 import numpy as np
 import pandas as pd
 
@@ -22,6 +24,23 @@ COUNTRIES = pd.DataFrame([
     ("USA", "Mỹ", "#eb6834"),
     ("AUS", "Úc", "#1baf7a"),
 ], columns=["ISO3", "name", "color"])
+
+
+def select_groups(df, top_n=20, n_mid=10, n_groups=4):
+    """Picks the PAs of one country from the full list of eligible PAs ranked by land area (RANK 1 = largest):
+    - "large": the top_n largest;
+    - "medium": split the list into n_groups groups of equal count by area, counted from the largest, and take the
+      n_mid largest PAs of the second group, skipping any already in "large".
+    Adds GROUP and N_ELIGIBLE (number of eligible PAs in the country)."""
+    n = len(df)
+    lo, hi = math.ceil(n / n_groups), math.ceil(2 * n / n_groups)  # second group = RANK lo+1 … hi
+    large = df[df.RANK <= top_n].assign(GROUP="large")
+    medium = df[(df.RANK > max(lo, top_n)) & (df.RANK <= hi)].head(n_mid).assign(GROUP="medium")
+    return pd.concat([large, medium]).assign(N_ELIGIBLE=n, Q2_FROM=lo + 1, Q2_TO=hi)
+
+
+def group_label(key, n):
+    return f"{n} khu lớn nhất" if key == "large" else f"{n} khu cỡ vừa"
 
 
 def _class_areas(areas, years):
@@ -48,7 +67,8 @@ def pa_indicators(pas, areas, fci, transitions, years):
     changed class."""
     y0, y1 = years[0], years[-1]
     f = _fci(_class_areas(areas, [y0, y1])).unstack("year")
-    out = pas[["ISO3", "RANK", "SITE_ID", "NAME", "DESIG_ENG", "LAND_KM2"]].merge(
+    cols = [c for c in ("ISO3", "GROUP", "RANK", "SITE_ID", "NAME", "DESIG_ENG", "LAND_KM2") if c in pas]
+    out = pas[cols].merge(
         fci[["SITE_ID", f"fci_{y0}", f"fci_{y1}", "dfci", "trend", "mk_p", "verdict"]], on="SITE_ID")
     out = out.set_index("SITE_ID")
     out["dfci_rel"] = 100 * out.dfci / out[f"fci_{y0}"].where(out[f"fci_{y0}"] >= REL_MIN_FCI)

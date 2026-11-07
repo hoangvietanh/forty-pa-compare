@@ -1,5 +1,5 @@
-"""HTML report comparing countries: key findings and ranking, method, country tables and figures, overview maps,
-then one section per country with its PAs."""
+"""HTML report comparing countries: key findings and ranking per group of PAs (largest, mid-sized), method,
+country tables and figures, overview maps, then one section per country with its PAs."""
 import html
 from pathlib import Path
 
@@ -60,43 +60,57 @@ def _drops(ind):
             "dần dần; cần đối chiếu với dữ liệu cháy và thực địa trước khi kết luận nguyên nhân.")
 
 
-def _findings(table, rank, tests, years, ind):
-    """Key findings, written from the numbers."""
+def _findings(res, years):
+    """Key findings of one group of PAs, written from the numbers."""
     y0, y1 = years[0], years[-1]
+    table, rank, tests = res["table"], res["rank"], res["tests"]
     t = table.set_index("country")
     best = rank.index[0]
     best_state = rank["Điểm trạng thái"].idxmin()
     best_trend = rank["Điểm xu hướng"].idxmin()
     lines = [f"<b>Xếp hạng chung: {' &gt; '.join(html.escape(c) for c in rank.index)}.</b> "
              f"{html.escape(best)} đứng đầu theo điểm chung (trung bình của điểm trạng thái và điểm xu hướng)."]
-    lines.append(f"<b>Trạng thái {y1}</b> (mức độ tự nhiên của lớp phủ): tốt nhất là {html.escape(best_state)}, "
-                 "FCI trung vị " + ", ".join(f"{html.escape(c)} {_n(t.loc[c, f'fci_median_{y1}'])}"
-                                            for c in t.index) +
-                 ". Chỉ số này phụ thuộc mạnh vào sinh cảnh: khu sa mạc, đồng cỏ, băng tuyết có FCI thấp dù được "
-                 "bảo vệ tốt, nên nó không đo hiệu quả bảo tồn.")
+    lines.append(f"<b>Trạng thái {y1}:</b> tốt nhất là {html.escape(best_state)}, FCI trung vị "
+                 + ", ".join(f"{html.escape(c)} {_n(t.loc[c, f'fci_median_{y1}'])}" for c in t.index) + ".")
     lines.append(f"<b>Xu hướng {y0}→{y1}:</b> tốt nhất là {html.escape(best_trend)}. ΔFCI trung vị "
                  + ", ".join(f"{html.escape(c)} {_s(t.loc[c, 'dfci_median'])} điểm "
                              f"(KTC 95%: {_s(t.loc[c, 'dfci_ci_lo'])} đến {_s(t.loc[c, 'dfci_ci_hi'])})"
-                             for c in t.index) + "; số khu suy giảm rõ (|ΔFCI| ≥ 1 và Mann–Kendall p &lt; 0,05): "
+                             for c in t.index) + "; số khu suy giảm rõ: "
                  + ", ".join(f"{html.escape(c)} {int(t.loc[c, 'n_decline'])}/{int(t.loc[c, 'n'])}"
                              for c in t.index) + ".")
-    drops = _drops(ind)
-    if drops:
-        lines.append(drops)
     sig = tests[tests.p < 0.05]
     if len(sig):
         lines.append("Khác biệt ΔFCI trung vị có ý nghĩa thống kê (kiểm định hoán vị, p &lt; 0,05) giữa: "
                      + "; ".join(f"{html.escape(r.a)} và {html.escape(r.b)} (chênh {_s(r['diff'])} điểm, "
                                  f"p = {fmt_ha(r.p, 3)})" for _, r in sig.iterrows()) + ".")
     else:
-        lines.append("Không cặp nước nào khác nhau có ý nghĩa thống kê về ΔFCI trung vị (kiểm định hoán vị, "
-                     "p ≥ 0,05): với 20 khu mỗi nước, khác biệt về xu hướng nhỏ hơn mức có thể khẳng định.")
+        lines.append(f"Không cặp nước nào khác nhau có ý nghĩa thống kê về ΔFCI trung vị (kiểm định hoán vị, "
+                     f"p ≥ 0,05): với {res['n']} khu mỗi nước, khác biệt về xu hướng nhỏ hơn mức có thể khẳng định.")
+    return "<ul>" + "".join(f"<li>{x}</li>" for x in lines) + "</ul>"
+
+
+def _overall(results, ind):
+    """Findings that span the groups: whether the rankings agree, the PAs with a large fall, the caveat."""
+    lines = []
+    if len(results) > 1:
+        orders = [" &gt; ".join(html.escape(c) for c in r["rank"].index) for r in results]
+        if len(set(orders)) == 1:
+            lines.append(f"Hai nhóm khu cho cùng một thứ hạng chung ({orders[0]}): kết luận không đổi khi đổi cỡ khu.")
+        else:
+            lines.append("Thứ hạng chung khác nhau giữa hai nhóm khu ("
+                         + "; ".join(f"{html.escape(r['label'])}: {o}" for r, o in zip(results, orders))
+                         + "), nên kết luận phụ thuộc vào cỡ khu được chọn.")
+    lines.append("Trạng thái FCI phụ thuộc mạnh vào sinh cảnh: khu sa mạc, đồng cỏ, băng tuyết có FCI thấp dù được bảo "
+                 "vệ tốt, nên nó không đo hiệu quả bảo tồn; xu hướng (ΔFCI) mới là phần quản lý có thể tác động.")
+    drops = _drops(ind)
+    if drops:
+        lines.append(drops)
     lines.append("Mọi thay đổi đều nhỏ so với sai số phân loại có thể có của dữ liệu thử nghiệm ForTy V2 Beta, nên "
                  "thứ hạng là kết quả sàng lọc, không phải đánh giá hiệu quả quản lý.")
     return "<ul>" + "".join(f"<li>{x}</li>" for x in lines) + "</ul>"
 
 
-def _fci_scale(years, n_per_country):
+def _fci_scale(years):
     """Reading guide for FCI and ΔFCI; class names and scores come from gee.CLASSES and index.WEIGHTS."""
     y0, y1 = years[0], years[-1]
     scores = ", ".join(f"{html.escape(c.label[0].lower() + c.label[1:].replace(' – ', ' '))} "
@@ -108,7 +122,7 @@ def _fci_scale(years, n_per_country):
             f"(điểm): âm là rừng bị mất hoặc suy thoái, dương là rừng tăng hoặc phục hồi. Một khu chỉ được kết luận suy "
             f"giảm hoặc phục hồi khi |ΔFCI| ≥ {fmt_ha(MIN_DELTA, 0)} điểm và xu hướng {len(years)} năm có ý nghĩa thống "
             f"kê (Mann–Kendall p &lt; {fmt_ha(MAX_P, 2)}); các khu còn lại xếp là ổn định / không rõ. Trong mỗi ô bên "
-            f"dưới, số lớn là FCI {y1} trung vị của {n_per_country} khu, số trong ngoặc là ΔFCI trung vị.</p>")
+            f"dưới, số lớn là FCI {y1} trung vị các khu của nhóm, số trong ngoặc là ΔFCI trung vị.</p>")
 
 
 def _kpis(table, years):
@@ -180,7 +194,8 @@ def _pa_table(ind, years):
     for r in ind.sort_values("RANK").itertuples():
         d = r._asdict()
         cls = "down" if r.verdict == DECLINE else "up" if r.verdict == RECOVERY else ""
-        body += (f"<tr><td>{r.RANK}</td><td><a href='#pa{r.SITE_ID}'>{html.escape(r.NAME)}</a></td>"
+        grp = "Lớn nhất" if getattr(r, "GROUP", "large") == "large" else "Cỡ vừa"
+        body += (f"<tr><td>{r.RANK}</td><td><a href='#pa{r.SITE_ID}'>{html.escape(r.NAME)}</a></td><td>{grp}</td>"
                  f"<td>{html.escape(r.DESIG_ENG)}</td><td class='n'>{fmt_ha(r.LAND_KM2 * 100)}</td>"
                  f"<td class='n'>{_n(d[f'fci_{y0}'])}</td><td class='n'>{_n(d[f'fci_{y1}'])}</td>"
                  f"<td class='n'><span class='{_cls(r.dfci)}'>{_s(r.dfci)}</span></td>"
@@ -189,7 +204,7 @@ def _pa_table(ind, years):
                  f"<td class='n'>{_n(d[f'forest_pct_{y1}'], 0)}%</td>"
                  f"<td class='n'>{_pct(r.natural_change_pct)}</td><td class='n'>{_n(r.changed_pct)}%</td>"
                  f"<td class='n'>{int(r.scale_m)}</td></tr>")
-    return (f"<div class='card scroll'><table><tr><th>#</th><th>Khu bảo tồn</th><th>Loại</th>"
+    return (f"<div class='card scroll'><table><tr><th>#</th><th>Khu bảo tồn</th><th>Nhóm</th><th>Loại</th>"
             f"<th class='n'>Diện tích đất (ha)</th><th class='n'>FCI {y0}</th><th class='n'>FCI {y1}</th>"
             f"<th class='n'>ΔFCI</th><th class='n'>ΔFCI/FCI {y0}</th><th class='n'>p MK</th><th>Kết luận</th>"
             f"<th class='n'>Rừng &amp; cây {y1}</th><th class='n'>Rừng tự nhiên</th><th class='n'>Đổi lớp</th>"
@@ -229,7 +244,25 @@ def _pa_section(i, pa, areas, years, figures, fci_row, transitions, embed, base)
     return "".join(p)
 
 
-def _method(cfg, years, n_per_country, same_sign):
+def _selection_table(pas):
+    """Per country: number of eligible PAs, the ranks of the second area group and of the PAs picked in each group."""
+    rows = ""
+    for c in COUNTRIES.itertuples():
+        d = pas[pas.ISO3 == c.ISO3]
+        if d.empty:
+            continue
+        lg, md = d[d.GROUP == "large"], d[d.GROUP == "medium"]
+        rows += (f"<tr><td>{_dot(c.ISO3)}</td><td class='n'>{fmt_ha(int(d.N_ELIGIBLE.iloc[0]))}</td>"
+                 f"<td class='n'>1–{int(lg.RANK.max())} ({fmt_ha(lg.LAND_KM2.min(), 0)}–{fmt_ha(lg.LAND_KM2.max(), 0)} km²)</td>"
+                 f"<td class='n'>{int(d.Q2_FROM.iloc[0])}–{int(d.Q2_TO.iloc[0])}</td>"
+                 f"<td class='n'>{int(md.RANK.min())}–{int(md.RANK.max())} ({fmt_ha(md.LAND_KM2.min(), 0)}–"
+                 f"{fmt_ha(md.LAND_KM2.max(), 0)} km²)</td></tr>")
+    return (f"<div class='scroll'><table style='max-width:900px'><tr><th>Nước</th><th class='n'>Số khu đủ điều kiện</th>"
+            f"<th class='n'>Khu lớn nhất (hạng, diện tích)</th><th class='n'>Nhóm 2 (hạng)</th>"
+            f"<th class='n'>Khu cỡ vừa (hạng, diện tích)</th></tr>{rows}</table></div>")
+
+
+def _method(cfg, years, pas, same_sign):
     y0, y1 = years[0], years[-1]
     lab = CLASSES.set_index("value").label
     weights = "".join(f"<tr><td>{html.escape(lab[v])}</td><td class='n'>{fmt_ha(w, 1)}</td></tr>"
@@ -246,10 +279,20 @@ Nam, Mỹ hay Úc.</p>
 Designated/Inscribed, bỏ khu thuần biển, và chỉ giữ các khu có
 <code>DESIG_ENG</code> thuộc {desig}:</p>
 <pre style='background:#f6f6f4;padding:8px 12px;border-radius:6px;overflow-x:auto'>fc = fc.filter(ee.Filter.inList("DESIG_ENG", {list(cfg["DESIG_ENG"])}))</pre>
-<p>WDPA lưu một số khu thành nhiều mảnh (cùng <code>SITE_ID</code>); các mảnh được gộp thành một khu. Sau khi lọc, mỗi
-nước giữ <b>{n_per_country} khu có diện tích đất liền lớn nhất</b> (<code>GIS_AREA − GIS_M_AREA</code>). Ở Mỹ chỉ có
-National Park và Nature Reserve; “Cultural and Historical Site” chỉ có ở Việt Nam. Các khu lớn nhất của Mỹ và Úc nằm nhiều
-ở Alaska, sa mạc và vùng khô hạn, còn của Việt Nam là rừng nhiệt đới, nên ba nhóm khu khác nhau rất nhiều về sinh cảnh.</p>
+<p>WDPA lưu một số khu thành nhiều mảnh (cùng <code>SITE_ID</code>); các mảnh được gộp thành một khu. Sau khi lọc, các
+khu của mỗi nước được xếp từ lớn đến nhỏ theo diện tích đất liền (<code>GIS_AREA − GIS_M_AREA</code>); thứ hạng này là
+cột “#” trong bảng từng nước. Từ danh sách đó chọn hai nhóm:</p>
+<ul>
+<li><b>{cfg["TOP_N"]} khu lớn nhất:</b> {cfg["TOP_N"]} khu đứng đầu danh sách.</li>
+<li><b>{cfg["N_MID"]} khu cỡ vừa:</b> chia danh sách thành {cfg["N_QUANTILES"]} nhóm có số khu bằng nhau theo diện tích
+(đếm từ khu lớn nhất), rồi lấy {cfg["N_MID"]} khu lớn nhất của nhóm thứ 2. Khu nào đã thuộc nhóm lớn nhất thì bỏ qua và lấy
+khu kế tiếp (gặp ở Mỹ, nơi nhóm 2 bắt đầu từ hạng 17).</li>
+</ul>
+{_selection_table(pas)}
+<p>Ở Mỹ chỉ có National Park và Nature Reserve; “Cultural and Historical Site” chỉ có ở Việt Nam. Các khu lớn nhất của Mỹ
+và Úc nằm nhiều ở Alaska, sa mạc và vùng khô hạn, còn của Việt Nam là rừng nhiệt đới, nên các nhóm khu khác nhau rất nhiều
+về sinh cảnh. “Cỡ vừa” là tương đối theo từng nước: Úc có rất nhiều khu nhỏ nên khu cỡ vừa của Úc nhỏ hơn hẳn của Mỹ;
+ở khu nhỏ, pixel nằm ở mép ranh giới chiếm tỷ lệ lớn hơn nên FCI nhiễu hơn.</p>
 <h3 style='margin-top:18px'>Diện tích và chỉ số FCI của từng khu</h3>
 <p>Diện tích từng lớp mỗi năm tính bằng <code>frequencyHistogram</code> trong hệ UTM của khu ở 10 m (1 pixel = 100 m²).
 Các khu của Mỹ và Úc lớn gấp 5–30 lần khu của Việt Nam. Để mỗi request nằm trong giới hạn của GEE, khu nào có hơn
@@ -279,7 +322,8 @@ vệ: khu sa mạc, đồng cỏ hay băng tuyết có FCI thấp vì phần l�
 có FCI {y0} ≥ {fmt_ha(REL_MIN_FCI, 0)}, vì ở khu sa mạc FCI gần 0 nên vài phần trăm điểm thay đổi đã thành hàng chục %),
 tỷ lệ khu có ΔFCI âm và thay đổi ròng của diện tích rừng tự nhiên. Đây là phần quản lý bảo tồn có thể tác động.</li>
 </ul>
-<p>Mỗi chỉ tiêu được tính theo hai cách: <b>gộp</b> (coi 20 khu của một nước là một vùng, nên khu lớn có trọng số lớn) và
+<p>Hai nhóm khu được so sánh riêng. Trong mỗi nhóm, mỗi chỉ tiêu được tính theo hai cách: <b>gộp</b> (coi các khu
+của một nước trong nhóm là một vùng, nên khu lớn có trọng số lớn) và
 <b>trung vị các khu</b> (mỗi khu một phiếu, ít bị một khu rất lớn chi phối). Khoảng tin cậy 95% của ΔFCI trung vị tính bằng
 bootstrap (10.000 lần lấy mẫu lại); khác biệt giữa hai nước được kiểm định bằng phép hoán vị (20.000 lần) trên ΔFCI trung
 vị. <b>Xếp hạng:</b> mỗi nước được xếp hạng 1–3 theo từng chỉ tiêu (1 = tốt nhất); điểm trạng thái và điểm xu hướng là
@@ -288,7 +332,8 @@ tiêu trạng thái. Điểm càng thấp càng tốt.</p>
 <p class='note'><b>Tính bất định:</b> ForTy V2 Beta là dữ liệu thử nghiệm; thứ tự band và định nghĩa lớp có thể đổi. Độ
 chính xác 90%/95% là của bản 2020, chưa kiểm định cho chuỗi thời gian hay cho từng nước. ΔFCI của phần lớn các khu nhỏ
 hơn 1 điểm, tức là cùng cỡ với nhiễu phân loại giữa các năm. Trọng số FCI là giả định; thứ hạng và chiều thay đổi đáng
-tin hơn giá trị tuyệt đối. Mỗi nước chỉ có 20 khu lớn nhất, không đại diện cho toàn bộ hệ thống khu bảo tồn. Ba nhóm khu
+tin hơn giá trị tuyệt đối. Mỗi nước chỉ có {cfg["TOP_N"]} khu lớn nhất và {cfg["N_MID"]} khu cỡ vừa, không đại diện cho
+toàn bộ hệ thống khu bảo tồn. Các nhóm khu
 khác nhau về sinh cảnh, quy mô và áp lực sử dụng đất, nên so sánh không phải là đánh giá hiệu quả quản lý của mỗi nước.</p>
 <p><b>Tài liệu tham khảo</b></p>
 <ul>
@@ -302,9 +347,10 @@ monitoring. <i>Sci Data</i> 13, 1434 (2026). <a href='https://doi.org/10.1038/s4
 </ul></div>"""
 
 
-def build_report(out_path, cfg, pas, areas, years, ind, table, rank, groups, tests, figures, country_figs,
-                 overview, transitions=None, fci=None, failed=None, embed=False):
-    """figures: {SITE_ID: {"map", "change", "chart"}}; country_figs: {"state_trend", "series", "composition"};
+def build_report(out_path, cfg, pas, areas, years, ind, results, figures, overview, transitions=None, fci=None,
+                 failed=None, embed=False):
+    """results: one dict per group of PAs, in display order, with keys key, label, n, table, rank, criteria, tests and
+    figs ({"state_trend", "series", "composition": png}); figures: {SITE_ID: {"map", "change", "chart"}};
     overview: {ISO3: png}."""
     out_path = Path(out_path)
     base = out_path.parent
@@ -313,6 +359,7 @@ def build_report(out_path, cfg, pas, areas, years, ind, table, rank, groups, tes
     same_sign = 100 * (np.sign(fci.dfci) == np.sign(fci.trend)).mean() if fci is not None else float("nan")
     iso = [c for c in COUNTRIES.ISO3 if c in set(pas.ISO3)]
     name = COUNTRIES.set_index("ISO3").name
+    groups_txt = " và ".join(r["label"] for r in results)
     toc = "".join(f"<a href='#{k}'>{v}</a>" for k, v in [("ketluan", "Kết luận"), ("sosanh", "So sánh"),
                                                           ("bando", "Bản đồ so sánh"), ("phuongphap", "Phương pháp")])
     toc += "".join(f"<a href='#nuoc{c}'>{html.escape(name[c])}</a>" for c in iso)
@@ -320,33 +367,39 @@ def build_report(out_path, cfg, pas, areas, years, ind, table, rank, groups, tes
          f"<meta name='viewport' content='width=device-width,initial-scale=1'><title>{html.escape(title)}</title>"
          f"<style>{CSS}{EXTRA_CSS}</style></head><body><main>",
          f"<h1>{html.escape(title)}</h1>",
-         f"<p class='sub'>Forest Typology (ForTy) V2 Beta {y0}–{y1} · WDPA · {len(pas)} khu bảo tồn ({len(pas) // max(len(iso), 1)} khu lớn "
-         f"nhất mỗi nước) · tạo ngày {pd.Timestamp.now():%d/%m/%Y %H:%M}</p><nav class='toc'>{toc}</nav>"]
+         f"<p class='sub'>Forest Typology (ForTy) V2 Beta {y0}–{y1} · WDPA · {len(pas)} khu bảo tồn ({groups_txt} mỗi "
+         f"nước) · tạo ngày {pd.Timestamp.now():%d/%m/%Y %H:%M}</p><nav class='toc'>{toc}</nav>"]
 
-    p.append(f"<div class='card' id='ketluan'><h2 style='margin-top:0'>Kết luận chính</h2>{_fci_scale(years, len(pas) // max(len(iso), 1))}"
-             f"{_kpis(table, years)}{_findings(table, rank, tests, years, ind)}</div>")
+    p.append(f"<div class='card' id='ketluan'><h2 style='margin-top:0'>Kết luận chính</h2>{_fci_scale(years)}")
+    for r in results:
+        p.append(f"<h3 style='margin-top:16px'>{html.escape(r['label'].capitalize())} mỗi nước</h3>"
+                 f"{_kpis(r['table'], years)}{_findings(r, years)}")
+    p.append(f"<h3 style='margin-top:16px'>Chung cho hai nhóm</h3>{_overall(results, ind)}</div>")
 
     p.append(f"<h2 id='sosanh'>So sánh giữa các nước</h2>"
-             f"<p class='meta'>“Gộp” = coi 20 khu của một nước là một vùng (khu lớn nặng ký hơn). “Trung vị” = mỗi khu "
-             f"một phiếu. KTC = khoảng tin cậy bootstrap.</p>{_country_table(table, years)}")
-    p.append("<h3>Xếp hạng theo từng chỉ tiêu (1 = tốt nhất)</h3>" + _rank_table(rank, groups))
-    p.append("<h3>Kiểm định khác biệt ΔFCI giữa các nước</h3>" + _tests_table(tests))
-    for k, alt in (("state_trend", "Trạng thái và xu hướng FCI từng khu theo nước"),
-                   ("series", "FCI gộp theo năm của mỗi nước"),
-                   ("composition", "Cơ cấu loại rừng của mỗi nước")):
-        if country_figs.get(k):
-            p.append("<div class='card'>" + _img(country_figs[k], embed, base, alt) + "</div>")
+             f"<p class='meta'>Mỗi nhóm khu được so sánh riêng. “Gộp” = coi các khu của một nước trong nhóm là một vùng "
+             f"(khu lớn nặng ký hơn). “Trung vị” = mỗi khu một phiếu. KTC = khoảng tin cậy bootstrap.</p>")
+    for r in results:
+        p.append(f"<h3 id='sosanh_{r['key']}' style='margin-top:28px;font-size:19px'>{html.escape(r['label'].capitalize())} "
+                 f"mỗi nước</h3>{_country_table(r['table'], years)}")
+        p.append("<h3>Xếp hạng theo từng chỉ tiêu (1 = tốt nhất)</h3>" + _rank_table(r["rank"], r["criteria"]))
+        p.append("<h3>Kiểm định khác biệt ΔFCI giữa các nước</h3>" + _tests_table(r["tests"]))
+        for k, alt in (("state_trend", "Trạng thái và xu hướng FCI từng khu theo nước"),
+                       ("series", "FCI gộp theo năm của mỗi nước"),
+                       ("composition", "Cơ cấu loại rừng của mỗi nước")):
+            if r["figs"].get(k):
+                p.append("<div class='card'>" + _img(r["figs"][k], embed, base, f"{alt} ({r['label']})") + "</div>")
 
     p.append("<h2 id='bando'>Bản đồ so sánh</h2><p class='meta'>Mỗi khu tô màu theo ΔFCI "
-             f"{y0}→{y1}: đỏ là giảm, xanh là tăng, xám là gần như không đổi. Số bên cạnh là thứ hạng diện tích của khu "
-             "trong nước đó (khớp với cột # trong bảng từng nước). Bản đồ loại rừng và bản đồ thay đổi chi tiết của "
-             "từng khu nằm ở mục của mỗi nước.</p>")
+             f"{y0}→{y1}: đỏ là giảm, xanh là tăng, vàng nhạt là gần như không đổi. Số bên cạnh là thứ hạng diện tích của "
+             "khu trong nước đó (khớp với cột # trong bảng từng nước); nhãn nghiêng trên nền xám là khu cỡ vừa. Bản đồ "
+             "loại rừng và bản đồ ΔFCI chi tiết của từng khu nằm ở mục của mỗi nước.</p>")
     for c in iso:
         if overview.get(c):
             p.append("<div class='card'>" + _img(overview[c], embed, base, f"Bản đồ ΔFCI các khu của {name[c]}")
                      + "</div>")
 
-    p.append(_method(cfg, years, len(pas) // max(len(iso), 1), same_sign))
+    p.append(_method(cfg, years, pas, same_sign))
 
     if failed:
         p.append("<h2>Khu chưa tính được</h2><div class='card'><ul>" + "".join(

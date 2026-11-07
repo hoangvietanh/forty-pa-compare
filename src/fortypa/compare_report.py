@@ -96,17 +96,19 @@ def _findings(table, rank, tests, years, ind):
     return "<ul>" + "".join(f"<li>{x}</li>" for x in lines) + "</ul>"
 
 
-def _fci_scale(years):
-    """One-line reading guide for FCI and ΔFCI, with the weights taken from index.WEIGHTS."""
+def _fci_scale(years, n_per_country):
+    """Reading guide for FCI and ΔFCI; class names and scores come from gee.CLASSES and index.WEIGHTS."""
     y0, y1 = years[0], years[-1]
-    pts = lambda v: fmt_ha(100 * WEIGHTS[v], 0)
-    return (f"<p class='meta' style='font-size:14px;margin:0 0 4px'><b>FCI</b> (chỉ số tình trạng rừng) cho biết lớp phủ "
-            f"trong khu tự nhiên đến đâu, thang 0–100: 100 = toàn khu là rừng nguyên sinh trưởng thành; nguyên sinh đang "
-            f"phục hồi tính {pts(7)}, tái sinh tự nhiên {pts(2)}, rừng trồng {pts(3)}, rừng trồng thâm canh {pts(4)}, cây "
-            f"công nghiệp {pts(5)}, đất không có rừng 0. FCI của khu là trung bình các mức này theo diện tích. "
-            f"<b>ΔFCI</b> = FCI {y1} − FCI {y0} (điểm): âm là mất hoặc suy thoái rừng, dương là phục hồi; "
-            f"|ΔFCI| dưới {fmt_ha(MIN_DELTA, 0)} điểm coi như ổn định. Số lớn là FCI {y1} trung vị các khu, số trong "
-            f"ngoặc là ΔFCI trung vị.</p>")
+    scores = ", ".join(f"{html.escape(c.label[0].lower() + c.label[1:].replace(' – ', ' '))} "
+                       f"{fmt_ha(100 * WEIGHTS[c.value], 0)}" for c in CLASSES.itertuples())
+    return (f"<p class='meta' style='font-size:14px;margin:0 0 4px'><b>FCI</b> (chỉ số tình trạng rừng) đo mức độ tự "
+            f"nhiên của lớp phủ trong khu, thang 0–100. Mỗi pixel nhận điểm theo lớp của nó trong bộ dữ liệu Forest "
+            f"Typology (ForTy) V2 Beta: {scores}. FCI của khu là điểm trung bình của mọi pixel trong khu: bằng 100 khi "
+            f"toàn khu là rừng nguyên sinh trưởng thành, bằng 0 khi khu không có rừng. <b>ΔFCI</b> = FCI {y1} − FCI {y0} "
+            f"(điểm): âm là rừng bị mất hoặc suy thoái, dương là rừng tăng hoặc phục hồi. Một khu chỉ được kết luận suy "
+            f"giảm hoặc phục hồi khi |ΔFCI| ≥ {fmt_ha(MIN_DELTA, 0)} điểm và xu hướng {len(years)} năm có ý nghĩa thống "
+            f"kê (Mann–Kendall p &lt; {fmt_ha(MAX_P, 2)}); các khu còn lại xếp là ổn định / không rõ. Trong mỗi ô bên "
+            f"dưới, số lớn là FCI {y1} trung vị của {n_per_country} khu, số trong ngoặc là ΔFCI trung vị.</p>")
 
 
 def _kpis(table, years):
@@ -235,7 +237,7 @@ def _method(cfg, years, n_per_country, same_sign):
     desig = ", ".join(f"“{html.escape(d)}”" for d in cfg["DESIG_ENG"])
     return f"""<div class='card' id='phuongphap'><h2 style='margin-top:0'>Dữ liệu và phương pháp</h2>
 <h3>Dữ liệu</h3>
-<p><b>ForTy V2 Beta</b> (<code>projects/nature-trace/assets/forest_typology/v2_beta/&lt;năm&gt;</code>, Google DeepMind,
+<p><b>Forest Typology (ForTy) V2 Beta</b> (<code>projects/nature-trace/assets/forest_typology/v2_beta/&lt;năm&gt;</code>, Google DeepMind,
 Google Research, WRI, IIASA): bản đồ loại rừng toàn cầu 10 m theo năm {y0}–{y1}, 7 band xác suất; lớp của mỗi pixel là
 band có xác suất cao nhất. Độ chính xác công bố (90% về loại rừng, 95% về rừng/không rừng) là của bản đồ năm 2020; chuỗi
 thời gian V2 Beta là bản thử nghiệm, chưa được kiểm định riêng cho biến động theo năm, cũng chưa kiểm định riêng cho Việt
@@ -318,10 +320,10 @@ def build_report(out_path, cfg, pas, areas, years, ind, table, rank, groups, tes
          f"<meta name='viewport' content='width=device-width,initial-scale=1'><title>{html.escape(title)}</title>"
          f"<style>{CSS}{EXTRA_CSS}</style></head><body><main>",
          f"<h1>{html.escape(title)}</h1>",
-         f"<p class='sub'>ForTy V2 Beta {y0}–{y1} · WDPA · {len(pas)} khu bảo tồn ({len(pas) // max(len(iso), 1)} khu lớn "
+         f"<p class='sub'>Forest Typology (ForTy) V2 Beta {y0}–{y1} · WDPA · {len(pas)} khu bảo tồn ({len(pas) // max(len(iso), 1)} khu lớn "
          f"nhất mỗi nước) · tạo ngày {pd.Timestamp.now():%d/%m/%Y %H:%M}</p><nav class='toc'>{toc}</nav>"]
 
-    p.append(f"<div class='card' id='ketluan'><h2 style='margin-top:0'>Kết luận chính</h2>{_fci_scale(years)}"
+    p.append(f"<div class='card' id='ketluan'><h2 style='margin-top:0'>Kết luận chính</h2>{_fci_scale(years, len(pas) // max(len(iso), 1))}"
              f"{_kpis(table, years)}{_findings(table, rank, tests, years, ind)}</div>")
 
     p.append(f"<h2 id='sosanh'>So sánh giữa các nước</h2>"

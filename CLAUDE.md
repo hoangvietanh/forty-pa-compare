@@ -35,6 +35,7 @@ Biến động loại rừng 2017–2025 trong 156 khu bảo tồn Việt Nam, t
 - Báo cáo nêu rõ tính bất định: ForTy V2 Beta là dữ liệu thử nghiệm, độ chính xác công bố (90%/95%) là của bản 2020, chưa kiểm định cho chuỗi thời gian hay cho Việt Nam.
 
 ## So sánh 3 nước (dự án này)
+- Repo riêng `hoangvietanh/forty-pa-compare`, Pages từ `main` `/docs`: https://hoangvietanh.github.io/forty-pa-compare/. Không push vào `forty-pa-vietnam` (sẽ đè trang VN).
 - Notebook `notebooks/forty_compare_countries.ipynb` → hai bản: `docs/index.html` + `docs/img/` (ảnh riêng, cho GitHub Pages; mở riêng file html thì không thấy ảnh) và `outputs/bao_cao_FCI_3_nuoc.html` (một file, ảnh nhúng base64, ~15 MB, để gửi/mở ở bất cứ đâu). Module mới: `compare.py` (chỉ tiêu, bootstrap, hoán vị, xếp hạng), `compare_report.py` (HTML); `charts.py` có thêm hình so sánh và bản đồ ΔFCI.
 - Chọn khu: `gee.select_pas(iso3, desig_eng=[Nature Reserve, National Park, Cultural and Historical Site], top_n=20)`, xếp theo `LAND_KM2`. **WDPA Úc có khu nhiều mảnh cùng `SITE_ID`** (`SITE_PID` `<id>_1`, `_2`): phải gộp, nếu không `pa_feature().first()` chỉ lấy một mảnh.
 - Khu Mỹ/Úc rộng tới 36.000 km²: một request 10 m chạy >20 phút. `MAX_PIXELS` (2e7) cho khu lớn bắt đầu ở 20/30/60 m (30 m cho 36 triệu pixel ≈ 9 phút). Bản đồ thay đổi của khu > 3.000 km² tính từ pixel 30 m.

@@ -23,8 +23,8 @@ from fortypa import charts, compare, compare13_report, gee, index, screen  # noq
 OUT = ROOT / "outputs"
 RES = OUT / "so_sanh_13"
 FIG = RES / "hinh"
-# Đánh giá tổng hợp viết tay: số liệu trong đó KHÔNG tự cập nhật; đổi dữ liệu thì phải viết lại cho khớp.
-NARRATIVE = ROOT / "scripts" / "danh_gia_13_nuoc.md"
+# Ba bài viết (tab Tóm tắt, Chi tiết, Bài báo). Số liệu trong bài luôn viết bằng {{khóa}}, lấy từ compare13_report.facts.
+ARTICLES = ROOT / "scripts" / "bai_viet"
 
 
 def load_cache(sub, key, site_ids, cols):
@@ -52,7 +52,9 @@ def readable_names(pas):
     return [n if _latin(n) or s not in eng else eng[s] for s, n in zip(pas.SITE_ID, pas.NAME)]
 
 
-def main():
+def inputs():
+    """Everything build_report needs: indicators recomputed from the caches, figures drawn, overview maps fetched
+    from GEE."""
     FIG.mkdir(parents=True, exist_ok=True)
     pas = pd.concat([pd.read_csv(RES / f"khu_{i}.csv", encoding="utf-8-sig") for i in compare.COUNTRIES.ISO3],
                     ignore_index=True)
@@ -75,6 +77,9 @@ def main():
     table.to_csv(RES / "so_sanh_nuoc.csv", index=False, encoding="utf-8-sig")
     rank.to_csv(RES / "xep_hang_nuoc.csv", encoding="utf-8-sig")
     tests.to_csv(RES / "kiem_dinh_tung_cap.csv", index=False, encoding="utf-8-sig")
+    # the raw records of the data paper (tab Bài báo, Data Records): class areas and class transitions per PA
+    areas.to_csv(RES / "dien_tich_lop_tung_khu.csv", index=False, encoding="utf-8-sig")
+    trans.to_csv(RES / "chuyen_doi_lop_tung_khu.csv", index=False, encoding="utf-8-sig")
     print("Đã tính lại chỉ tiêu", flush=True)
 
     ci = {r.ISO3: (r.dfci_ci_lo, r.dfci_ci_hi) for r in table.itertuples()}
@@ -102,9 +107,13 @@ def main():
                                                FIG / f"ban_do_dFCI_{iso}.png", labels=False)
         print(f"  bản đồ {iso}", flush=True)
 
-    kw = dict(pas=pas, ind=ind, table=table, rank=rank, groups=groups, tests=tests, years=YEARS, figs=figs,
-              overview=overview, n_points=N_POINTS, point_min_km2=POINT_MIN_KM2,
-              narrative=NARRATIVE.read_text(encoding="utf-8") if NARRATIVE.exists() else None)
+    return dict(pas=pas, ind=ind, table=table, rank=rank, groups=groups, tests=tests, series=series, trans=trans,
+                areas=areas, years=YEARS, figs=figs, overview=overview, n_points=N_POINTS,
+                point_min_km2=POINT_MIN_KM2)
+
+
+def build(kw):
+    kw = dict(kw, articles={k: (ARTICLES / f"{k}.md").read_text(encoding="utf-8") for k in compare13_report.TABS})
     a = compare13_report.build_report(OUT / "bao_cao_FCI_13_nuoc.html", embed=True, **kw)
     b = compare13_report.build_report(ROOT / "docs" / "13-nuoc" / "index.html", embed=False, **kw)
     print(a, f"{a.stat().st_size / 1e6:.1f} MB")
@@ -112,4 +121,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    build(inputs())

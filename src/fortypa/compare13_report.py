@@ -1,10 +1,14 @@
-"""HTML report of the 13-country comparison (KHUNG_NGHIEN_CUU.md): key findings, comparison figures and tables,
-overview maps, method, then per country its most declining PAs and the full table of analysed PAs.
+"""HTML report of the 13-country comparison (KHUNG_NGHIEN_CUU.md) in three tabs, one article each (summary for the
+public, detailed report, data paper), written in markdown under scripts/bai_viet/. Every number an article quotes is a
+{{KEY}} filled from facts(); figures and tables are blocks the articles place.
 
 Unlike compare_report (top 30 PAs of 3 countries, a section with maps per PA), countries here are represented by
 all their eligible PAs or a stratified sample of them, every country figure is weighted (compare.W), and there are no
 per-PA maps."""
 import html
+import json
+import re
+import unicodedata
 from pathlib import Path
 
 import pandas as pd
@@ -12,12 +16,12 @@ import pandas as pd
 from .charts import fmt_ha
 from .compare import CENSUS_MAX, COUNTRIES, REL_MIN_FCI, SAMPLE_N, SIZE_BINS
 from .compare_report import EXTRA_CSS, _cls, _dot, _n, _pct, _s
-from .gee import CLASSES
+from .gee import CHANGES, CLASSES
 from .index import DECLINE, MAX_P, MIN_DELTA, RECOVERY, WEIGHTS
 from .report import CSS, _img
 from .screen import MIN_BIOME, MIN_FOREST
 
-NOTABLE = 0.25  # |median ΔFCI| from which a country's trend is called out in the findings
+NOTABLE = 0.25  # |median ΔFCI| from which a country counts as clearly declining (facts tong.n_on_dinh / n_suy_giam)
 
 
 def _name(iso):
@@ -27,54 +31,6 @@ def _name(iso):
 def _join(items):
     items = list(items)
     return items[0] if len(items) == 1 else ", ".join(items[:-1]) + " và " + items[-1]
-
-
-def _findings(table, tests, years):
-    y0, y1 = years[0], years[-1]
-    t = table.set_index("ISO3")
-    fm = t[f"fci_median_{y1}"].sort_values(ascending=False)
-    ff = t[f"fci_forest_pooled_{y1}"].sort_values(ascending=False)
-    lines = [
-        f"<b>Trạng thái {y1}.</b> FCI trung vị các khu cao nhất ở {_join(f'{html.escape(_name(i))} ({_n(v)})' for i, v in fm.head(3).items())}, "
-        f"thấp nhất ở {_join(f'{html.escape(_name(i))} ({_n(v)})' for i, v in fm.tail(3).items())}. "
-        f"Tính riêng phần có rừng, rừng tự nhiên nhất ở {_join(f'{html.escape(_name(i))} ({_n(v)})' for i, v in ff.head(3).items())}, "
-        f"kém tự nhiên nhất ở {_join(f'{html.escape(_name(i))} ({_n(v)})' for i, v in ff.tail(3).items())}, nơi rừng tái sinh, "
-        "rừng trồng hoặc cây công nghiệp chiếm phần đáng kể. FCI chung phụ thuộc nhiều vào tỷ lệ đất không phải rừng trong "
-        "khu, nên phản ánh sinh cảnh nhiều hơn hiệu quả bảo vệ."]
-    bad = t[t.dfci_median <= -NOTABLE].sort_values("dfci_median")
-    rest = t[t.dfci_median > -NOTABLE]
-    if len(bad):
-        lines.append(
-            f"<b>Suy giảm rõ {y0}→{y1}.</b> "
-            + "; ".join(f"{html.escape(_name(i))}: ΔFCI trung vị {_s(r.dfci_median)} điểm (KTC 95% {_s(r.dfci_ci_lo)} "
-                        f"đến {_s(r.dfci_ci_hi)}), {_n(r.pct_negative, 0)}% số khu giảm, {r.n_decline}/{r.n} khu suy "
-                        f"giảm rõ, rừng tự nhiên thay đổi ròng {_pct(r.natural_change_pct, 1)}"
-                        for i, r in bad.iterrows()) + ".")
-    if len(rest):
-        lines.append(
-            f"<b>Các nước còn lại gần như ổn định:</b> ΔFCI trung vị từ {_s(rest.dfci_median.min())} đến "
-            f"{_s(rest.dfci_median.max())} điểm ({_join(html.escape(_name(i)) for i in rest.index)}). Phần lớn khu vẫn có "
-            f"ΔFCI âm (tỷ lệ khu giảm {_n(rest.pct_negative.min(), 0)}–{_n(rest.pct_negative.max(), 0)}%), nhưng mức giảm "
-            f"chỉ vài phần trăm điểm, nhỏ hơn nhiều so với sai số có thể có của dữ liệu.")
-    if "VNM" in t.index:
-        v = t.loc["VNM"]
-        vt = tests[(tests.a == _name("VNM")) | (tests.b == _name("VNM"))]
-        vt = vt.assign(other=[r.b if r.a == _name("VNM") else r.a for r in vt.itertuples()],
-                       vn_minus=[r.diff if r.a == _name("VNM") else -r.diff for r in vt.itertuples()])
-        sig = vt[vt.p < 0.05]
-        worse, better = list(sig[sig.vn_minus < 0].other), list(sig[sig.vn_minus > 0].other)
-        gap = sig[sig.vn_minus < 0].vn_minus.abs().max() if worse else 0
-        lines.append(
-            f"<b>Việt Nam</b> ({v.n} khu, điều tra toàn bộ): FCI {y1} trung vị {_n(v[f'fci_median_{y1}'])}, FCI phần có rừng "
-            f"{_n(v[f'fci_forest_pooled_{y1}'])}, ΔFCI trung vị {_s(v.dfci_median)} điểm (KTC 95% {_s(v.dfci_ci_lo)} đến "
-            f"{_s(v.dfci_ci_hi)}). Về ΔFCI, Việt Nam tốt hơn có ý nghĩa thống kê so với "
-            f"{_join(html.escape(x) for x in better) if better else 'không nước nào'}, và kém hơn so với "
-            f"{_join(html.escape(x) for x in worse) if worse else 'không nước nào'}"
-            + (f"; chênh lệch với nhóm sau lớn nhất chỉ {fmt_ha(gap, 2)} điểm FCI." if worse else "."))
-    lines.append("Trung vị có trọng số cho mỗi khu một phiếu và ổn định với cách rút mẫu. Các chỉ tiêu <b>gộp</b> theo "
-                 "diện tích (ΔFCI gộp, thay đổi ròng rừng tự nhiên) ở các nước rút mẫu do một vài khu rất lớn quyết định, "
-                 "vì tầng khu ≥ 1.000 km² chỉ có vài khu trong mẫu; nên đọc chúng thận trọng.")
-    return "<ul>" + "".join(f"<li>{x}</li>" for x in lines) + "</ul>"
 
 
 def _kpis(table, years):
@@ -188,7 +144,7 @@ def _country_section(iso, ind, table, years, overview, embed, base):
     r = table.set_index("ISO3").loc[iso]
     tag = (f"điều tra toàn bộ {r.n} khu" if r.n == round(r.N)
            else f"mẫu {r.n} khu đại diện cho {fmt_ha(r.N)} khu đủ điều kiện")
-    p = [f"<h2 id='nuoc{iso}'>{_dot(iso)}</h2><p class='meta'>{tag} · ΔFCI trung vị {_s(r.dfci_median)} điểm · "
+    p = [f"<h3 class='ctry-h' id='nuoc{iso}'>{_dot(iso)}</h3><p class='meta'>{tag} · ΔFCI trung vị {_s(r.dfci_median)} điểm · "
          f"{_n(r.pct_negative, 0)}% khu có ΔFCI âm</p>"]
     if overview.get(iso):
         p.append("<div class='card'>" + _img(overview[iso], embed, base, f"Bản đồ ΔFCI các khu của {_name(iso)}")
@@ -201,127 +157,260 @@ def _country_section(iso, ind, table, years, overview, embed, base):
     return "".join(p)
 
 
-def _method(years, pas, ind, n_points, point_min_km2):
-    y0, y1 = years[0], years[-1]
+def _weights_table():
     lab = CLASSES.set_index("value").label
-    weights = "".join(f"<tr><td>{html.escape(lab[v])}</td><td class='n'>{fmt_ha(w, 1)}</td></tr>"
-                      for v, w in sorted(WEIGHTS.items(), key=lambda kv: -kv[1]))
-    samp = ", ".join(f"{html.escape(_name(k))} {v}" for k, v in SAMPLE_N.items())
-    return f"""<div class='card' id='phuongphap'><h2 style='margin-top:0'>Dữ liệu và phương pháp</h2>
-<h3>Chọn nước</h3>
-<p>13 nước được chọn theo hai trục khách quan: vùng địa sinh học (Indo-Malaya, Australasia, Neotropic, Afrotropic,
-Nearctic, Palearctic) và nhóm thu nhập của Ngân hàng Thế giới, cộng với các láng giềng chung vùng sinh thái với Việt Nam
-(Lào, Campuchia, Thái Lan). Trong mỗi ô, nước có nhiều khu bảo tồn có rừng ≥ 100 km² nhất được chọn; Mỹ và Úc được giữ
-cố định từ đợt so sánh trước, Gabon và Cameroon đại diện châu Phi rừng ẩm. Chi tiết và các trường hợp lệch quy tắc:
-<code>KHUNG_NGHIEN_CUU.md</code>, mục 5.</p>
-<h3 style='margin-top:18px'>Tổng thể khu bảo tồn của mỗi nước</h3>
-<p>Từ <code>WCMC/WDPA/current/polygons</code>: <code>DESIG_TYPE = National</code>, trạng thái Designated/Inscribed,
-bỏ khu thuần biển, phần đất ≥ 1 km²; các bản ghi cùng <code>SITE_ID</code> được gộp thành một khu, bản ghi lặp cùng
-<code>SITE_PID</code> chỉ tính một lần. Chỉ giữ khu do nhà nước quản lý hoặc đồng quản lý (<code>GOV_TYPE</code>; bỏ khu
-tư nhân, bản địa, cộng đồng). Khu được coi là <b>có rừng</b> khi rừng ForTy {y0} (lớp 1, 2, 3, 4, 7) chiếm ≥
-{fmt_ha(100 * MIN_FOREST, 0)}% diện tích <b>và</b> ≥ {fmt_ha(100 * MIN_BIOME, 0)}% diện tích nằm trong biome rừng của
-RESOLVE Ecoregions 2017.</p>
-<h3 style='margin-top:18px'>Số khu mỗi nước</h3>
-<p>Nước có ≤ {CENSUS_MAX} khu đủ điều kiện được điều tra toàn bộ. Nước nhiều khu hơn được rút ngẫu nhiên phân tầng theo
-diện tích đất (4 tầng), phân bổ theo tỷ lệ số khu, mỗi tầng ít nhất 2 khu: {samp}. Cỡ mẫu chọn bằng mô phỏng để sai số
-95% của chỉ tiêu trung bình theo khu khoảng ±3 điểm. Mỗi khu mang trọng số <b>W = số khu của tầng / số khu rút từ
-tầng</b> (W = 1 khi điều tra toàn bộ); mọi chỉ tiêu cấp nước đều tính theo W. Số khu rút / số khu đủ điều kiện:</p>
-{_strata_table(pas, ind)}
-<h3 style='margin-top:18px'>Diện tích các lớp trong mỗi khu</h3>
-<p>Khu có polygon &lt; {fmt_ha(point_min_km2, 0)} km²: đếm toàn bộ pixel ForTy (<code>frequencyHistogram</code>, hệ UTM
-của khu, 10 m). Khu lớn hơn: rút ngẫu nhiên {fmt_ha(n_points)} điểm trong polygon, đọc lớp của từng điểm ở 10 m cho cả
-{len(years)} năm (cùng bộ điểm), mỗi điểm đại diện cho diện tích khu / {fmt_ha(n_points)}. Sai số FCI của một khu do lấy
-mẫu điểm tối đa ±1,4 điểm (95%); thử trên 8 khu Việt Nam 150–1.200 km², FCI {y1} lệch tối đa 0,77 điểm và ΔFCI lệch tối
-đa 0,11 điểm so với đếm toàn bộ. Việt Nam dùng kết quả đếm toàn bộ pixel đã có cho cả 116 khu.</p>
-<h3 style='margin-top:18px'>Chỉ số FCI</h3>
-<p style='text-align:center'>FCI<sub>t</sub> = 100 × Σ<sub>c</sub> w<sub>c</sub>·A<sub>c,t</sub> / Σ<sub>c</sub>
-A<sub>c,t</sub> &nbsp;&nbsp;&nbsp; ΔFCI = FCI<sub>{y1}</sub> − FCI<sub>{y0}</sub></p>
-<div class='scroll'><table style='max-width:420px'><tr><th>Lớp</th><th class='n'>Trọng số w</th></tr>{weights}</table></div>
-<p>Khu được kết luận <b>suy giảm</b> hoặc <b>phục hồi</b> khi |ΔFCI| ≥ {fmt_ha(MIN_DELTA, 0)} điểm và Mann–Kendall trên
-chuỗi {len(years)} năm có p &lt; {fmt_ha(MAX_P, 2)}; còn lại là <b>ổn định / không rõ</b>.</p>
-<h3 style='margin-top:18px'>So sánh giữa các nước</h3>
-<p><b>Trung vị các khu</b> là trung vị có trọng số W (mỗi khu đủ điều kiện một phiếu). <b>Gộp</b> coi mọi khu đủ điều
-kiện của một nước là một vùng (diện tích từng lớp × W). ΔFCI so với FCI {y0} chỉ tính cho khu có FCI {y0} ≥
-{fmt_ha(REL_MIN_FCI, 0)}. Khoảng tin cậy 95% và kiểm định từng cặp nước dùng <b>bootstrap phân tầng</b> (2.000 lần, rút
-lại các khu trong từng tầng, giữ trọng số); p hai phía = 2 × tỷ lệ lần rút mà chênh lệch đổi dấu. Xếp hạng giữ cách làm
-của đợt trước: điểm trạng thái = trung bình FCI {y1} trung vị và FCI phần có rừng; điểm xu hướng = trung bình hạng của 4
-chỉ tiêu xu hướng; điểm chung = trung bình hạng trạng thái và điểm xu hướng.</p>
-<p class='note'><b>Tính bất định:</b> ForTy V2 Beta là dữ liệu thử nghiệm; độ chính xác công bố (90% loại rừng, 95%
-rừng/không rừng) là của bản 2020, chưa kiểm định cho chuỗi thời gian hay cho từng nước. Ở hầu hết các nước ΔFCI trung vị
-chỉ vài phần trăm điểm, cùng cỡ với nhiễu phân loại giữa các năm. Thứ hạng giữa các nước có ΔFCI chênh nhau dưới
-khoảng 0,1 điểm không có ý nghĩa thực tế, dù kiểm định có thể báo khác biệt. Trọng số FCI là giả định. So sánh chưa
-điều chỉnh theo sinh cảnh, độ cao, áp lực dân số hay tuổi khu, nên không phải đánh giá hiệu quả quản lý của từng nước.</p>
-<p><b>Tài liệu tham khảo</b></p>
-<ul>
-<li>Neumann, M., Raichuk, A., Potapov, P. et al. Global forest typology at 10-meter resolution for forest and land-use
-monitoring. <i>Sci Data</i> 13, 1434 (2026). <a href='https://doi.org/10.1038/s41597-026-08299-5'>https://doi.org/10.1038/s41597-026-08299-5</a></li>
-<li>UNEP-WCMC and IUCN ({pd.Timestamp.now().year}). Protected Planet: The World Database on Protected Areas (WDPA).
-<a href='https://www.protectedplanet.net'>www.protectedplanet.net</a> (qua Google Earth Engine,
-<code>WCMC/WDPA/current/polygons</code>, {pd.Timestamp.now():%m/%Y}).</li>
-<li>Dinerstein, E. et al. An ecoregion-based approach to protecting half the terrestrial realm. <i>BioScience</i> 67,
-534–545 (2017) (RESOLVE Ecoregions 2017).</li>
-</ul></div>"""
+    rows = "".join(f"<tr><td>{html.escape(lab[v])}</td><td class='n'>{fmt_ha(w, 1)}</td></tr>"
+                   for v, w in sorted(WEIGHTS.items(), key=lambda kv: -kv[1]))
+    return (f"<div class='scroll'><table style='max-width:420px'><tr><th>Lớp</th><th class='n'>Trọng số w</th></tr>"
+            f"{rows}</table></div>")
 
 
-def _narrative(text):
-    """The written assessment: '## ' lines become headings, blank lines separate paragraphs."""
-    out = []
-    for block in (b.strip() for b in text.strip().split("\n\n")):
-        if block.startswith("## "):
-            out.append(f"<h3 style='margin-top:18px'>{html.escape(block[3:])}</h3>")
-        elif block:
-            out.append(f"<p style='font-size:16px;line-height:1.65;margin:0 0 10px'>{html.escape(' '.join(block.split()))}</p>")
-    return "".join(out)
+# Facts: every number the articles quote. Articles write {{KEY}}, never the number itself, so the three tabs agree
+# with each other and with the data.
+
+class Fact:
+    def __init__(self, v, d=1, signed=False):
+        self.v, self.d, self.signed = v, d, signed
+
+    def fmt(self, d=None, absolute=False):
+        if isinstance(self.v, str):
+            return self.v
+        v = abs(self.v) if absolute else self.v
+        if v != v:
+            raise ValueError("giá trị trống")
+        s = fmt_ha(v, self.d if d is None else d).replace("-", "−")
+        return "+" + s if self.signed and not absolute and v > 0 else s
 
 
-def build_report(out_path, pas, ind, table, rank, groups, tests, years, figs, overview, n_points, point_min_km2,
-                 embed=False, narrative=None):
-    """figs: {"ci", "strip", "pairwise", "series", "composition": png}; overview: {ISO3: png}; narrative: the written
-    assessment (see _narrative), placed after the key findings. Its numbers are written by hand and do not update."""
+def _table_fact(col, v):
+    if col in ("n", "N", "n_decline", "n_recovery", "land_km2") or col.startswith("pct_"):
+        return Fact(v, 0)
+    if "dfci" in col or col == "natural_change_pct":
+        return Fact(v, 2, signed=True)
+    return Fact(v, 1)
+
+
+def facts(table, ind, tests, series, trans, areas, pas, years, n_points, point_min_km2):
+    """{KEY: Fact}. Per country, KEY = ISO3.name:
+    - every numeric column of `table`;
+    - dat_khac_pct: non-forest share in the last year (pooled);
+    - lop<v>_pct, lop<v>_rung_pct: share of class v in all land / in forest, last year, pooled with W;
+    - doi_<code>: share of land in each gee.CHANGES category first → last year, pooled with W;
+    - nam_giam_manh: year step with the largest fall of the pooled FCI;
+    - nam_giam_khu, n_khu_giam_nam_do: most common year of the largest fall among declining PAs, and how many had it.
+    Global: tong.*; country names: ten.ISO3."""
+    y0, y1 = years[0], years[-1]
+    f = {}
+    for r in table.itertuples(index=False):
+        d = r._asdict()
+        for col, v in d.items():
+            if col not in ("ISO3", "country"):
+                f[f"{r.ISO3}.{col}"] = _table_fact(col, float(v))
+        f[f"{r.ISO3}.dat_khac_pct"] = Fact(100 - d[f"forest_pct_pooled_{y1}"], 0)
+
+    site = pas.set_index("SITE_ID")
+    a = areas[areas.year == y1]
+    a = a.assign(aw=a.area_ha * a.SITE_ID.map(site.W), ISO3=a.SITE_ID.map(site.ISO3))
+    cls = a.pivot_table(index="ISO3", columns="value", values="aw", aggfunc="sum").reindex(columns=range(1, 8)).fillna(0)
+    forest = cls.drop(columns=6).sum(axis=1)
+    t = trans.assign(aw=trans.area_ha * trans.SITE_ID.map(site.W), ISO3=trans.SITE_ID.map(site.ISO3))
+    ch = (t.pivot_table(index="ISO3", columns="change", values="aw", aggfunc="sum")
+          .reindex(columns=list(CHANGES.code)).fillna(0))
+    steps = series.assign(step=series.groupby("ISO3").fci.diff())
+    for iso in table.ISO3:
+        for v in range(1, 8):
+            f[f"{iso}.lop{v}_pct"] = Fact(100 * cls.loc[iso, v] / cls.loc[iso].sum(), 0)
+            if v != 6:
+                f[f"{iso}.lop{v}_rung_pct"] = Fact(100 * cls.loc[iso, v] / forest[iso], 0)
+        for c in CHANGES.code:
+            f[f"{iso}.doi_{c}"] = Fact(100 * ch.loc[iso, c] / ch.loc[iso].sum(), 1)
+        s = steps[steps.ISO3 == iso]
+        f[f"{iso}.nam_giam_manh"] = Fact(str(int(s.loc[s.step.idxmin(), "year"])))
+        dec = ind[(ind.ISO3 == iso) & (ind.verdict == DECLINE)]
+        if len(dec):
+            mode = dec.drop_year.mode().iloc[0]
+            f[f"{iso}.nam_giam_khu"] = Fact(str(int(mode)))
+            f[f"{iso}.n_khu_giam_nam_do"] = Fact(int((dec.drop_year == mode).sum()), 0)
+
+    tt = table.set_index("ISO3")
+    stable = tt[tt.dfci_median > -NOTABLE]
+    vn = _name("VNM")
+    vt = tests[(tests.a == vn) | (tests.b == vn)]
+    vt = vt.assign(other=[r.b if r.a == vn else r.a for r in vt.itertuples()],
+                   vn_minus=[r.diff if r.a == vn else -r.diff for r in vt.itertuples()])
+    sig = vt[vt.p < 0.05]
+    worse, better = sig[sig.vn_minus < 0], sig[sig.vn_minus > 0]
+    ff = tt[f"fci_forest_pooled_{y1}"]
+    f.update({
+        "tong.n_nuoc": Fact(len(table), 0), "tong.n_khu": Fact(len(ind), 0), "tong.N_khu": Fact(tt.N.sum(), 0),
+        "tong.n_nam": Fact(len(years), 0), "tong.nam_dau": Fact(str(y0)), "tong.nam_cuoi": Fact(str(y1)),
+        "tong.so_nam": Fact(y1 - y0, 0),
+        "tong.n_khu_diem": Fact(int(ind.n_points.notna().sum()), 0), "tong.n_diem": Fact(n_points, 0),
+        "tong.nguong_diem_km2": Fact(point_min_km2, 0), "tong.census_max": Fact(CENSUS_MAX, 0),
+        "tong.min_forest_pct": Fact(100 * MIN_FOREST, 0), "tong.min_biome_pct": Fact(100 * MIN_BIOME, 0),
+        "tong.min_delta": Fact(MIN_DELTA, 0), "tong.max_p": Fact(MAX_P, 2), "tong.rel_min_fci": Fact(REL_MIN_FCI, 0),
+        "tong.n_cap": Fact(len(tests), 0), "tong.n_cap_khac_biet": Fact(int((tests.p < 0.05).sum()), 0),
+        "tong.on_dinh_dfci_min": Fact(stable.dfci_median.min(), 2, True),
+        "tong.on_dinh_dfci_max": Fact(stable.dfci_median.max(), 2, True),
+        "tong.on_dinh_giam_min": Fact(stable.pct_negative.min(), 0),
+        "tong.on_dinh_giam_max": Fact(stable.pct_negative.max(), 0),
+        "tong.on_dinh_suy_giam_max": Fact(stable.pct_decline.max(), 0),
+        "tong.n_on_dinh": Fact(len(stable), 0), "tong.n_suy_giam": Fact(len(tt) - len(stable), 0),
+        "tong.vn_kem_hon": Fact(_join(worse.other) if len(worse) else "không nước nào"),
+        "tong.vn_tot_hon": Fact(_join(better.other) if len(better) else "không nước nào"),
+        "tong.vn_chenh_max": Fact(worse.vn_minus.abs().max() if len(worse) else 0.0, 2),
+        "tong.lao_mdg_lan": Fact(tt.dfci_median["LAO"] / tt.dfci_median["MDG"], 0),
+        "tong.vn_phl_rung": Fact(ff["VNM"] - ff["PHL"], 0),
+    })
+    for c in COUNTRIES.itertuples():
+        f[f"ten.{c.ISO3}"] = Fact(c.name)
+    return f
+
+
+# Articles are a small markdown:
+# - '# ' title, '## ' section (one entry in the tab's own navigation), '### ' subheading, '> ' lead paragraph,
+#   '- ' list, '| ' table, **bold**, *italic*, `code`, [text](url);
+# - numbers: {{KEY}}, {{KEY:d}} (d decimals), {{KEY|abs}};
+# - on a paragraph of its own, a block: {{hinh:KEY|caption}}, {{ban_do:ISO3|caption}}, {{bang:KEY}}, {{kpi}},
+#   {{cac_nuoc}}.
+
+TABS = {"tom_tat": ("tom-tat", "Bài tóm tắt"), "chi_tiet": ("chi-tiet", "Bài chi tiết"),
+        "bai_bao": ("bai-bao", "Bài báo khoa học")}
+_TOKEN = re.compile(r"\{\{([^{}]+)\}\}")
+_BLOCK = re.compile(r"\{\{(hinh|bang|kpi|ban_do|cac_nuoc)(?::([^|}]+))?(?:\|(.+))?\}\}", re.S)
+
+
+def _slug(s):
+    s = unicodedata.normalize("NFD", s.replace("đ", "d").replace("Đ", "D"))
+    s = "".join(ch for ch in s if not unicodedata.combining(ch)).lower()
+    return re.sub(r"[^a-z0-9]+", "-", s).strip("-")
+
+
+def _value(token, f, where):
+    key, _, d = token.partition(":")
+    key, _, mod = key.partition("|")
+    if key not in f:
+        raise KeyError(f"{where}: không có số liệu '{key}'")
+    return f[key].fmt(int(d) if d else None, absolute=(mod == "abs"))
+
+
+def _inline(text, f, where):
+    text = html.escape(_TOKEN.sub(lambda m: _value(m.group(1), f, where), text), quote=False)
+    text = re.sub(r"`([^`]+)`", r"<code>\1</code>", text)
+    text = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", text)
+    text = re.sub(r"(?<![\w*])\*(?!\s)(.+?)(?<!\s)\*(?![\w*])", r"<i>\1</i>", text)
+    return re.sub(r"\[([^\]]+)\]\((https?://[^)\s]+)\)", r"<a href='\2'>\1</a>", text)
+
+
+def render_article(text, tab_id, f, blocks):
+    """(html, [(anchor, heading)]) of one article; a missing number or block stops with its name."""
+    out, nav = [], []
+    for i, block in enumerate(b.strip() for b in text.strip().split("\n\n")):
+        where = f"{tab_id}, đoạn {i + 1}"
+        if not block:
+            continue
+        m = _BLOCK.fullmatch(block)
+        if m:
+            kind, key, cap = m.groups()
+            name = kind if key is None else f"{kind}:{key}"
+            if name not in blocks:
+                raise KeyError(f"{where}: không có khối '{name}'")
+            cap = f"<figcaption>{_inline(' '.join(cap.split()), f, where)}</figcaption>" if cap else ""
+            out.append(f"<figure class='card'>{blocks[name]}{cap}</figure>" if kind in ("hinh", "ban_do")
+                       else blocks[name] + cap)
+        elif block.startswith("# "):
+            out.append(f"<h2 class='art-title'>{_inline(block[2:], f, where)}</h2>")
+        elif block.startswith("## "):
+            head = block[3:].strip()
+            anchor = f"{tab_id}-{_slug(head)}"
+            nav.append((anchor, head))
+            out.append(f"<h2 id='{anchor}'>{_inline(head, f, where)}</h2>")
+        elif block.startswith("### "):
+            out.append(f"<h3 class='sub-h'>{_inline(block[4:], f, where)}</h3>")
+        elif block.startswith("> "):
+            out.append(f"<p class='lead'>{_inline(' '.join(block[2:].split()), f, where)}</p>")
+        elif block.startswith("- "):
+            items = re.split(r"\n- ", block[2:])
+            out.append("<ul>" + "".join(f"<li>{_inline(' '.join(x.split()), f, where)}</li>" for x in items) + "</ul>")
+        elif block.startswith("|"):
+            rows = [[c.strip() for c in ln.strip().strip("|").split("|")] for ln in block.splitlines()
+                    if not re.fullmatch(r"\|[\s:|-]+\|", ln.strip())]
+            head = "".join(f"<th>{_inline(c, f, where)}</th>" for c in rows[0])
+            body = "".join("<tr>" + "".join(f"<td>{_inline(c, f, where)}</td>" for c in r) + "</tr>" for r in rows[1:])
+            out.append(f"<div class='scroll'><table><tr>{head}</tr>{body}</table></div>")
+        else:
+            out.append(f"<p>{_inline(' '.join(block.split()), f, where)}</p>")
+    return "".join(out), nav
+
+
+TAB_CSS = """
+.tabs{position:sticky;top:0;z-index:20;background:var(--bg);display:flex;gap:4px;border-bottom:2px solid var(--line);
+margin:0 -16px;padding:0 16px;overflow-x:auto;scrollbar-width:thin}
+.tabs a{padding:12px 18px 10px;text-decoration:none;color:var(--muted);font-weight:600;font-size:15px;white-space:nowrap;
+border-bottom:3px solid transparent;margin-bottom:-2px}
+.tabs a.on{color:var(--accent);border-bottom-color:var(--accent)}
+nav.subnav{position:sticky;top:46px;z-index:10;background:var(--bg);display:flex;gap:18px;overflow-x:auto;
+white-space:nowrap;font-size:14px;padding:9px 0;border-bottom:1px solid var(--line);margin-bottom:8px;
+scrollbar-width:thin}
+nav.subnav a{text-decoration:none;color:var(--ink)}nav.subnav a:hover{color:var(--accent)}
+section.tab h2,section.tab h3{scroll-margin-top:100px}
+section.tab>p,section.tab>ul{font-size:16px;line-height:1.7;max-width:760px}
+p.lead{font-size:18px!important;line-height:1.6;color:#333}
+h2.art-title{font-size:24px;margin:24px 0 8px;line-height:1.3}
+h3.sub-h{font-size:17px;margin:22px 0 6px}
+h3.ctry-h{font-size:19px;margin:32px 0 6px}
+figure{margin:16px 0}figcaption{font-size:13.5px;color:var(--muted);margin-top:6px;line-height:1.5}
+"""
+
+TAB_JS = """(function(){var ids=%s;
+function show(h){var p=(h||'').replace('#','').split('/'),t=ids.indexOf(p[0])>=0?p[0]:ids[0];
+document.querySelectorAll('section.tab').forEach(function(s){s.hidden=s.id!==t});
+document.querySelectorAll('.tabs a').forEach(function(a){a.classList.toggle('on',a.getAttribute('data-t')===t)});
+var el=p[1]&&document.getElementById(p[1]);if(el)el.scrollIntoView();else window.scrollTo(0,0);}
+window.addEventListener('hashchange',function(){show(location.hash)});show(location.hash);})();"""
+
+
+def build_report(out_path, pas, ind, table, rank, groups, tests, series, trans, areas, years, figs, overview,
+                 n_points, point_min_km2, articles, embed=False):
+    """Three tabs (TABS), each one article from `articles` {tab key: markdown}, all rendered with the same facts and
+    blocks. figs: {"ci", "strip", "pairwise", "series", "composition": png}; overview: {ISO3: png}."""
     out_path = Path(out_path)
     base = out_path.parent
     y0, y1 = years[0], years[-1]
     iso = [c for c in COUNTRIES.ISO3 if c in set(table.ISO3)]
-    title = f"Tình trạng rừng (FCI) trong khu bảo tồn của 13 nước, {y0}–{y1}"
-    toc = "".join(f"<a href='#{k}'>{v}</a>" for k, v in [("ketluan", "Kết luận"), ("danhgia", "Đánh giá tổng hợp"),
-                                                          ("sosanh", "So sánh"), ("phuongphap", "Phương pháp")]
-                  if k != "danhgia" or narrative)
-    toc += "".join(f"<a href='#nuoc{c}'>{html.escape(_name(c))}</a>" for c in iso)
+    f = facts(table, ind, tests, series, trans, areas, pas, years, n_points, point_min_km2)
     vn_tests = tests[(tests.a == _name("VNM")) | (tests.b == _name("VNM"))]
-    p = [f"<!doctype html><html lang='vi'><head><meta charset='utf-8'>"
-         f"<meta name='viewport' content='width=device-width,initial-scale=1'><title>{html.escape(title)}</title>"
-         f"<style>{CSS}{EXTRA_CSS}</style></head><body><main>",
-         f"<h1>{html.escape(title)}</h1>",
-         f"<p class='sub'>Forest Typology (ForTy) V2 Beta {y0}–{y1} · WDPA · {len(ind)} khu bảo tồn phân tích, đại diện "
-         f"cho {fmt_ha(round(table.N.sum()))} khu quốc gia, trên cạn, có rừng · tạo ngày "
-         f"{pd.Timestamp.now():%d/%m/%Y %H:%M}</p><nav class='toc'>{toc}</nav>",
-         f"<div class='card' id='ketluan'><h2 style='margin-top:0'>Kết luận chính</h2>"
-         f"<p class='meta' style='font-size:14px'><b>FCI</b> (chỉ số tình trạng rừng, 0–100) là điểm trung bình của mọi "
-         f"pixel trong khu theo mức độ tự nhiên của lớp phủ: 100 khi toàn khu là rừng nguyên sinh trưởng thành, 0 khi "
-         f"không có rừng. <b>ΔFCI</b> = FCI {y1} − FCI {y0}: âm là mất hoặc suy thoái rừng. Ô dưới: FCI {y1} trung vị "
-         f"các khu (ΔFCI trung vị trong ngoặc).</p>{_kpis(table, years)}{_findings(table, tests, years)}</div>",
-         (f"<div class='card' id='danhgia'><h2 style='margin-top:0'>Đánh giá tổng hợp</h2>{_narrative(narrative)}</div>"
-          if narrative else ""),
-         "<h2 id='sosanh'>So sánh giữa các nước</h2>"]
-    for k, alt in (("ci", "Trung vị FCI và ΔFCI kèm khoảng tin cậy của mỗi nước"),
-                   ("strip", "FCI và ΔFCI của từng khu theo nước"),
-                   ("series", "Thay đổi FCI theo năm của mỗi nước"),
-                   ("composition", "Cơ cấu loại rừng của mỗi nước"),
-                   ("pairwise", "Chênh lệch ΔFCI giữa từng cặp nước")):
-        if figs.get(k):
-            p.append("<div class='card'>" + _img(figs[k], embed, base, alt) + "</div>")
-    p.append("<h3 style='margin-top:24px'>Bảng chỉ tiêu</h3>" + _country_table(table, years))
-    p.append("<h3 style='margin-top:24px'>Việt Nam so với từng nước (ΔFCI trung vị)</h3>"
-             f"<div class='card'>{_tests_table(vn_tests)}<details><summary>Tất cả {len(tests)} cặp nước</summary>"
-             f"{_tests_table(tests)}</details></div>")
-    p.append("<h3 style='margin-top:24px'>Xếp hạng theo từng chỉ tiêu (1 = tốt nhất)</h3>"
-             "<p class='meta'>Giữ cách xếp hạng của đợt so sánh 3 nước để đối chiếu. Với 13 nước, điểm xu hướng (trung "
-             "bình thứ hạng) phóng đại những chênh lệch rất nhỏ: các nước có ΔFCI từ −0,11 đến −0,01 điểm vẫn bị xếp "
-             "cách nhau nhiều bậc. Nên đọc hình khoảng tin cậy ở trên trước bảng này.</p>" + _rank_table(rank, groups))
-    p.append(_method(years, pas, ind, n_points, point_min_km2))
-    for c in iso:
-        p.append(_country_section(c, ind, table, years, overview, embed, base))
-    p.append("</main></body></html>")
+    blocks = {f"hinh:{k}": _img(p, embed, base, k) for k, p in figs.items() if p}
+    blocks.update({f"ban_do:{c}": _img(p, embed, base, f"Bản đồ ΔFCI các khu của {_name(c)}")
+                   for c, p in overview.items() if p})
+    blocks.update({
+        "kpi": _kpis(table, years),
+        "bang:chi_tieu": _country_table(table, years),
+        "bang:xep_hang": _rank_table(rank, groups),
+        "bang:kiem_dinh_vn": f"<div class='card'>{_tests_table(vn_tests)}<details><summary>Tất cả {len(tests)} cặp "
+                             f"nước</summary>{_tests_table(tests)}</details></div>",
+        "bang:tang_mau": _strata_table(pas, ind),
+        "bang:trong_so_fci": _weights_table(),
+        "cac_nuoc": "".join(_country_section(c, ind, table, years, overview, embed, base) for c in iso),
+    })
+    title = f"Rừng trong khu bảo tồn của 13 nước, {y0}–{y1}"
+    tabs, sections = [], []
+    for key, (tab_id, label) in TABS.items():
+        body, nav = render_article(articles[key], tab_id, f, blocks)
+        tabs.append(f"<a href='#{tab_id}' data-t='{tab_id}'>{label}</a>")
+        subnav = "".join(f"<a href='#{tab_id}/{a}'>{html.escape(h)}</a>" for a, h in nav)
+        sections.append(f"<section class='tab' id='{tab_id}'><nav class='subnav'>{subnav}</nav>{body}</section>")
+    page = (f"<!doctype html><html lang='vi'><head><meta charset='utf-8'>"
+            f"<meta name='viewport' content='width=device-width,initial-scale=1'><title>{html.escape(title)}</title>"
+            f"<style>{CSS}{EXTRA_CSS}{TAB_CSS}</style></head><body><main>"
+            f"<h1>{html.escape(title)}</h1>"
+            f"<p class='sub'>Forest Typology (ForTy) V2 Beta {y0}–{y1} · WDPA · {len(ind)} khu bảo tồn phân tích, đại "
+            f"diện cho {fmt_ha(round(table.N.sum()))} khu quốc gia, trên cạn, có rừng · tạo ngày "
+            f"{pd.Timestamp.now():%d/%m/%Y}</p>"
+            f"<nav class='tabs'>{''.join(tabs)}</nav>{''.join(sections)}"
+            f"<script>{TAB_JS % json.dumps([t for t, _ in TABS.values()])}</script></main></body></html>")
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text("".join(p), encoding="utf-8")
+    out_path.write_text(page, encoding="utf-8")
     return out_path
+
+

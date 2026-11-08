@@ -11,3 +11,7 @@ __pycache__/
 # single-file report are re-created by running it. The published report is in docs/.
 outputs/*
 !outputs/*.csv
+# result tables of the 13-country comparison: the data records of the data paper (tab Bài báo)
+!outputs/so_sanh_13/
+outputs/so_sanh_13/*
+!outputs/so_sanh_13/*.csv

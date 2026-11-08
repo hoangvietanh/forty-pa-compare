@@ -23,6 +23,8 @@ from fortypa import charts, compare, compare13_report, gee, index, screen  # noq
 OUT = ROOT / "outputs"
 RES = OUT / "so_sanh_13"
 FIG = RES / "hinh"
+# Đánh giá tổng hợp viết tay: số liệu trong đó KHÔNG tự cập nhật; đổi dữ liệu thì phải viết lại cho khớp.
+NARRATIVE = ROOT / "scripts" / "danh_gia_13_nuoc.md"
 
 
 def load_cache(sub, key, site_ids, cols):
@@ -101,7 +103,8 @@ def main():
         print(f"  bản đồ {iso}", flush=True)
 
     kw = dict(pas=pas, ind=ind, table=table, rank=rank, groups=groups, tests=tests, years=YEARS, figs=figs,
-              overview=overview, n_points=N_POINTS, point_min_km2=POINT_MIN_KM2)
+              overview=overview, n_points=N_POINTS, point_min_km2=POINT_MIN_KM2,
+              narrative=NARRATIVE.read_text(encoding="utf-8") if NARRATIVE.exists() else None)
     a = compare13_report.build_report(OUT / "bao_cao_FCI_13_nuoc.html", embed=True, **kw)
     b = compare13_report.build_report(ROOT / "docs" / "13-nuoc" / "index.html", embed=False, **kw)
     print(a, f"{a.stat().st_size / 1e6:.1f} MB")

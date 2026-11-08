@@ -263,16 +263,29 @@ monitoring. <i>Sci Data</i> 13, 1434 (2026). <a href='https://doi.org/10.1038/s4
 </ul></div>"""
 
 
+def _narrative(text):
+    """The written assessment: '## ' lines become headings, blank lines separate paragraphs."""
+    out = []
+    for block in (b.strip() for b in text.strip().split("\n\n")):
+        if block.startswith("## "):
+            out.append(f"<h3 style='margin-top:18px'>{html.escape(block[3:])}</h3>")
+        elif block:
+            out.append(f"<p style='font-size:16px;line-height:1.65;margin:0 0 10px'>{html.escape(' '.join(block.split()))}</p>")
+    return "".join(out)
+
+
 def build_report(out_path, pas, ind, table, rank, groups, tests, years, figs, overview, n_points, point_min_km2,
-                 embed=False):
-    """figs: {"ci", "strip", "pairwise", "series", "composition": png}; overview: {ISO3: png}."""
+                 embed=False, narrative=None):
+    """figs: {"ci", "strip", "pairwise", "series", "composition": png}; overview: {ISO3: png}; narrative: the written
+    assessment (see _narrative), placed after the key findings. Its numbers are written by hand and do not update."""
     out_path = Path(out_path)
     base = out_path.parent
     y0, y1 = years[0], years[-1]
     iso = [c for c in COUNTRIES.ISO3 if c in set(table.ISO3)]
     title = f"Tình trạng rừng (FCI) trong khu bảo tồn của 13 nước, {y0}–{y1}"
-    toc = "".join(f"<a href='#{k}'>{v}</a>" for k, v in [("ketluan", "Kết luận"), ("sosanh", "So sánh"),
-                                                          ("phuongphap", "Phương pháp")])
+    toc = "".join(f"<a href='#{k}'>{v}</a>" for k, v in [("ketluan", "Kết luận"), ("danhgia", "Đánh giá tổng hợp"),
+                                                          ("sosanh", "So sánh"), ("phuongphap", "Phương pháp")]
+                  if k != "danhgia" or narrative)
     toc += "".join(f"<a href='#nuoc{c}'>{html.escape(_name(c))}</a>" for c in iso)
     vn_tests = tests[(tests.a == _name("VNM")) | (tests.b == _name("VNM"))]
     p = [f"<!doctype html><html lang='vi'><head><meta charset='utf-8'>"
@@ -287,6 +300,8 @@ def build_report(out_path, pas, ind, table, rank, groups, tests, years, figs, ov
          f"pixel trong khu theo mức độ tự nhiên của lớp phủ: 100 khi toàn khu là rừng nguyên sinh trưởng thành, 0 khi "
          f"không có rừng. <b>ΔFCI</b> = FCI {y1} − FCI {y0}: âm là mất hoặc suy thoái rừng. Ô dưới: FCI {y1} trung vị "
          f"các khu (ΔFCI trung vị trong ngoặc).</p>{_kpis(table, years)}{_findings(table, tests, years)}</div>",
+         (f"<div class='card' id='danhgia'><h2 style='margin-top:0'>Đánh giá tổng hợp</h2>{_narrative(narrative)}</div>"
+          if narrative else ""),
          "<h2 id='sosanh'>So sánh giữa các nước</h2>"]
     for k, alt in (("ci", "Trung vị FCI và ΔFCI kèm khoảng tin cậy của mỗi nước"),
                    ("strip", "FCI và ΔFCI của từng khu theo nước"),

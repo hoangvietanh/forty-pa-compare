@@ -45,3 +45,13 @@ Biến động loại rừng 2017–2025 trong 156 khu bảo tồn Việt Nam, t
 - Xếp hạng (`compare.ranking`): điểm trạng thái = trung bình **giá trị** FCI 2025 trung vị và FCI phần có rừng (không dùng trung bình hạng, vì bỏ mất độ lớn chênh lệch), xếp thành hạng trạng thái; điểm xu hướng = trung bình hạng 4 chỉ tiêu; điểm chung = trung bình hạng trạng thái và điểm xu hướng. Số thứ tự hiển thị `NO` = `RANK` (1–30). Kiểm tra độ nhạy với `SENS_TOP_N` = 20/30/40 khu lớn nhất (`kiem_tra_do_nhay.csv`).
 - ΔFCI tương đối chỉ tính khi FCI 2017 ≥ 5 (khu sa mạc FCI ≈ 0). Một số khu (sa mạc) không có pixel rừng nào → không có biểu đồ đường.
 - Chạy: `PYTHONIOENCODING=utf-8 .venv/Scripts/python.exe` với `nbclient` (kernel `python3`).
+
+## Khung 13 nước (KHUNG_NGHIEN_CUU.md, mục 8)
+- 13 nước: VNM, LAO, KHM, THA, PHL, IDN, BRA, MDG, CMR, GAB, USA, AUS, RUS. Tổng thể = `screen.eligible`: `DESIG_TYPE = National`, trên cạn, `GOV_TYPE` nhà nước (bỏ tư nhân, bản địa, cộng đồng), rừng ForTy 2017 ≥ 10% **và** ≥ 50% trong biome rừng RESOLVE. Chỉ số sàng lọc cache ở `outputs/sang_loc/<ISO3>.csv`.
+- WDPA có bản ghi lặp cùng `SITE_PID` (mỗi bản ghi mang nguyên `GIS_AREA`): luôn `drop_duplicates("SITE_PID")` trước khi cộng diện tích.
+- Cỡ mẫu: ≤ 200 khu thì lấy hết; IDN/AUS 150, BRA/RUS 250, USA 300 (`compare.SAMPLE_N`), rút phân tầng theo cỡ khu, trọng số `W`. Mọi chỉ tiêu cấp nước phải dùng `W`.
+- Trong khu: polygon < 100 km² đếm toàn bộ pixel; lớn hơn rút 5.000 điểm (`gee.compute_points`), ghi vào cùng cache areas/transitions (cột `n_points`). Khu đã có bảng đếm toàn bộ thì giữ.
+- Chạy: `scripts/chay_13_nuoc.py` → `outputs/so_sanh_13/` (CSV, cache). Rồi `scripts/bao_cao_13_nuoc.py` → `outputs/bao_cao_FCI_13_nuoc.html` (một file, ~3 MB) và `docs/13-nuoc/` (Pages, trang 3 nước ở `docs/index.html` giữ nguyên). HTML: `compare13_report.py`; hình mới trong `charts.py` (`ci_figure`, `pairwise_figure`, `series_grid_figure`). Không vẽ bản đồ từng khu; bản đồ tổng quan mỗi nước có chấm ở tâm khu (khu nhỏ không thấy ở tỉ lệ cả nước).
+- GEE treo không báo lỗi: `ee.data.setDeadline` không cắt được, nên mọi `getInfo` dài đi qua `gee._call` (luồng daemon, hết giờ thì bỏ). `randomPoints` treo trên GeometryCollection có LineString (BRA 556323287): dùng `gee._polygons_only`. Rút điểm: lấy tọa độ một lần rồi `sampleRegions` trên ảnh ForTy toàn cầu theo lô 1.000 điểm (ảnh lọc theo vùng + điểm sinh trên server làm khu vài nghìn km² vượt 5 phút).
+- Tên khu: `NAME` của WDPA là tên bản địa (Khmer, Thái, Lào); báo cáo dùng `NAME_ENG` khi tên không viết bằng chữ Latin.
+- Notebook vẫn là bản 3 nước, top 30 khu.

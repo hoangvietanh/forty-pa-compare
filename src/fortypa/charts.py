@@ -166,15 +166,18 @@ def _countries(df):
 
 
 def _strip(ax, ind, col, countries, ci=None):
-    """One row per country (first on top): a dot per PA with a little vertical jitter, the median as a bar."""
+    """One row per country (first on top): a dot per PA with a little vertical jitter, the median as a bar (weighted
+    by the sampling weight W when the table has one, as in the country tables)."""
+    from .compare import wmedian
     rng = np.random.default_rng(1)
     n = len(countries)
     for i, c in enumerate(countries.itertuples()):
         y = n - 1 - i
-        v = ind.loc[ind.ISO3 == c.ISO3, col].dropna()
+        d = ind[(ind.ISO3 == c.ISO3) & ind[col].notna()]
+        v = d[col]
         ax.scatter(v, y + rng.uniform(-0.22, 0.22, len(v)), s=34, color=c.color, alpha=0.85,
                    edgecolor="white", linewidth=0.8, zorder=3)
-        m = v.median()
+        m = wmedian(v, d.W) if "W" in d else v.median()
         if ci is not None:
             lo, hi = ci[c.ISO3]
             ax.plot([lo, hi], [y - 0.36, y - 0.36], color=INK, linewidth=2, solid_capstyle="round", zorder=4)
@@ -197,7 +200,7 @@ def state_trend_figure(ind, ci, years, out_path, min_delta=1.0, label=None):
     and the ±min_delta band inside which a change is not called a decline or recovery."""
     y0, y1 = years[0], years[-1]
     countries = _countries(ind)
-    fig, (a1, a2) = plt.subplots(1, 2, figsize=(13, 4.6), sharey=True)
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(13, max(4.6, 0.55 * len(countries) + 1.2)), sharey=True)
     _strip(a1, ind, f"fci_{y1}", countries)
     a1.set_xlim(0, 100)
     a1.set_title(f"Trạng thái: FCI {y1} của từng khu (0–100)", fontsize=11, loc="left")
@@ -258,7 +261,9 @@ def series_figure(series, years, out_path, label="20 khu"):
 def composition_figure(areas, pas, years, out_path, label="20 khu"):
     """Share of each ForTy class in the pooled area of each country's PAs, first and last year, as stacked bars."""
     countries = _countries(pas)
-    t = (areas[areas.year.isin([years[0], years[-1]])].merge(pas[["SITE_ID", "ISO3"]], on="SITE_ID")
+    w = pas[["SITE_ID", "ISO3"]].assign(W=pas.W if "W" in pas else 1.0)  # sampled PAs stand for W PAs each
+    t = (areas[areas.year.isin([years[0], years[-1]])].merge(w, on="SITE_ID")
+         .assign(area_ha=lambda d: d.area_ha * d.W)
          .pivot_table(index=["ISO3", "year"], columns="value", values="area_ha", aggfunc="sum").fillna(0))
     t = 100 * t.div(t.sum(axis=1), axis=0)
     rows = [(c, y) for c in countries.itertuples() for y in (years[0], years[-1])]
@@ -285,13 +290,14 @@ def composition_figure(areas, pas, years, out_path, label="20 khu"):
     fig.legend(handles=handles, loc="lower center", ncol=4, frameon=False, fontsize=9)
     ax.set_title(f"Cơ cấu loại rừng và sử dụng đất, {label} mỗi nước (% diện tích phân tích)", fontsize=11,
                  loc="left")
-    fig.subplots_adjust(left=0.12, right=0.97, top=0.9, bottom=0.27)
+    h = fig.get_figheight()
+    fig.subplots_adjust(left=0.12, right=0.97, top=1 - 0.45 / h, bottom=1.0 / h)
     fig.savefig(out_path, dpi=110, facecolor="white")
     plt.close(fig)
     return out_path
 
 
-def overview_figure(country, png, extent, pas, out_path):
+def overview_figure(country, png, extent, pas, out_path, labels=True):
     """Country overview map (from gee.overview_thumb) with each PA's rank number next to its centroid and the ΔFCI
     legend. extent: (x0, y0, x1, y1) of the image in EPSG:3857 metres."""
     img = plt.imread(png)
@@ -306,9 +312,16 @@ def overview_figure(country, png, extent, pas, out_path):
     ax.set_ylim(y0, y1)
     ax.set_axis_off()
     R = 6378137.0
+    if "dfci" in pas:  # many PAs are too small to see at country scale: a dot at each centroid, sized by area
+        d = pas.dropna(subset=["dfci"]).sort_values("LAND_KM2", ascending=False)
+        mx = [R * math.radians(v) for v in d.LON]
+        my = [R * math.log(math.tan(math.pi / 4 + math.radians(v) / 2)) for v in d.LAT]
+        size = 14 + 160 * np.sqrt(d.LAND_KM2 / d.LAND_KM2.max())
+        ax.scatter(mx, my, s=size, c=[dfci_color(v) for v in d.dfci], edgecolor="#333333", linewidth=0.6,
+                   alpha=0.9, zorder=3)
     placed = []  # label boxes in points from the axes origin, to keep labels apart
     to_pt = ax.transData + fig.dpi_scale_trans.inverted()
-    for pa in pas.sort_values("LAT", ascending=False).itertuples():
+    for pa in (pas.sort_values("LAT", ascending=False).itertuples() if labels else []):
         x = R * math.radians(pa.LON)
         y = R * math.log(math.tan(math.pi / 4 + math.radians(pa.LAT) / 2))
         px, py = (v * 72 for v in to_pt.transform((x, y)))
@@ -323,8 +336,125 @@ def overview_figure(country, png, extent, pas, out_path):
     handles = [Patch(facecolor=c, edgecolor="#333333", label=lab) for _, _, c, lab in DFCI_BINS]
     fig.legend(handles=handles, loc="lower center", ncol=5, frameon=False, fontsize=9, title="ΔFCI (điểm)",
                title_fontsize=9)
-    fig.suptitle(f"{country}: {len(pas)} khu bảo tồn tô màu theo ΔFCI · số = thứ hạng diện tích", fontsize=12,
+    fig.suptitle(f"{country}: {len(pas)} khu bảo tồn tô màu theo ΔFCI" + (" · số = thứ hạng diện tích" if labels else ""),
+                 fontsize=12,
                  x=0.01, y=1 - 0.12 / H, ha="left", va="top")
+    fig.savefig(out_path, dpi=110, facecolor="white")
+    plt.close(fig)
+    return out_path
+
+
+def _country_rows(ax, names):
+    n = len(names)
+    ax.set_yticks(range(n))
+    ax.set_yticklabels(names[::-1], fontsize=10.5, color=INK)
+    ax.set_ylim(-0.6, n - 0.4)
+    ax.grid(axis="x", color=GRID, linewidth=0.8)
+    ax.set_axisbelow(True)
+    for s in ("top", "right", "left"):
+        ax.spines[s].set_visible(False)
+    ax.tick_params(axis="y", length=0)
+
+
+def ci_figure(table, years, out_path):
+    """One row per country: weighted median FCI of the last year with its 95 % interval, pooled FCI of the forest
+    part, and weighted median ΔFCI with its 95 % interval (stratified bootstrap)."""
+    y0, y1 = years[0], years[-1]
+    countries = _countries(table)
+    t = table.set_index("ISO3").loc[list(countries.ISO3)]
+    n = len(t)
+    fig, axes = plt.subplots(1, 3, figsize=(13, 0.42 * n + 1.6), sharey=True,
+                             gridspec_kw={"width_ratios": [1.15, 1, 1.15]})
+    panels = [(f"fci_median_{y1}", f"fci_median_{y1}_lo", f"fci_median_{y1}_hi", f"FCI {y1} (trung vị các khu)"),
+              (f"fci_forest_pooled_{y1}", None, None, f"FCI phần có rừng {y1} (gộp)"),
+              ("dfci_median", "dfci_ci_lo", "dfci_ci_hi", f"ΔFCI {y0}→{y1} (trung vị các khu, điểm)")]
+    for ax, (col, lo, hi, title) in zip(axes, panels):
+        for i, (iso, r) in enumerate(t.iterrows()):
+            y = n - 1 - i
+            color = countries.set_index("ISO3").color[iso]
+            if lo:
+                ax.plot([r[lo], r[hi]], [y, y], color=color, linewidth=3, alpha=0.45, solid_capstyle="round")
+            ax.plot([r[col]], [y], "o", color=color, markersize=8, markeredgecolor="white", zorder=3)
+            ax.text(r[hi] if lo else r[col], y + 0.18, "  " + fmt_ha(r[col], 2 if col == "dfci_median" else 1),
+                    fontsize=8.5, color=INK, va="bottom", ha="left")
+        if col == "dfci_median":
+            ax.axvline(0, color=MUTED, linewidth=0.8)
+        _country_rows(ax, list(countries.name))
+        ax.set_title(title, fontsize=10.5, loc="left")
+        ax.xaxis.set_major_formatter(FuncFormatter(lambda v, _: fmt_ha(v, 0 if v == round(v) else 1)))
+    fig.text(0.01, 0.01, "Chấm = giá trị có trọng số theo mẫu; vạch mờ = khoảng tin cậy 95% (bootstrap phân tầng). "
+             "Nước điều tra toàn bộ cũng có khoảng tin cậy: nó đo độ biến động giữa các khu.", fontsize=8.5, color=MUTED)
+    fig.tight_layout(rect=(0, 0.04, 1, 1))
+    fig.savefig(out_path, dpi=110, facecolor="white")
+    plt.close(fig)
+    return out_path
+
+
+def pairwise_figure(tests, out_path):
+    """Matrix of the difference in median ΔFCI, row country minus column country, colored by sign and size, with
+    the bootstrap p-value as stars (* < 0,05, ** < 0,01)."""
+    from .compare import COUNTRIES
+    names = [c for c in COUNTRIES.name if c in set(tests.a) | set(tests.b)]
+    k = len(names)
+    m = np.full((k, k), np.nan)
+    p = np.full((k, k), np.nan)
+    pos = {c: i for i, c in enumerate(names)}
+    for r in tests.itertuples():
+        i, j = pos[r.a], pos[r.b]
+        m[i, j], m[j, i] = r.diff, -r.diff
+        p[i, j] = p[j, i] = r.p
+    lim = np.nanpercentile(np.abs(m), 95) or 1
+    fig, ax = plt.subplots(figsize=(11, 9.5))
+    im = ax.imshow(np.clip(m, -lim, lim), cmap="RdBu", vmin=-lim, vmax=lim)
+    for i in range(k):
+        for j in range(k):
+            if i == j or np.isnan(m[i, j]):
+                continue
+            star = "**" if p[i, j] < 0.01 else "*" if p[i, j] < 0.05 else ""
+            ax.text(j, i, fmt_ha(m[i, j], 2) + ("\n" + star if star else ""), ha="center", va="center",
+                    fontsize=7.5, color="white" if abs(m[i, j]) > 0.6 * lim else INK)
+    ax.set_xticks(range(k))
+    ax.set_xticklabels(names, rotation=45, ha="right", fontsize=9.5)
+    ax.set_yticks(range(k))
+    ax.set_yticklabels(names, fontsize=9.5)
+    for s in ax.spines.values():
+        s.set_visible(False)
+    cb = fig.colorbar(im, ax=ax, shrink=0.7)
+    cb.set_label("ΔFCI trung vị: nước ở hàng − nước ở cột (điểm)", color=MUTED)
+    ax.set_title("Chênh lệch ΔFCI trung vị giữa từng cặp nước (xanh: hàng tốt hơn cột; đỏ: hàng kém hơn)",
+                 fontsize=11, loc="left")
+    fig.text(0.01, 0.01, "* p < 0,05; ** p < 0,01 (bootstrap phân tầng, hai phía). Thang màu cắt ở phân vị 95% của "
+             "|chênh lệch| để các chênh lệch nhỏ vẫn thấy được.", fontsize=8.5, color=MUTED)
+    fig.tight_layout(rect=(0, 0.03, 1, 1))
+    fig.savefig(out_path, dpi=110, facecolor="white")
+    plt.close(fig)
+    return out_path
+
+
+def series_grid_figure(series, years, out_path, ncols=4):
+    """One small panel per country, on a common y axis: change of the weighted median FCI of its PAs since the first
+    year (country color) and of the pooled FCI (gray, dashed)."""
+    countries = _countries(series)
+    n = len(countries)
+    nrows = math.ceil(n / ncols)
+    fig, axes = plt.subplots(nrows, ncols, figsize=(13, 2.3 * nrows + 0.8), sharex=True, sharey=True)
+    axes = np.atleast_1d(axes).ravel()
+    for ax, c in zip(axes, countries.itertuples()):
+        s = series[series.ISO3 == c.ISO3].set_index("year").reindex(years)
+        ax.axhline(0, color=MUTED, linewidth=0.7)
+        ax.plot(years, s.fci_median - s.fci_median.iloc[0], color=c.color, linewidth=2.2, marker="o", markersize=3)
+        ax.plot(years, s.dfci_pooled, color="#8C8C8C", linewidth=1.3, linestyle="--")
+        ax.set_title(c.name, fontsize=10.5, loc="left")
+        ax.grid(axis="y", color=GRID, linewidth=0.8)
+        for sp in ("top", "right"):
+            ax.spines[sp].set_visible(False)
+        ax.set_xticks([years[0], years[len(years) // 2], years[-1]])
+        ax.yaxis.set_major_formatter(FuncFormatter(lambda v, _: fmt_ha(v, 0 if v == round(v) else 1)))
+    for ax in axes[n:]:
+        ax.set_visible(False)
+    fig.suptitle(f"Thay đổi FCI so với {years[0]} (điểm): đường màu = FCI trung vị các khu, đường xám đứt = FCI gộp",
+                 fontsize=11.5, x=0.01, ha="left")
+    fig.tight_layout(rect=(0, 0, 1, 0.96))
     fig.savefig(out_path, dpi=110, facecolor="white")
     plt.close(fig)
     return out_path

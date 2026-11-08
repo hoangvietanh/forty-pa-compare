@@ -1,6 +1,7 @@
 """Earth Engine side: ForTy V2 Beta class maps, protected areas from WDPA, class areas per year, map thumbnails."""
 import json
 import math
+import threading
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
@@ -58,12 +59,15 @@ PA_COLS = ["SITE_ID", "NAME", "NAME_ENG", "DESIG_ENG", "DESIG_TYPE", "IUCN_CAT",
            "GIS_AREA", "GIS_M_AREA", "LAND_KM2", "LON", "LAT"]
 
 
-def init(project):
+def init(project, deadline_s=900):
+    """deadline_s: client-side limit per request. Without it a request that Earth Engine never answers blocks its
+    thread forever and the retry logic never runs (seen on a 431 km² Brazilian PA)."""
     try:
         ee.Initialize(project=project)
     except Exception:
         ee.Authenticate()
         ee.Initialize(project=project)
+    ee.data.setDeadline(deadline_s * 1000)
 
 
 def class_image(year, region=None):
@@ -113,9 +117,12 @@ def select_pas(iso3="VNM", desig_eng=None, status=("Designated", "Inscribed"), d
         base = base.filter(ee.Filter.inList("REALM", list(exclude_realm)).Not())
 
     cols = PA_COLS[:-3]
-    rows = base.reduceColumns(ee.Reducer.toList(len(cols)), cols).get("list").getInfo()
-    parcels = pd.DataFrame(rows, columns=cols)
+    rows = base.reduceColumns(ee.Reducer.toList(len(cols) + 1), cols + ["SITE_PID"]).get("list").getInfo()
+    parcels = pd.DataFrame(rows, columns=cols + ["SITE_PID"])
     parcels["SITE_ID"] = parcels.SITE_ID.astype(int)
+    records = parcels.SITE_ID.value_counts()
+    # WDPA sometimes repeats one parcel as several records with the same SITE_PID, each with the full GIS_AREA
+    parcels = parcels.drop_duplicates("SITE_PID")
     df = parcels.groupby("SITE_ID", as_index=False).agg(
         {**{c: "first" for c in cols if c not in ("SITE_ID", "GIS_AREA", "GIS_M_AREA")},
          "GIS_AREA": "sum", "GIS_M_AREA": "sum"})
@@ -127,21 +134,42 @@ def select_pas(iso3="VNM", desig_eng=None, status=("Designated", "Inscribed"), d
     if pick is not None:
         df = pick(df)
 
-    single = df[df.PARCELS == 1].SITE_ID.tolist()
+    fc, cent = _site_features(base, df.SITE_ID, records)
+    df = df.merge(cent[["SITE_ID", "LON", "LAT"]], on="SITE_ID").sort_values("RANK").reset_index(drop=True)
+    return fc, df
+
+
+def _site_features(base, site_ids, records):
+    """One feature per SITE_ID (records of a site with several WDPA records dissolved into one polygon) and a table
+    SITE_ID | LON | LAT | GEOM_KM2 (centroid, area of the polygon). records: number of WDPA records per SITE_ID."""
+    site_ids = [int(s) for s in site_ids]
+    single = [s for s in site_ids if records.get(s, 1) == 1]
     fc = base.filter(ee.Filter.inList("SITE_ID", single)).select(["SITE_ID"])
     multi = [ee.Feature(base.filter(ee.Filter.eq("SITE_ID", s)).union(10).first()).set("SITE_ID", s)
-             for s in df[df.PARCELS > 1].SITE_ID]
+             for s in site_ids if records.get(s, 1) > 1]
     if multi:
         fc = fc.merge(ee.FeatureCollection(multi))
 
     def _centroid(f):
-        c = f.geometry().centroid(100).coordinates()
-        return ee.Feature(None, {"SITE_ID": f.get("SITE_ID"), "LON": c.get(0), "LAT": c.get(1)})
+        g = f.geometry()
+        c = g.centroid(100).coordinates()
+        return ee.Feature(None, {"SITE_ID": f.get("SITE_ID"), "LON": c.get(0), "LAT": c.get(1),
+                                 "GEOM_KM2": g.area(100).divide(1e6)})
 
-    cent = fc.map(_centroid).reduceColumns(ee.Reducer.toList(3), ["SITE_ID", "LON", "LAT"]).get("list").getInfo()
-    cent = pd.DataFrame(cent, columns=["SITE_ID", "LON", "LAT"]).astype({"SITE_ID": int})
-    df = df.merge(cent, on="SITE_ID").sort_values("RANK").reset_index(drop=True)
-    return fc, df
+    cent = fc.map(_centroid).reduceColumns(ee.Reducer.toList(4), ["SITE_ID", "LON", "LAT", "GEOM_KM2"]) \
+        .get("list").getInfo()
+    cent = pd.DataFrame(cent, columns=["SITE_ID", "LON", "LAT", "GEOM_KM2"]).astype({"SITE_ID": int})
+    return fc, cent
+
+
+def site_collection(base, site_ids):
+    """Polygons of the given sites of one country (base: its WDPA records, e.g. screen.base(iso3)). Returns
+    (FeatureCollection with one feature per SITE_ID, table SITE_ID | LON | LAT | GEOM_KM2 | GIS_AREA), GIS_AREA being
+    the polygon area in km², used to choose the scale of area requests."""
+    ids = [int(s) for s in site_ids]
+    recs = base.filter(ee.Filter.inList("SITE_ID", ids)).aggregate_array("SITE_ID").getInfo()
+    fc, cent = _site_features(base, ids, pd.Series(recs).astype(int).value_counts())
+    return fc, cent.assign(GIS_AREA=cent.GEOM_KM2)
 
 
 def pa_feature(fc, site_id):
@@ -173,8 +201,8 @@ def _pa_areas(fc, pa, years, scales, tile_scale, max_pixels=None):
     errors = []
     for scale in _scales_for(pa, scales, max_pixels):
         try:
-            h = img.reduceRegion(ee.Reducer.frequencyHistogram(), geom, scale=scale, crs=crs,
-                                 maxPixels=1e13, tileScale=tile_scale).getInfo()
+            h = _call(img.reduceRegion(ee.Reducer.frequencyHistogram(), geom, scale=scale, crs=crs,
+                                       maxPixels=1e13, tileScale=tile_scale).getInfo, 1200)
             rows = [{"SITE_ID": int(pa.SITE_ID), "year": y, "value": int(k), "area_ha": n * scale ** 2 / 1e4,
                      "scale_m": scale} for y in years for k, n in (h.get(f"y{y}") or {}).items()]
             return rows, errors
@@ -192,8 +220,8 @@ def _pa_transitions(fc, pa, years, scales, tile_scale, max_pixels=None):
     errors = []
     for scale in _scales_for(pa, scales, max_pixels):
         try:
-            h = pair.reduceRegion(ee.Reducer.frequencyHistogram(), geom, scale=scale, crs=crs,
-                                  maxPixels=1e13, tileScale=tile_scale).getInfo()
+            h = _call(pair.reduceRegion(ee.Reducer.frequencyHistogram(), geom, scale=scale, crs=crs,
+                                        maxPixels=1e13, tileScale=tile_scale).getInfo, 1200)
             return [{"SITE_ID": int(pa.SITE_ID), "from": int(k) // 10, "to": int(k) % 10,
                      "area_ha": n * scale ** 2 / 1e4, "scale_m": scale} for k, n in (h.get("t") or {}).items()], errors
         except Exception as e:
@@ -235,10 +263,11 @@ def _per_pa(fn, fc, pas, cache_dir, key, what, workers, log, *args):
 
 def compute_areas(fc, pas, years, cache_dir, scales=(10, 20, 30), tile_scale=4, workers=6, max_pixels=None,
                   log=print):
-    """Long table SITE_ID | year | value | area_ha | scale_m for all PAs, cached as one JSON per PA."""
+    """Long table SITE_ID | year | value | area_ha | scale_m | n_points for all PAs, cached as one JSON per PA.
+    n_points is set where the areas were estimated from a point sample (compute_points), empty for a full count."""
     out, failed = _per_pa(_pa_areas, fc, pas, cache_dir, f"{min(years)}-{max(years)}", "Diện tích", workers, log,
                           years, scales, tile_scale, max_pixels)
-    df = pd.DataFrame(out, columns=["SITE_ID", "year", "value", "area_ha", "scale_m"])
+    df = pd.DataFrame(out, columns=["SITE_ID", "year", "value", "area_ha", "scale_m", "n_points"])
     return df.merge(CLASSES[["value", "label", "label_en"]], on="value", how="left"), failed
 
 
@@ -247,9 +276,143 @@ def compute_transitions(fc, pas, years, cache_dir, scales=(10, 20, 30), tile_sca
     """Long table SITE_ID | from | to | area_ha | scale_m | change (CHANGES.code), first year -> last year."""
     out, failed = _per_pa(_pa_transitions, fc, pas, cache_dir, f"{years[0]}to{years[-1]}", "Chuyển đổi lớp",
                           workers, log, years, scales, tile_scale, max_pixels)
-    df = pd.DataFrame(out, columns=["SITE_ID", "from", "to", "area_ha", "scale_m"])
+    df = pd.DataFrame(out, columns=["SITE_ID", "from", "to", "area_ha", "scale_m", "n_points"])
     df["change"] = [change_code(a, b) for a, b in zip(df["from"], df["to"])]
     return df, failed
+
+
+def _call(fn, timeout_s):
+    """fn() in a daemon thread, abandoned after timeout_s (a daemon thread does not keep the process alive at exit)."""
+    box = {}
+
+    def run():
+        try:
+            box["r"] = fn()
+        except Exception as e:  # handed to the caller below
+            box["e"] = e
+
+    t = threading.Thread(target=run, daemon=True)
+    t.start()
+    t.join(timeout_s)
+    if t.is_alive():
+        raise TimeoutError(f"không trả lời sau {timeout_s} s")
+    if "e" in box:
+        raise box["e"]
+    return box["r"]
+
+
+def _retry(fn, errors, tries=3, timeout_s=600):
+    """fn() with retries. Each try is abandoned after timeout_s: ee.data.setDeadline does not stop a request Earth
+    Engine never answers (the client retries it), so the wait is bounded here and the stuck thread is left behind."""
+    for attempt in range(tries):
+        try:
+            return _call(fn, timeout_s)
+        except Exception as e:
+            errors.append(f"lần {attempt + 1}: {type(e).__name__}: {str(e)[:160]}")
+            time.sleep(5 * (attempt + 1))
+    return None
+
+
+def _polygons_only(g):
+    """g without its zero-area parts: some WDPA polygons are GeometryCollections with hundreds of LineStrings (BRA
+    556323287), on which randomPoints never returns."""
+    polys = ee.List(g.geometries()).map(lambda x: ee.Algorithms.If(ee.Geometry(x).area(1).gt(0), x, None), True)
+    return ee.Geometry(ee.Algorithms.If(g.type().equals("GeometryCollection"), ee.Geometry.MultiPolygon(polys), g))
+
+
+def _pa_points(fc, pa, years, n, seed, chunk=1000):
+    """Classes of n random points of one PA in every year, at 10 m in the PA's UTM zone, and the PA's area.
+
+    Returns ({"area_ha", "lonlat": n × 2, "classes": n × len(years) uint8 array, 0 = no ForTy data}, errors). The same
+    points serve every year, so a point's class sequence is its own 9-year history.
+
+    The points are drawn once and their coordinates sent back as literal points, `chunk` per request, sampled from the
+    global ForTy mosaics: sampling a region-filtered mosaic at server-side random points re-evaluates the polygon in
+    every request and runs past Earth Engine's 5-minute limit on PAs of a few thousand km²."""
+    geom = _polygons_only(pa_feature(fc, pa.SITE_ID).geometry())
+    errors = []
+    head = _retry(lambda: ee.Dictionary({
+        "area": geom.area(10),
+        "xy": ee.FeatureCollection.randomPoints(geom, n, seed, 100).geometry().coordinates()}).getInfo(), errors)
+    if head is None:
+        return None, errors
+    xy = np.array(head["xy"], dtype=float).reshape(-1, 2)
+    img = ee.Image.cat([class_image(y) for y in years]).unmask(0)
+    bands = [f"y{y}" for y in years]
+    proj = f"EPSG:{utm_epsg(pa.LON, pa.LAT)}"
+    rows = []
+    for i in range(0, len(xy), chunk):
+        part = xy[i:i + chunk]
+        pts = ee.FeatureCollection([ee.Feature(ee.Geometry.Point([float(x), float(y)]), {"i": i + k})
+                                    for k, (x, y) in enumerate(part)])
+        r = _retry(lambda: img.sampleRegions(pts, ["i"], scale=10, projection=proj, geometries=False)
+                   .reduceColumns(ee.Reducer.toList(len(bands) + 1), ["i"] + bands).get("list").getInfo(), errors)
+        if r is None:
+            return None, errors
+        rows += r
+    rows = np.array(sorted(rows), dtype=np.int64)
+    return {"area_ha": head["area"] / 1e4, "lonlat": xy[rows[:, 0]], "classes": rows[:, 1:].astype(np.uint8)}, errors
+
+
+def point_tables(site_id, area_ha, classes, years):
+    """Area rows (like compute_areas) and transition rows first -> last year (like compute_transitions) estimated from
+    point classes: each point stands for area_ha / number of points. Points without data in a year are left out of
+    that year, as nodata pixels are in the full count."""
+    n = len(classes)
+    per = area_ha / n
+    areas = [{"SITE_ID": int(site_id), "year": y, "value": int(v), "area_ha": int(k) * per, "scale_m": 10,
+              "n_points": n}
+             for j, y in enumerate(years) for v, k in zip(*np.unique(classes[:, j], return_counts=True)) if v]
+    both = (classes[:, 0] > 0) & (classes[:, -1] > 0)
+    pairs = classes[both, 0].astype(int) * 10 + classes[both, -1]
+    trans = [{"SITE_ID": int(site_id), "from": int(p) // 10, "to": int(p) % 10, "area_ha": int(k) * per,
+              "scale_m": 10, "n_points": n} for p, k in zip(*np.unique(pairs, return_counts=True))]
+    return areas, trans
+
+
+def compute_points(fc, pas, years, points_dir, areas_dir, transitions_dir, n=5000, seed=20261108, workers=6,
+                   log=print):
+    """Point sample of every PA in pas whose area table is not cached yet (see _pa_points). The raw point classes are
+    kept as <points_dir>/<SITE_ID>.npz; the area and transition rows derived from them are written into the same
+    caches as the full count (<SITE_ID>_<y0>-<y1>.json, <SITE_ID>_<y0>to<y1>.json), so compute_areas and
+    compute_transitions read them like any other PA. A PA that already has a full-count area table keeps it.
+    Returns {SITE_ID: errors} for the PAs that failed."""
+    points_dir, areas_dir, transitions_dir = Path(points_dir), Path(areas_dir), Path(transitions_dir)
+    for d in (points_dir, areas_dir, transitions_dir):
+        d.mkdir(parents=True, exist_ok=True)
+    akey, tkey = f"{min(years)}-{max(years)}", f"{years[0]}to{years[-1]}"
+    todo = [pa for pa in pas.itertuples() if not (areas_dir / f"{pa.SITE_ID}_{akey}.json").exists()]
+    log(f"Lấy mẫu điểm: {len(pas) - len(todo)} PA đã có trong cache, {len(todo)} PA cần tính trên GEE")
+    failed, t0 = {}, time.time()
+
+    def write(pa, area_ha, classes):
+        a, t = point_tables(pa.SITE_ID, area_ha, classes, years)
+        (areas_dir / f"{pa.SITE_ID}_{akey}.json").write_text(json.dumps(a), encoding="utf-8")
+        (transitions_dir / f"{pa.SITE_ID}_{tkey}.json").write_text(json.dumps(t), encoding="utf-8")
+
+    with ThreadPoolExecutor(max_workers=workers) as ex:
+        futs = {}
+        for pa in todo:
+            npz = points_dir / f"{pa.SITE_ID}.npz"
+            if npz.exists():  # points fetched earlier, tables lost or never written
+                z = np.load(npz)
+                write(pa, float(z["area_ha"]), z["classes"])
+            else:
+                futs[ex.submit(_pa_points, fc, pa, years, n, seed)] = pa
+        for i, fut in enumerate(as_completed(futs), 1):
+            pa = futs[fut]
+            res, errors = fut.result()
+            if res is None:
+                failed[pa.SITE_ID] = errors
+                log(f"  [{i}/{len(futs)}] LỖI {pa.SITE_ID} {pa.NAME}: {errors[-1]}")
+                continue
+            np.savez_compressed(points_dir / f"{pa.SITE_ID}.npz", classes=res["classes"], lonlat=res["lonlat"],
+                                area_ha=res["area_ha"],
+                                years=np.array(years), seed=seed)
+            write(pa, res["area_ha"], res["classes"])
+            if i % 25 == 0 or i == len(futs):
+                log(f"  [{i}/{len(futs)}] – {time.time() - t0:.0f}s")
+    return failed
 
 
 def overlaps(fc, pas):
